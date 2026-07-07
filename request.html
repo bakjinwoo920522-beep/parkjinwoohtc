@@ -21,7 +21,7 @@
       <a href="cert.html">자격증 안내</a>
       <a href="notice.html">공지사항</a>
       <a href="location.html">오시는 길</a>
-      <a href="https://bakjinwoo920522-beep.github.io/bjw-cert/" target="_blank" class="nav-cta">자격증 시스템</a>
+      <a href="https://bakjinwoo920522-beep.github.io/bjw-cert/apply.html" target="_blank" class="nav-cta">자격증 시스템</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-label="메뉴">
       <span></span><span></span><span></span>
@@ -79,9 +79,10 @@
           <label style="font-size:13px;font-weight:600;color:var(--dark);display:block;margin-bottom:6px">의뢰 내용 <span style="color:#E53E3E">*</span></label>
           <textarea rows="5" placeholder="프로그램 목적, 희망 일정, 장소 등을 자유롭게 작성해 주세요." style="width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:var(--sans);outline:none;background:#fff;resize:vertical"></textarea>
         </div>
-        <a href="mailto:bakjinwoo92@daum.net" style="display:block;text-align:center;background:var(--dkgrn);color:#fff;padding:14px;border-radius:10px;font-weight:700;font-size:15px;transition:background 0.2s" onmouseover="this.style.background='#2D5A35'" onmouseout="this.style.background='var(--dkgrn)'">
-          📧 이메일로 의뢰 보내기
-        </a>
+        <div id="inquiry-feedback"></div>
+        <button onclick="submitInquiry()" style="display:block;width:100%;text-align:center;background:var(--dkgrn);color:#fff;padding:14px;border-radius:10px;font-weight:700;font-size:15px;border:none;cursor:pointer;transition:background 0.2s" onmouseover="this.style.background='#2D5A35'" onmouseout="this.style.background='var(--dkgrn)'">
+          📨 의뢰 신청하기
+        </button>
         <p style="text-align:center;font-size:13px;color:var(--muted)">또는 📞 <a href="tel:01034910013" style="color:var(--dkgrn);font-weight:600">010-3491-0013</a> 으로 전화 문의</p>
       </div>
     </div>
@@ -131,7 +132,7 @@
       <a href="https://www.instagram.com/parkjinwoohtc" target="_blank" title="인스타그램">📷</a>
       <a href="https://jinwoostory.com" target="_blank" title="티스토리">📝</a>
       <a href="https://blog.naver.com/myw111" target="_blank" title="네이버블로그">📘</a>
-      <a href="https://bakjinwoo920522-beep.github.io/bjw-cert/" target="_blank" title="자격증시스템">🌿</a>
+      <a href="https://bakjinwoo920522-beep.github.io/bjw-cert/apply.html" target="_blank" title="자격증시스템">🌿</a>
     </div>
   </div>
 </footer>
@@ -147,5 +148,46 @@
 
 </body>
 
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, addDoc, collection, Timestamp }
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const app = initializeApp({
+    apiKey:"AIzaSyA40OooHSHAyCc-kwps50pDJ504f92hxfo",
+    authDomain:"pjw-cert.firebaseapp.com", projectId:"pjw-cert",
+    storageBucket:"pjw-cert.firebasestorage.app",
+    messagingSenderId:"819294382402", appId:"1:819294382402:web:1dd27376446616af09c0db"
+  });
+  const db = getFirestore(app);
+
+  window.submitInquiry = async function() {
+    const org     = document.querySelector('input[placeholder="예: ○○복지관 / 홍길동"]')?.value.trim();
+    const phone   = document.querySelector('input[type="tel"]')?.value.trim();
+    const email   = document.querySelector('input[type="email"]')?.value.trim();
+    const target  = document.querySelector('input[placeholder="예: 성인 20명, 노인 15명"]')?.value.trim();
+    const content = document.querySelector('textarea')?.value.trim();
+    const fb      = document.getElementById('inquiry-feedback');
+
+    if (!org || !phone || !content) {
+      fb.innerHTML = '<p style="color:#E53E3E;font-size:13px;margin-bottom:8px">⚠️ 기관명/담당자, 연락처, 의뢰 내용은 필수입니다.</p>';
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, 'bjw_inquiries'), {
+        org, phone, email, target, content,
+        status: 'pending',
+        createdAt: Timestamp.now()
+      });
+      fb.innerHTML = '<div style="background:#EAF7EE;border:1px solid #2D7A4F;border-radius:10px;padding:16px;margin-bottom:12px;font-size:14px;color:#1A4D30">✅ 의뢰가 접수되었습니다! 검토 후 연락드리겠습니다.</div>';
+      // 입력 초기화
+      document.querySelectorAll('input, textarea').forEach(el => el.value = '');
+    } catch(e) {
+      fb.innerHTML = '<p style="color:#E53E3E;font-size:13px;margin-bottom:8px">⚠️ 오류가 발생했습니다. 전화로 문의해 주세요.</p>';
+    }
+  };
+</script>
 </body>
 </html>

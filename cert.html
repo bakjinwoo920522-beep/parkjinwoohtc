@@ -22,7 +22,7 @@
       <a href="cert.html">자격증 안내</a>
       <a href="notice.html">공지사항</a>
       <a href="location.html">오시는 길</a>
-      <a href="https://bakjinwoo920522-beep.github.io/bjw-cert/" target="_blank" class="nav-cta">자격증 시스템</a>
+      <a href="https://bakjinwoo920522-beep.github.io/bjw-cert/apply.html" target="_blank" class="nav-cta">자격증 시스템</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-label="메뉴">
       <span></span><span></span><span></span>
@@ -348,7 +348,7 @@
       <a href="https://www.instagram.com/parkjinwoohtc" target="_blank" title="인스타그램">📷</a>
       <a href="https://jinwoostory.com" target="_blank" title="티스토리">📝</a>
       <a href="https://blog.naver.com/myw111" target="_blank" title="네이버블로그">📘</a>
-      <a href="https://bakjinwoo920522-beep.github.io/bjw-cert/" target="_blank" title="자격증시스템">🌿</a>
+      <a href="https://bakjinwoo920522-beep.github.io/bjw-cert/apply.html" target="_blank" title="자격증시스템">🌿</a>
     </div>
   </div>
 </footer>
@@ -429,7 +429,7 @@
     const container = document.getElementById('cert-notice-list');
     if (!container) return;
     try {
-      const snap = await getDocs(query(collection(db,'bjw_notices'), orderBy('createdAt','desc'), limit(20)));
+      const snap = await getDocs(query(collection(db,'htc_notices'), orderBy('createdAt','desc'), limit(20)));
       if (snap.empty) {
         container.innerHTML = '<div style="text-align:center;padding:40px;color:var(--muted)"><div style="font-size:40px;margin-bottom:12px">📭</div><div>등록된 공지사항이 없습니다.</div></div>';
         return;
