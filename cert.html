@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>오시는 길 | 박진우원예치료센터</title>
+  <title>자격증 안내 | 박진우원예치료센터</title>
   <link rel="stylesheet" href="common.css">
 </head>
 <body>
+
 <header class="site-header">
   <div class="header-inner">
     <a href="index.html" class="header-logo">
@@ -14,13 +15,13 @@
     </a>
     <nav class="site-nav" id="site-nav">
       <a href="index.html">홈</a>
-      <a href="about.html">센터 소개</a>
+      <a href="about.html" class="active">센터 소개</a>
       <a href="program.html">프로그램</a>
       <a href="request.html">의뢰</a>
       <a href="club.html">동아리</a>
       <a href="cert.html">자격증 안내</a>
       <a href="notice.html">공지사항</a>
-      <a href="location.html" class="active">오시는 길</a>
+      <a href="location.html">오시는 길</a>
       <a href="https://bakjinwoo920522-beep.github.io/bjw-cert/" target="_blank" class="nav-cta">자격증 시스템</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-label="메뉴">
@@ -29,65 +30,286 @@
   </div>
 </header>
 
-<section class="hero" style="padding:70px 32px 60px">
-  <div class="hero-badge">🌿 LOCATION</div>
-  <h1>오시는<br><em>길</em></h1>
-  <p>박진우원예치료센터를 찾아오시는 방법</p>
-</section>
+<!-- 히어로 -->
+<div class="bjw-hero">
+  <div class="cert-badge">🏆 CERTIFICATION</div>
+  <h1>원예치료 전문가 자격증</h1>
+  <p>박진우원예치료센터가 시행하는 민간자격증으로<br>전문 원예치료사의 길을 시작하세요.</p>
+</div>
 
-<section class="section">
-  <div class="section-inner" style="max-width:800px;margin:0 auto">
+<!-- 자격증 3종 소개 -->
+<div class="bjw-container">
 
-    <!-- 지도 -->
-    <div style="background:var(--cream);border-radius:20px;overflow:hidden;margin-bottom:40px;height:360px;display:flex;align-items:center;justify-content:center">
-      <iframe
-        src="https://map.kakao.com/?q=울산+울주군+삼남읍+신복1길+26&output=overlay&map_type=TYPE_MAP&zoom=4"
-        width="100%" height="360" style="border:none;display:block"
-        title="박진우원예치료센터 위치">
-      </iframe>
-    </div>
+  <!-- 자격증 탭 네비 -->
+  <div style="display:flex;gap:10px;margin-bottom:32px;border-bottom:1px solid var(--border);padding-bottom:0">
+    <button onclick="showCert('hort',this)" id="tab-hort"
+      style="padding:12px 20px;border:none;background:none;font-family:var(--sans);font-size:14px;font-weight:600;color:var(--dkgrn);border-bottom:2px solid var(--dkgrn);cursor:pointer">
+      🌸 원예심리상담사
+    </button>
+    <button onclick="showCert('color',this)" id="tab-color"
+      style="padding:12px 20px;border:none;background:none;font-family:var(--sans);font-size:14px;font-weight:500;color:var(--muted);border-bottom:2px solid transparent;cursor:pointer">
+      🎨 색채원예심리상담사
+    </button>
+    <button onclick="showCert('garden',this)" id="tab-garden"
+      style="padding:12px 20px;border:none;background:none;font-family:var(--sans);font-size:14px;font-weight:500;color:var(--muted);border-bottom:2px solid transparent;cursor:pointer">
+      🌻 힐링정원사
+    </button>
+    <button onclick="showCert('notice',this)" id="tab-notice"
+      style="padding:12px 20px;border:none;background:none;font-family:var(--sans);font-size:14px;font-weight:500;color:var(--muted);border-bottom:2px solid transparent;cursor:pointer">
+      📢 공지사항
+    </button>
+  </div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:40px">
-      <div style="background:var(--light);border-radius:14px;padding:28px">
-        <h3 style="font-family:var(--serif);font-size:18px;color:var(--dkgrn);margin-bottom:16px">📍 주소</h3>
-        <p style="color:var(--text);line-height:1.8">
-          울산광역시 울주군 삼남읍<br>신복1길 26<br>박진우원예치료센터
-        </p>
-        <a href="https://map.kakao.com/?q=울산+울주군+삼남읍+신복1길+26"
-           target="_blank"
-           style="display:inline-block;margin-top:16px;color:var(--dkgrn);font-size:13px;font-weight:600">
-          카카오맵에서 보기 →
-        </a>
+  <!-- 원예심리상담사 -->
+  <div id="cert-hort">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:40px">
+      <div>
+        <div style="background:var(--light);border-radius:20px;padding:40px;text-align:center;margin-bottom:24px">
+          <div style="font-size:64px;margin-bottom:16px">🌸</div>
+          <h2 style="font-family:var(--serif);font-size:26px;color:var(--dkgrn);margin-bottom:8px">원예심리상담사</h2>
+          <p style="color:var(--muted);font-size:14px">Horticultural Therapy Counselor</p>
+        </div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:24px">
+          <h3 style="font-size:15px;font-weight:700;color:var(--dark);margin-bottom:14px">📋 응시 자격 요건</h3>
+          <ul style="list-style:none;font-size:14px;color:var(--text);line-height:2">
+            <li>✅ 만 18세 이상</li>
+            <li>✅ 원예 관련 교육 이수자</li>
+            <li>✅ 심리상담 관심자 누구나</li>
+            <li>✅ 관련 전공자 우대</li>
+          </ul>
+        </div>
       </div>
-      <div style="background:var(--light);border-radius:14px;padding:28px">
-        <h3 style="font-family:var(--serif);font-size:18px;color:var(--dkgrn);margin-bottom:16px">📞 연락처</h3>
-        <p style="color:var(--text);line-height:2">
-          <a href="tel:01034910013" style="color:var(--dkgrn);font-weight:600">010-3491-0013</a><br>
-          <a href="mailto:bakjinwoo92@daum.net" style="color:var(--dkgrn);font-size:14px">bakjinwoo92@daum.net</a>
-        </p>
-        <div style="margin-top:16px;display:flex;gap:10px">
-          <a href="https://www.instagram.com/parkjinwoohtc" target="_blank" style="font-size:20px">📷</a>
-          <a href="https://jinwoostory.com" target="_blank" style="font-size:20px">📝</a>
-          <a href="https://blog.naver.com/myw111" target="_blank" style="font-size:20px">📘</a>
+      <div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:16px">
+          <h3 style="font-size:15px;font-weight:700;color:var(--dark);margin-bottom:14px">🎯 활용 분야</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <span class="tag">복지관 원예치료사</span>
+            <span class="tag">학교 원예치료 강사</span>
+            <span class="tag">병원 원예치료 보조</span>
+            <span class="tag">사회복지시설 강사</span>
+            <span class="tag">요양원 프로그램 강사</span>
+            <span class="tag">원예치료 창업</span>
+            <span class="tag">치유농업 전문가</span>
+          </div>
+        </div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:24px">
+          <h3 style="font-size:15px;font-weight:700;color:var(--dark);margin-bottom:14px">📝 취득 절차</h3>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="width:28px;height:28px;background:var(--dkgrn);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">1</div>
+              <span style="font-size:14px;color:var(--text)">응시 신청 및 접수비 납부</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="width:28px;height:28px;background:var(--dkgrn);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">2</div>
+              <span style="font-size:14px;color:var(--text)">필기시험 응시</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="width:28px;height:28px;background:var(--dkgrn);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">3</div>
+              <span style="font-size:14px;color:var(--text)">필기합격자 발표</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="width:28px;height:28px;background:var(--dkgrn);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">4</div>
+              <span style="font-size:14px;color:var(--text)">서류심사 (자격 검증)</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="width:28px;height:28px;background:var(--gold);color:var(--dark);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">5</div>
+              <span style="font-size:14px;color:var(--text);font-weight:600">최종합격 및 자격증 발급</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-    <div style="background:var(--cream);border-radius:14px;padding:28px">
-      <h3 style="font-family:var(--serif);font-size:18px;color:var(--dkgrn);margin-bottom:16px">🚗 찾아오시는 방법</h3>
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <div style="display:flex;gap:12px;align-items:start">
-          <span style="background:var(--dkgrn);color:#fff;font-size:12px;font-weight:700;padding:2px 8px;border-radius:4px;flex-shrink:0;margin-top:2px">자가용</span>
-          <p style="color:var(--muted);font-size:14px;line-height:1.7">내비게이션에 "울산 울주군 삼남읍 신복1길 26" 입력 후 이동</p>
-        </div>
-        <div style="display:flex;gap:12px;align-items:start">
-          <span style="background:var(--sage);color:#fff;font-size:12px;font-weight:700;padding:2px 8px;border-radius:4px;flex-shrink:0;margin-top:2px">대중교통</span>
-          <p style="color:var(--muted);font-size:14px;line-height:1.7">울산 시내버스 이용 후 삼남읍 하차, 도보 이동<br>자세한 경로는 전화 문의 주세요.</p>
-        </div>
-      </div>
+    <div style="text-align:center;background:var(--dkgrn);border-radius:16px;padding:32px">
+      <p style="color:rgba(255,255,255,0.8);font-size:15px;margin-bottom:16px">원예심리상담사 자격증에 도전하세요!</p>
+      <a href="https://bakjinwoo920522-beep.github.io/bjw-cert/apply.html" target="_blank"
+        style="display:inline-block;background:var(--gold);color:var(--dark);padding:14px 32px;border-radius:10px;font-weight:700;font-size:15px;text-decoration:none">
+        🌸 응시 신청하기
+      </a>
     </div>
   </div>
-</section>
+
+  <!-- 색채원예심리상담사 -->
+  <div id="cert-color" style="display:none">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:40px">
+      <div>
+        <div style="background:var(--light);border-radius:20px;padding:40px;text-align:center;margin-bottom:24px">
+          <div style="font-size:64px;margin-bottom:16px">🎨</div>
+          <h2 style="font-family:var(--serif);font-size:26px;color:var(--dkgrn);margin-bottom:8px">색채원예심리상담사</h2>
+          <p style="color:var(--muted);font-size:14px">Color Horticultural Therapy Counselor</p>
+        </div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:24px">
+          <h3 style="font-size:15px;font-weight:700;color:var(--dark);margin-bottom:14px">📋 응시 자격 요건</h3>
+          <ul style="list-style:none;font-size:14px;color:var(--text);line-height:2">
+            <li>✅ 만 18세 이상</li>
+            <li>✅ 원예 또는 색채 관련 관심자</li>
+            <li>✅ 심리상담 관심자 누구나</li>
+            <li>✅ 관련 전공자 우대</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:16px">
+          <h3 style="font-size:15px;font-weight:700;color:var(--dark);margin-bottom:14px">🎯 활용 분야</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <span class="tag">색채치료 전문가</span>
+            <span class="tag">원예치료 강사</span>
+            <span class="tag">심리상담 보조</span>
+            <span class="tag">아동 색채 교육</span>
+            <span class="tag">힐링센터 운영</span>
+            <span class="tag">복지관 강사</span>
+          </div>
+        </div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:24px">
+          <h3 style="font-size:15px;font-weight:700;color:var(--dark);margin-bottom:14px">📝 취득 절차</h3>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;align-items:center;gap:12px"><div style="width:28px;height:28px;background:var(--dkgrn);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">1</div><span style="font-size:14px">응시 신청 및 접수비 납부</span></div>
+            <div style="display:flex;align-items:center;gap:12px"><div style="width:28px;height:28px;background:var(--dkgrn);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">2</div><span style="font-size:14px">필기시험 응시</span></div>
+            <div style="display:flex;align-items:center;gap:12px"><div style="width:28px;height:28px;background:var(--dkgrn);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">3</div><span style="font-size:14px">필기합격자 발표</span></div>
+            <div style="display:flex;align-items:center;gap:12px"><div style="width:28px;height:28px;background:var(--dkgrn);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">4</div><span style="font-size:14px">서류심사</span></div>
+            <div style="display:flex;align-items:center;gap:12px"><div style="width:28px;height:28px;background:var(--gold);color:var(--dark);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">5</div><span style="font-size:14px;font-weight:600">최종합격 및 자격증 발급</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;background:var(--dkgrn);border-radius:16px;padding:32px">
+      <p style="color:rgba(255,255,255,0.8);font-size:15px;margin-bottom:16px">색채원예심리상담사 자격증에 도전하세요!</p>
+      <a href="https://bakjinwoo920522-beep.github.io/bjw-cert/apply.html" target="_blank"
+        style="display:inline-block;background:var(--gold);color:var(--dark);padding:14px 32px;border-radius:10px;font-weight:700;font-size:15px;text-decoration:none">
+        🎨 응시 신청하기
+      </a>
+    </div>
+  </div>
+
+  <!-- 힐링정원사 -->
+  <div id="cert-garden" style="display:none">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:40px">
+      <div>
+        <div style="background:var(--light);border-radius:20px;padding:40px;text-align:center;margin-bottom:24px">
+          <div style="font-size:64px;margin-bottom:16px">🌻</div>
+          <h2 style="font-family:var(--serif);font-size:26px;color:var(--dkgrn);margin-bottom:8px">힐링정원사</h2>
+          <p style="color:var(--muted);font-size:14px">Healing Gardener</p>
+        </div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:24px">
+          <h3 style="font-size:15px;font-weight:700;color:var(--dark);margin-bottom:14px">📋 응시 자격 요건</h3>
+          <ul style="list-style:none;font-size:14px;color:var(--text);line-height:2">
+            <li>✅ 만 18세 이상</li>
+            <li>✅ 정원 가꾸기 관심자</li>
+            <li>✅ 치유정원 관심자 누구나</li>
+            <li>✅ 원예 관련 종사자 우대</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:16px">
+          <h3 style="font-size:15px;font-weight:700;color:var(--dark);margin-bottom:14px">🎯 활용 분야</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <span class="tag">치유정원 설계</span>
+            <span class="tag">힐링센터 운영</span>
+            <span class="tag">케어팜 운영</span>
+            <span class="tag">원예치료 강사</span>
+            <span class="tag">정원 치유 프로그램</span>
+            <span class="tag">요양원 정원 관리</span>
+          </div>
+        </div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:24px">
+          <h3 style="font-size:15px;font-weight:700;color:var(--dark);margin-bottom:14px">📝 취득 절차</h3>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;align-items:center;gap:12px"><div style="width:28px;height:28px;background:var(--dkgrn);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">1</div><span style="font-size:14px">응시 신청 및 접수비 납부</span></div>
+            <div style="display:flex;align-items:center;gap:12px"><div style="width:28px;height:28px;background:var(--dkgrn);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">2</div><span style="font-size:14px">필기시험 응시</span></div>
+            <div style="display:flex;align-items:center;gap:12px"><div style="width:28px;height:28px;background:var(--dkgrn);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">3</div><span style="font-size:14px">필기합격자 발표</span></div>
+            <div style="display:flex;align-items:center;gap:12px"><div style="width:28px;height:28px;background:var(--dkgrn);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">4</div><span style="font-size:14px">서류심사</span></div>
+            <div style="display:flex;align-items:center;gap:12px"><div style="width:28px;height:28px;background:var(--gold);color:var(--dark);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">5</div><span style="font-size:14px;font-weight:600">최종합격 및 자격증 발급</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;background:var(--dkgrn);border-radius:16px;padding:32px">
+      <p style="color:rgba(255,255,255,0.8);font-size:15px;margin-bottom:16px">힐링정원사 자격증에 도전하세요!</p>
+      <a href="https://bakjinwoo920522-beep.github.io/bjw-cert/apply.html" target="_blank"
+        style="display:inline-block;background:var(--gold);color:var(--dark);padding:14px 32px;border-radius:10px;font-weight:700;font-size:15px;text-decoration:none">
+        🌻 응시 신청하기
+      </a>
+    </div>
+  </div>
+
+
+  <!-- 자격증 공지사항 -->
+  <div id="cert-notice" style="display:none">
+
+    <div style="background:var(--light);border-radius:16px;padding:28px;margin-bottom:24px">
+      <h2 style="font-family:var(--serif);font-size:22px;color:var(--dkgrn);margin-bottom:8px">📢 자격증 안내 공지사항</h2>
+      <p style="color:var(--muted);font-size:14px">자격증 취득 비용, 시험 일정, 기타 변동사항을 안내합니다.</p>
+    </div>
+
+    <!-- 비용 안내 -->
+    <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:28px;margin-bottom:20px">
+      <h3 style="font-size:16px;font-weight:700;color:var(--dark);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border)">
+        💰 자격증 취득 비용
+      </h3>
+      <table style="width:100%;border-collapse:collapse;font-size:14px">
+        <thead>
+          <tr style="background:var(--light)">
+            <th style="padding:10px 14px;text-align:left;border-radius:8px 0 0 0;color:var(--dark)">구분</th>
+            <th style="padding:10px 14px;text-align:center;color:var(--dark)">응시료</th>
+            <th style="padding:10px 14px;text-align:center;color:var(--dark)">자격증 발급비</th>
+            <th style="padding:10px 14px;text-align:center;border-radius:0 8px 0 0;color:var(--dark)">합계</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border)">
+            <td style="padding:12px 14px;font-weight:600;color:var(--dkgrn)">🌸 원예심리상담사</td>
+            <td style="padding:12px 14px;text-align:center">50,000원</td>
+            <td style="padding:12px 14px;text-align:center">50,000원</td>
+            <td style="padding:12px 14px;text-align:center;font-weight:700;color:var(--dkgrn)">100,000원</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border)">
+            <td style="padding:12px 14px;font-weight:600;color:var(--dkgrn)">🎨 색채원예심리상담사</td>
+            <td style="padding:12px 14px;text-align:center">50,000원</td>
+            <td style="padding:12px 14px;text-align:center">50,000원</td>
+            <td style="padding:12px 14px;text-align:center;font-weight:700;color:var(--dkgrn)">100,000원</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 14px;font-weight:600;color:var(--dkgrn)">🌻 힐링정원사</td>
+            <td style="padding:12px 14px;text-align:center">50,000원</td>
+            <td style="padding:12px 14px;text-align:center">50,000원</td>
+            <td style="padding:12px 14px;text-align:center;font-weight:700;color:var(--dkgrn)">100,000원</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:12px;color:var(--muted);margin-top:12px">※ 비용은 변동될 수 있으며, 변동 시 사전 공지합니다.</p>
+    </div>
+
+    <!-- 입금 계좌 -->
+    <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:28px;margin-bottom:20px">
+      <h3 style="font-size:16px;font-weight:700;color:var(--dark);margin-bottom:16px">🏦 입금 계좌</h3>
+      <div style="background:var(--light);border-radius:10px;padding:20px;font-size:15px;line-height:2.2">
+        <div><strong>은행:</strong> 토스뱅크</div>
+        <div><strong>계좌번호:</strong> 1002-4362-9694</div>
+        <div><strong>예금주:</strong> 박진우원예치료센터</div>
+      </div>
+    </div>
+
+    <!-- Firestore 공지 게시판 -->
+    <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:28px;margin-bottom:20px">
+      <h3 style="font-size:16px;font-weight:700;color:var(--dark);margin-bottom:16px">📋 변동사항 공지</h3>
+      <div id="cert-notice-list">
+        <div style="text-align:center;padding:40px;color:var(--muted)">
+          <div style="font-size:40px;margin-bottom:12px">📭</div>
+          <div>공지사항을 불러오는 중...</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center">
+      <a href="https://bakjinwoo920522-beep.github.io/bjw-cert/apply.html" target="_blank"
+        style="display:inline-block;background:var(--dkgrn);color:#fff;padding:14px 32px;border-radius:10px;font-weight:700;font-size:15px;text-decoration:none">
+        📝 응시 신청하기
+      </a>
+    </div>
+  </div>
+
+
+</div>
 
 <footer class="site-footer">
   <div class="footer-inner">
@@ -131,16 +353,73 @@
   </div>
 </footer>
 
+<div id="toast-container"></div>
+
 <script>
+  function showCert(id, btn) {
+    ['hort','color','garden'].forEach(c => {
+      document.getElementById('cert-'+c).style.display = 'none';
+      document.getElementById('tab-'+c).style.color = 'var(--muted)';
+      document.getElementById('tab-'+c).style.borderBottomColor = 'transparent';
+      document.getElementById('tab-'+c).style.fontWeight = '500';
+    });
+    document.getElementById('cert-'+id).style.display = 'block';
+    btn.style.color = 'var(--dkgrn)';
+    btn.style.borderBottomColor = 'var(--dkgrn)';
+    btn.style.fontWeight = '600';
+  }
+
+  // 모바일 메뉴
   const toggle = document.getElementById('nav-toggle');
   const nav    = document.getElementById('site-nav');
   if (toggle) toggle.addEventListener('click', () => nav.classList.toggle('open'));
-  // 현재 페이지 active
   const links = document.querySelectorAll('.site-nav a:not(.nav-cta)');
   links.forEach(a => { if (a.href === location.href) a.classList.add('active'); });
 </script>
 
-</body>
-
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, getDocs, query, orderBy, limit }
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  const app = initializeApp({
+    apiKey:"AIzaSyA40OooHSHAyCc-kwps50pDJ504f92hxfo",
+    authDomain:"pjw-cert.firebaseapp.com", projectId:"pjw-cert",
+    storageBucket:"pjw-cert.firebasestorage.app",
+    messagingSenderId:"819294382402", appId:"1:819294382402:web:1dd27376446616af09c0db"
+  });
+  const db = getFirestore(app);
+  (async () => {
+    const container = document.getElementById('cert-notice-list');
+    if (!container) return;
+    try {
+      const snap = await getDocs(query(collection(db,'bjw_notices'), orderBy('createdAt','desc'), limit(20)));
+      if (snap.empty) {
+        container.innerHTML = '<div style="text-align:center;padding:40px;color:var(--muted)"><div style="font-size:40px;margin-bottom:12px">📭</div><div>등록된 공지사항이 없습니다.</div></div>';
+        return;
+      }
+      container.innerHTML = snap.docs.map((doc, i) => {
+        const d = doc.data();
+        const date = d.createdAt?.toDate ? d.createdAt.toDate().toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric'}) : '';
+        const safe = (d.content||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');
+        return `<div style="border-bottom:1px solid var(--border);padding:16px 0;cursor:pointer" onclick="toggleNotice(${i},this)">
+          <div style="display:flex;align-items:center;gap:10px">
+            ${d.pinned ? '<span style="background:var(--dkgrn);color:#fff;font-size:11px;padding:2px 8px;border-radius:6px">📌 공지</span>' : ''}
+            <span style="flex:1;font-size:15px;font-weight:600;color:var(--dark)">${d.title||'제목 없음'}</span>
+            <span style="font-size:12px;color:var(--muted)">${date}</span>
+            <span style="color:var(--muted);transition:transform .2s" id="chev-${i}">▼</span>
+          </div>
+          <div id="nbody-${i}" style="display:none;margin-top:12px;padding:16px;background:var(--light);border-radius:10px;font-size:14px;line-height:1.9;white-space:pre-wrap">${safe}</div>
+        </div>`;
+      }).join('');
+    } catch(e) { console.error(e); container.innerHTML = '<div style="text-align:center;padding:20px;color:var(--muted)">공지사항을 불러올 수 없습니다.</div>'; }
+  })();
+  window.toggleNotice = (i, el) => {
+    const b = document.getElementById('nbody-'+i);
+    const c = document.getElementById('chev-'+i);
+    const open = b.style.display === 'block';
+    b.style.display = open ? 'none' : 'block';
+    if(c) c.style.transform = open ? '' : 'rotate(180deg)';
+  };
+</script>
 </body>
 </html>
