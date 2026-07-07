@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>프로그램 안내 | 박진우원예치료센터</title>
+  <title>활동 갤러리 | 박진우원예치료센터</title>
   <link rel="stylesheet" href="common.css">
 </head>
 <body>
+
 <header class="site-header">
   <div class="header-inner">
     <a href="index.html" class="header-logo">
@@ -14,8 +15,8 @@
     </a>
     <nav class="site-nav" id="site-nav">
       <a href="index.html">홈</a>
-      <a href="about.html">센터 소개</a>
-      <a href="program.html" class="active">프로그램</a>
+      <a href="about.html" class="active">센터 소개</a>
+      <a href="program.html">프로그램</a>
       <a href="request.html">의뢰</a>
       <a href="club.html">동아리</a>
       <a href="gallery.html">갤러리</a>
@@ -30,74 +31,80 @@
   </div>
 </header>
 
-<section class="hero" style="padding:70px 32px 60px">
-  <div class="hero-badge">🌿 PROGRAMS</div>
-  <h1>대상별 맞춤<br><em>원예치료 프로그램</em></h1>
-  <p>아동부터 기업까지, 과학적으로 설계된 원예치료 프로그램</p>
-</section>
+<div class="bjw-hero">
+  <div class="cert-badge">📸 GALLERY</div>
+  <h1>활동 갤러리</h1>
+  <p>박진우원예치료센터의 프로그램 활동 사진을 만나보세요</p>
+</div>
 
-<section class="section">
-  <div class="section-inner">
-    <div style="display:flex;flex-direction:column;gap:48px">
+<div class="bjw-container">
 
-      <div style="display:grid;grid-template-columns:80px 1fr;gap:32px;align-items:start;padding-bottom:48px;border-bottom:1px solid var(--border)">
-        <div style="font-size:56px;text-align:center">👶</div>
+  <!-- 카테고리 필터 -->
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px">
+    <button onclick="filterGallery('all',this)"
+      style="padding:7px 16px;border-radius:20px;border:1.5px solid var(--dkgrn);background:var(--dkgrn);color:#fff;font-family:var(--sans);font-size:13px;cursor:pointer" id="btn-all">
+      전체
+    </button>
+    <button onclick="filterGallery('program',this)"
+      style="padding:7px 16px;border-radius:20px;border:1.5px solid var(--border);background:#fff;color:var(--muted);font-family:var(--sans);font-size:13px;cursor:pointer">
+      프로그램
+    </button>
+    <button onclick="filterGallery('cert',this)"
+      style="padding:7px 16px;border-radius:20px;border:1.5px solid var(--border);background:#fff;color:var(--muted);font-family:var(--sans);font-size:13px;cursor:pointer">
+      자격증
+    </button>
+    <button onclick="filterGallery('event',this)"
+      style="padding:7px 16px;border-radius:20px;border:1.5px solid var(--border);background:#fff;color:var(--muted);font-family:var(--sans);font-size:13px;cursor:pointer">
+      행사
+    </button>
+  </div>
+
+  <!-- 갤러리 그리드 -->
+  <div id="gallery-loading" style="text-align:center;padding:60px 0;color:var(--muted)">
+    <div style="font-size:40px;margin-bottom:12px">📸</div>
+    <div>사진을 불러오는 중...</div>
+  </div>
+
+  <div id="gallery-grid" style="display:none;columns:3;gap:12px">
+  </div>
+
+  <div id="gallery-empty" style="display:none;text-align:center;padding:80px 0;color:var(--muted)">
+    <div style="font-size:48px;margin-bottom:16px">📭</div>
+    <div>등록된 사진이 없습니다.</div>
+    <a href="https://www.instagram.com/parkjinwoohtc" target="_blank"
+      style="display:inline-block;margin-top:16px;color:var(--dkgrn);font-weight:600;font-size:14px">
+      인스타그램에서 보기 →
+    </a>
+  </div>
+
+  <!-- 인스타그램 바로가기 -->
+  <div style="text-align:center;margin-top:48px;padding:32px;background:var(--light);border-radius:16px">
+    <p style="font-size:14px;color:var(--muted);margin-bottom:16px">더 많은 활동 사진은 인스타그램에서 보실 수 있습니다</p>
+    <a href="https://www.instagram.com/parkjinwoohtc" target="_blank"
+      style="display:inline-flex;align-items:center;gap:8px;background:#1C4A2A;color:#fff;padding:12px 24px;border-radius:10px;font-weight:600;font-size:14px;text-decoration:none">
+      📷 @parkjinwoohtc 인스타그램 바로가기
+    </a>
+  </div>
+
+</div>
+
+<!-- 사진 확대 모달 -->
+<div id="photo-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:999;align-items:center;justify-content:center;padding:20px"
+  onclick="closeModal()">
+  <div style="max-width:800px;width:100%;background:#fff;border-radius:16px;overflow:hidden" onclick="event.stopPropagation()">
+    <img id="modal-img" src="" style="width:100%;max-height:500px;object-fit:contain;background:#000">
+    <div style="padding:20px">
+      <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:8px">
         <div>
-          <h2 style="font-family:var(--serif);font-size:24px;color:var(--dkgrn);margin-bottom:12px">아동·청소년 프로그램</h2>
-          <p style="color:var(--muted);line-height:1.9;margin-bottom:16px">성장기 아동과 청소년을 위한 원예치료 프로그램입니다. 식물을 키우고 가꾸는 과정을 통해 집중력과 정서 안정을 도모합니다.</p>
-          <div><span class="tag">ADHD 개입</span><span class="tag">집중력 향상</span><span class="tag">정서 발달</span><span class="tag">사회성 증진</span><span class="tag">자존감 향상</span></div>
+          <div id="modal-title" style="font-weight:700;font-size:16px;color:var(--dark);margin-bottom:4px"></div>
+          <div id="modal-date" style="font-size:12px;color:var(--muted)"></div>
         </div>
+        <button onclick="closeModal()" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted)">✕</button>
       </div>
-
-      <div style="display:grid;grid-template-columns:80px 1fr;gap:32px;align-items:start;padding-bottom:48px;border-bottom:1px solid var(--border)">
-        <div style="font-size:56px;text-align:center">🧑</div>
-        <div>
-          <h2 style="font-family:var(--serif);font-size:24px;color:var(--dkgrn);margin-bottom:12px">성인 프로그램</h2>
-          <p style="color:var(--muted);line-height:1.9;margin-bottom:16px">현대인의 스트레스와 심리적 어려움을 원예치료로 해소합니다. 우울·불안 완화부터 자기효능감 증진까지 체계적으로 지원합니다.</p>
-          <div><span class="tag">스트레스 해소</span><span class="tag">우울 완화</span><span class="tag">불안 감소</span><span class="tag">자기효능감</span><span class="tag">느린학습자 지원</span></div>
-        </div>
-      </div>
-
-      <div style="display:grid;grid-template-columns:80px 1fr;gap:32px;align-items:start;padding-bottom:48px;border-bottom:1px solid var(--border)">
-        <div style="font-size:56px;text-align:center">👴</div>
-        <div>
-          <h2 style="font-family:var(--serif);font-size:24px;color:var(--dkgrn);margin-bottom:12px">노인·어르신 프로그램</h2>
-          <p style="color:var(--muted);line-height:1.9;margin-bottom:16px">어르신의 인지기능 유지와 정서적 안정을 위한 원예치료 프로그램입니다. 경도인지장애 및 경도치매 예방에 효과적입니다.</p>
-          <div><span class="tag">인지기능 유지</span><span class="tag">치매 예방</span><span class="tag">정서 안정</span><span class="tag">사회적 고립 완화</span><span class="tag">우울감 감소</span></div>
-        </div>
-      </div>
-
-      <div style="display:grid;grid-template-columns:80px 1fr;gap:32px;align-items:start;padding-bottom:48px;border-bottom:1px solid var(--border)">
-        <div style="font-size:56px;text-align:center">♿</div>
-        <div>
-          <h2 style="font-family:var(--serif);font-size:24px;color:var(--dkgrn);margin-bottom:12px">장애인 프로그램</h2>
-          <p style="color:var(--muted);line-height:1.9;margin-bottom:16px">신체·정서 재활과 사회 참여를 위한 장애인 특화 원예치료 프로그램입니다. 직업 훈련과 연계한 프로그램도 운영합니다.</p>
-          <div><span class="tag">신체 재활</span><span class="tag">정서 재활</span><span class="tag">사회 참여</span><span class="tag">직업 훈련</span><span class="tag">자립 지원</span></div>
-        </div>
-      </div>
-
-      <div style="display:grid;grid-template-columns:80px 1fr;gap:32px;align-items:start;padding-bottom:48px;border-bottom:1px solid var(--border)">
-        <div style="font-size:56px;text-align:center">🏢</div>
-        <div>
-          <h2 style="font-family:var(--serif);font-size:24px;color:var(--dkgrn);margin-bottom:12px">기업·직장인 프로그램</h2>
-          <p style="color:var(--muted);line-height:1.9;margin-bottom:16px">직무 스트레스 해소와 팀빌딩을 위한 기업 출강 원예치료 프로그램입니다. 조직 내 활력과 구성원 웰빙을 동시에 향상시킵니다.</p>
-          <div><span class="tag">직무 스트레스</span><span class="tag">팀빌딩</span><span class="tag">출강 서비스</span><span class="tag">힐링 프로그램</span><span class="tag">웰빙</span></div>
-        </div>
-      </div>
-
-
-
+      <p id="modal-desc" style="font-size:14px;color:var(--text);line-height:1.8"></p>
     </div>
   </div>
-</section>
-
-<section class="section bg-green">
-  <div class="section-inner text-center">
-    <h2 class="section-title">프로그램 의뢰 문의</h2>
-    <p class="section-desc" style="margin:0 auto 32px">기관·학교·복지관·기업 출강 가능합니다.<br>맞춤형 프로그램 제안서를 무료로 제공해 드립니다.</p>
-    <a href="request.html" class="btn-primary">의뢰하기</a>
-  </div>
-</section>
+</div>
 
 <footer class="site-footer">
   <div class="footer-inner">
@@ -148,16 +155,140 @@
   </div>
 </footer>
 
-<script>
+<style>
+  .gallery-item {
+    break-inside: avoid;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid var(--border);
+  }
+  .gallery-item img {
+    width: 100%;
+    display: block;
+    transition: transform 0.2s;
+  }
+  .gallery-item:hover img { transform: scale(1.03); }
+  .gallery-item .g-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    padding: 20px 12px 12px;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .gallery-item:hover .g-overlay { opacity: 1; }
+  .gallery-item .g-title {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .gallery-item .g-cat {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: var(--gold);
+    color: var(--dark);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  @media (max-width: 768px) {
+    #gallery-grid { columns: 2 !important; }
+  }
+</style>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, getDocs, query, orderBy, where }
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const app = initializeApp({
+    apiKey:"AIzaSyA40OooHSHAyCc-kwps50pDJ504f92hxfo",
+    authDomain:"pjw-cert.firebaseapp.com", projectId:"pjw-cert",
+    storageBucket:"pjw-cert.firebasestorage.app",
+    messagingSenderId:"819294382402", appId:"1:819294382402:web:1dd27376446616af09c0db"
+  });
+  const db = getFirestore(app);
+
+  let allPhotos = [];
+
+  const catLabels = { program:'프로그램', cert:'자격증', event:'행사', etc:'기타' };
+
+  async function loadGallery() {
+    try {
+      const snap = await getDocs(query(collection(db,'htc_gallery'), orderBy('createdAt','desc')));
+      allPhotos = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      renderGallery(allPhotos);
+    } catch(e) {
+      document.getElementById('gallery-loading').style.display = 'none';
+      document.getElementById('gallery-empty').style.display = 'block';
+    }
+  }
+
+  function renderGallery(photos) {
+    const loading = document.getElementById('gallery-loading');
+    const grid    = document.getElementById('gallery-grid');
+    const empty   = document.getElementById('gallery-empty');
+    loading.style.display = 'none';
+    if (photos.length === 0) {
+      empty.style.display = 'block';
+      grid.style.display  = 'none';
+      return;
+    }
+    empty.style.display = 'none';
+    grid.style.display  = 'block';
+    grid.innerHTML = photos.map(p => {
+      const date = p.createdAt?.toDate ? p.createdAt.toDate().toLocaleDateString('ko-KR') : '';
+      const cat  = catLabels[p.category] || '기타';
+      return `<div class="gallery-item" onclick="openModal('${p.imgUrl}','${p.title}','${date}','${(p.desc||'').replace(/'/g,'\\'')}')" data-cat="${p.category||'etc'}">
+        <img src="${p.imgUrl}" alt="${p.title}" loading="lazy">
+        <div class="g-overlay">
+          <div class="g-cat">${cat}</div>
+          <div class="g-title">${p.title}</div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  window.filterGallery = function(cat, btn) {
+    document.querySelectorAll('[onclick^="filterGallery"]').forEach(b => {
+      b.style.background = '#fff';
+      b.style.color = 'var(--muted)';
+      b.style.borderColor = 'var(--border)';
+    });
+    btn.style.background = 'var(--dkgrn)';
+    btn.style.color = '#fff';
+    btn.style.borderColor = 'var(--dkgrn)';
+    const filtered = cat === 'all' ? allPhotos : allPhotos.filter(p => p.category === cat);
+    renderGallery(filtered);
+  };
+
+  window.openModal = function(img, title, date, desc) {
+    document.getElementById('modal-img').src   = img;
+    document.getElementById('modal-title').textContent = title;
+    document.getElementById('modal-date').textContent  = date;
+    document.getElementById('modal-desc').textContent  = desc;
+    document.getElementById('photo-modal').style.display = 'flex';
+  };
+
+  window.closeModal = function() {
+    document.getElementById('photo-modal').style.display = 'none';
+  };
+
+  loadGallery();
+
+  // 네비 active
   const toggle = document.getElementById('nav-toggle');
   const nav    = document.getElementById('site-nav');
   if (toggle) toggle.addEventListener('click', () => nav.classList.toggle('open'));
-  // 현재 페이지 active
-  const links = document.querySelectorAll('.site-nav a:not(.nav-cta)');
-  links.forEach(a => { if (a.href === location.href) a.classList.add('active'); });
+  document.querySelectorAll('.site-nav a:not(.nav-cta)').forEach(a => {
+    if (a.href === location.href) a.classList.add('active');
+  });
 </script>
-
-</body>
-
 </body>
 </html>
