@@ -250,29 +250,29 @@
         <thead>
           <tr style="background:var(--light)">
             <th style="padding:10px 14px;text-align:left;border-radius:8px 0 0 0;color:var(--dark)">구분</th>
-            <th style="padding:10px 14px;text-align:center;color:var(--dark)">응시료</th>
-            <th style="padding:10px 14px;text-align:center;color:var(--dark)">자격증 발급비</th>
-            <th style="padding:10px 14px;text-align:center;border-radius:0 8px 0 0;color:var(--dark)">합계</th>
+            <th style="padding:10px 14px;text-align:center;color:var(--dark)">심사료</th>
+            <th style="padding:10px 14px;text-align:center;color:var(--dark)">자격 발급비</th>
+            <th style="padding:10px 14px;text-align:center;border-radius:0 8px 0 0;color:var(--dark)">비고</th>
           </tr>
         </thead>
         <tbody>
           <tr style="border-bottom:1px solid var(--border)">
             <td style="padding:12px 14px;font-weight:600;color:var(--dkgrn)">🌸 원예심리상담사</td>
-            <td style="padding:12px 14px;text-align:center">50,000원</td>
-            <td style="padding:12px 14px;text-align:center">50,000원</td>
-            <td style="padding:12px 14px;text-align:center;font-weight:700;color:var(--dkgrn)">100,000원</td>
+            <td style="padding:12px 14px;text-align:center">공지 참조</td>
+            <td style="padding:12px 14px;text-align:center;font-weight:700;color:var(--dkgrn)">50,000원</td>
+            <td style="padding:12px 14px;text-align:center;font-size:12px;color:var(--muted)">공지사항 탭 참조</td>
           </tr>
           <tr style="border-bottom:1px solid var(--border)">
             <td style="padding:12px 14px;font-weight:600;color:var(--dkgrn)">🎨 색채원예심리상담사</td>
-            <td style="padding:12px 14px;text-align:center">50,000원</td>
-            <td style="padding:12px 14px;text-align:center">50,000원</td>
-            <td style="padding:12px 14px;text-align:center;font-weight:700;color:var(--dkgrn)">100,000원</td>
+            <td style="padding:12px 14px;text-align:center">공지 참조</td>
+            <td style="padding:12px 14px;text-align:center;font-weight:700;color:var(--dkgrn)">50,000원</td>
+            <td style="padding:12px 14px;text-align:center;font-size:12px;color:var(--muted)">공지사항 탭 참조</td>
           </tr>
           <tr>
             <td style="padding:12px 14px;font-weight:600;color:var(--dkgrn)">🌻 힐링정원사</td>
-            <td style="padding:12px 14px;text-align:center">50,000원</td>
-            <td style="padding:12px 14px;text-align:center">50,000원</td>
-            <td style="padding:12px 14px;text-align:center;font-weight:700;color:var(--dkgrn)">100,000원</td>
+            <td style="padding:12px 14px;text-align:center">공지 참조</td>
+            <td style="padding:12px 14px;text-align:center;font-weight:700;color:var(--dkgrn)">50,000원</td>
+            <td style="padding:12px 14px;text-align:center;font-size:12px;color:var(--muted)">공지사항 탭 참조</td>
           </tr>
         </tbody>
       </table>
@@ -353,7 +353,44 @@
   </div>
 </footer>
 
-<div id="toast-container"></div>
+<div id="toast-container">
+  <!-- 민간자격 표시의무 -->
+  <div style="background:var(--cream);border:1px solid var(--border);border-radius:14px;padding:28px;margin-bottom:40px">
+    <h3 style="font-size:15px;font-weight:700;color:var(--dark);margin-bottom:16px">📌 민간자격 등록 안내 (표시의무)</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:13px">
+      <thead>
+        <tr style="background:var(--light)">
+          <th style="padding:10px 14px;text-align:left;color:var(--dark)">등록번호</th>
+          <th style="padding:10px 14px;text-align:left;color:var(--dark)">자격명</th>
+          <th style="padding:10px 14px;text-align:left;color:var(--dark)">자격발급기관</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:10px 14px;font-family:monospace;color:var(--dkgrn)">2020-000566</td>
+          <td style="padding:10px 14px;font-weight:600">원예심리상담사</td>
+          <td style="padding:10px 14px">박진우원예치료센터</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:10px 14px;font-family:monospace;color:var(--dkgrn)">2021-001781</td>
+          <td style="padding:10px 14px;font-weight:600">색채원예심리상담사</td>
+          <td style="padding:10px 14px">박진우원예치료센터</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;font-family:monospace;color:var(--dkgrn)">2023-000251</td>
+          <td style="padding:10px 14px;font-weight:600">힐링정원사</td>
+          <td style="padding:10px 14px">박진우원예치료센터</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:16px;font-size:12px;color:var(--muted);line-height:2">
+      · 이 자격은 자격기본법 규정에 따라 등록한 민간자격으로, 국가로부터 인정받은 공인자격이 아닙니다.<br>
+      · 민간자격 등록 및 공인 제도에 대한 자세한 내용은 민간자격정보서비스
+      <a href="https://www.pqi.or.kr" target="_blank" style="color:var(--dkgrn);font-weight:600">www.pqi.or.kr</a>의
+      민간자격 등록현황에서 확인하실 수 있습니다.
+    </div>
+  </div>
+</div>
 
 <script>
   function showCert(id, btn) {
