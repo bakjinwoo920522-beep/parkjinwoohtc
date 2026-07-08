@@ -33,25 +33,29 @@ a { text-decoration: none; color: inherit; }
   background: rgba(255,255,255,0.96);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
-  padding: 0 32px;
+  padding: 0 24px;
 }
 .header-inner {
-  max-width: var(--max-w); margin: 0 auto;
+  max-width: 1200px; margin: 0 auto;
   display: flex; align-items: center; justify-content: space-between;
-  height: 72px;
+  height: 64px;
 }
-.header-logo img { height: 44px; }
-.site-nav { display: flex; gap: 4px; align-items: center; }
+.header-logo img { height: 40px; }
+
+/* ── 네비게이션 */
+.site-nav { display: flex; gap: 2px; align-items: center; flex-wrap: nowrap; }
 .site-nav a {
-  padding: 8px 16px; border-radius: 8px;
-  font-size: 14px; font-weight: 500; color: var(--text);
+  padding: 6px 10px; border-radius: 8px;
+  font-size: 12.5px; font-weight: 500; color: var(--text);
   transition: all var(--trans);
+  white-space: nowrap;
 }
 .site-nav a:hover, .site-nav a.active { background: var(--light); color: var(--dkgrn); }
 .site-nav a.nav-cta {
   background: var(--dkgrn); color: #fff;
-  padding: 8px 18px; border-radius: 8px;
-  font-weight: 600;
+  padding: 6px 12px; border-radius: 8px;
+  font-weight: 600; font-size: 12.5px;
+  white-space: nowrap;
 }
 .site-nav a.nav-cta:hover { background: var(--moss); }
 .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
@@ -182,10 +186,10 @@ a { text-decoration: none; color: inherit; }
 .stat .label { font-size: 13px; color: var(--muted); margin-top: 6px; }
 
 /* ── 반응형 */
-@media (max-width: 768px) {
-  .site-nav { display: none; position: fixed; top: 72px; left: 0; right: 0; bottom: 0; background: #fff; flex-direction: column; padding: 32px; gap: 8px; z-index: 199; }
+@media (max-width: 900px) {
+  .site-nav { display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: #fff; flex-direction: column; padding: 32px; gap: 8px; z-index: 199; overflow-y: auto; }
   .site-nav.open { display: flex; }
-  .site-nav a { font-size: 18px; padding: 12px 16px; }
+  .site-nav a { font-size: 16px; padding: 12px 16px; white-space: normal; }
   .nav-toggle { display: block; }
   .footer-inner { grid-template-columns: 1fr; gap: 32px; }
   .section { padding: 60px 20px; }
