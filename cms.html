@@ -15,6 +15,23 @@ input,select,textarea,button{font-family:inherit;}
 <body>
 <div id="root"></div>
 <script>
+// React 전역 설정
+var useState   = React.useState;
+var useEffect  = React.useEffect;
+var useRef     = React.useRef;
+var useCallback= React.useCallback;
+var useMemo    = React.useMemo;
+var createElement = React.createElement;
+
+// localStorage 래퍼
+var storage = {
+  get: async function(key) {
+    try { var v = localStorage.getItem(key); return v ? {value: v} : null; } catch(e) { return null; }
+  },
+  set: async function(key, value) {
+    try { localStorage.setItem(key, value); return true; } catch(e) { return null; }
+  }
+};
 "use strict";
 
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
