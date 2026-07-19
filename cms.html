@@ -15,6 +15,8 @@ input,select,textarea,button{font-family:inherit;}
 <body>
 <div id="root"></div>
 <script>
+"use strict";
+
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -25,16 +27,67 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i.return) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
-function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
-function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
-function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i.return) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+var _React = React,
+  useState = _React.useState,
+  useEffect = _React.useEffect;
+
+// localStorage 래퍼 (window.storage 대체)
+var storage = {
+  get: function () {
+    var _get = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(key) {
+      var v, _t;
+      return _regenerator().w(function (_context) {
+        while (1) switch (_context.p = _context.n) {
+          case 0:
+            _context.p = 0;
+            v = localStorage.getItem(key);
+            return _context.a(2, v ? {
+              value: v
+            } : null);
+          case 1:
+            _context.p = 1;
+            _t = _context.v;
+            return _context.a(2, null);
+        }
+      }, _callee, null, [[0, 1]]);
+    }));
+    function get(_x) {
+      return _get.apply(this, arguments);
+    }
+    return get;
+  }(),
+  set: function () {
+    var _set = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2(key, value) {
+      var _t2;
+      return _regenerator().w(function (_context2) {
+        while (1) switch (_context2.p = _context2.n) {
+          case 0:
+            _context2.p = 0;
+            localStorage.setItem(key, value);
+            return _context2.a(2, true);
+          case 1:
+            _context2.p = 1;
+            _t2 = _context2.v;
+            return _context2.a(2, null);
+        }
+      }, _callee2, null, [[0, 1]]);
+    }));
+    function set(_x2, _x3) {
+      return _set.apply(this, arguments);
+    }
+    return set;
+  }()
+};
 var G = {
   900: "#1B5E20",
   700: "#2E7D32",
@@ -677,131 +730,79 @@ function App() {
       return _load.apply(this, arguments);
     }
     function _load() {
-      _load = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
-        var ru, r1, ri, rcd, rsd, rsp, r2, r3, _t;
-        return _regenerator().w(function (_context) {
-          while (1) switch (_context.p = _context.n) {
+      _load = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3() {
+        var ru, r1, ri, rcd, rsd, rsp, r2, r3, _t3;
+        return _regenerator().w(function (_context3) {
+          while (1) switch (_context3.p = _context3.n) {
             case 0:
-              _context.p = 0;
-              _context.n = 1;
-              return window.storage.get("htc-users");
+              _context3.p = 0;
+              _context3.n = 1;
+              return storage.get("htc-users");
             case 1:
-              ru = _context.v;
+              ru = _context3.v;
               if (ru) setUsers(JSON.parse(ru.value));
-              _context.n = 2;
-              return window.storage.get("htc-clients");
+              _context3.n = 2;
+              return storage.get("htc-clients");
             case 2:
-              r1 = _context.v;
+              r1 = _context3.v;
               if (r1) setClients(JSON.parse(r1.value));
-              _context.n = 3;
-              return window.storage.get("htc-insts");
+              _context3.n = 3;
+              return storage.get("htc-insts");
             case 3:
-              ri = _context.v;
+              ri = _context3.v;
               if (ri) setInsts(JSON.parse(ri.value));
-              _context.n = 4;
-              return window.storage.get("htc-center-docs");
+              _context3.n = 4;
+              return storage.get("htc-center-docs");
             case 4:
-              rcd = _context.v;
+              rcd = _context3.v;
               if (rcd) setCenterDocs(JSON.parse(rcd.value));
-              _context.n = 5;
-              return window.storage.get("htc-staff-docs");
+              _context3.n = 5;
+              return storage.get("htc-staff-docs");
             case 5:
-              rsd = _context.v;
+              rsd = _context3.v;
               if (rsd) setStaffDocs(JSON.parse(rsd.value));
-              _context.n = 6;
-              return window.storage.get("htc-staff-profiles");
+              _context3.n = 6;
+              return storage.get("htc-staff-profiles");
             case 6:
-              rsp = _context.v;
+              rsp = _context3.v;
               if (rsp) setStaffProfiles(JSON.parse(rsp.value));
-              _context.n = 7;
-              return window.storage.get("htc-docs");
+              _context3.n = 7;
+              return storage.get("htc-docs");
             case 7:
-              r2 = _context.v;
+              r2 = _context3.v;
               if (r2) setDocs(JSON.parse(r2.value));
-              _context.n = 8;
-              return window.storage.get("htc-recv");
+              _context3.n = 8;
+              return storage.get("htc-recv");
             case 8:
-              r3 = _context.v;
+              r3 = _context3.v;
               if (r3) setRecv(JSON.parse(r3.value));
-              _context.n = 10;
+              _context3.n = 10;
               break;
             case 9:
-              _context.p = 9;
-              _t = _context.v;
+              _context3.p = 9;
+              _t3 = _context3.v;
             case 10:
-              return _context.a(2);
+              return _context3.a(2);
           }
-        }, _callee, null, [[0, 9]]);
+        }, _callee3, null, [[0, 9]]);
       }));
       return _load.apply(this, arguments);
     }
     load();
   }, []);
-  function saveUsers(_x) {
+  function saveUsers(_x4) {
     return _saveUsers.apply(this, arguments);
   }
   function _saveUsers() {
-    _saveUsers = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2(data) {
-      var _t2;
-      return _regenerator().w(function (_context2) {
-        while (1) switch (_context2.p = _context2.n) {
-          case 0:
-            setUsers(data);
-            _context2.p = 1;
-            _context2.n = 2;
-            return window.storage.set("htc-users", JSON.stringify(data));
-          case 2:
-            _context2.n = 4;
-            break;
-          case 3:
-            _context2.p = 3;
-            _t2 = _context2.v;
-          case 4:
-            return _context2.a(2);
-        }
-      }, _callee2, null, [[1, 3]]);
-    }));
-    return _saveUsers.apply(this, arguments);
-  }
-  function saveClients(_x2) {
-    return _saveClients.apply(this, arguments);
-  }
-  function _saveClients() {
-    _saveClients = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(data) {
-      var _t3;
-      return _regenerator().w(function (_context3) {
-        while (1) switch (_context3.p = _context3.n) {
-          case 0:
-            setClients(data);
-            _context3.p = 1;
-            _context3.n = 2;
-            return window.storage.set("htc-clients", JSON.stringify(data));
-          case 2:
-            _context3.n = 4;
-            break;
-          case 3:
-            _context3.p = 3;
-            _t3 = _context3.v;
-          case 4:
-            return _context3.a(2);
-        }
-      }, _callee3, null, [[1, 3]]);
-    }));
-    return _saveClients.apply(this, arguments);
-  }
-  function saveInsts(_x3) {
-    return _saveInsts.apply(this, arguments);
-  }
-  function _saveInsts() {
-    _saveInsts = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4(data) {
+    _saveUsers = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4(data) {
       var _t4;
       return _regenerator().w(function (_context4) {
         while (1) switch (_context4.p = _context4.n) {
           case 0:
-            setInsts(data);
+            setUsers(data);
             _context4.p = 1;
             _context4.n = 2;
-            return window.storage.set("htc-insts", JSON.stringify(data));
+            return storage.set("htc-users", JSON.stringify(data));
           case 2:
             _context4.n = 4;
             break;
@@ -813,21 +814,21 @@ function App() {
         }
       }, _callee4, null, [[1, 3]]);
     }));
-    return _saveInsts.apply(this, arguments);
+    return _saveUsers.apply(this, arguments);
   }
-  function saveCenterDocs(_x4) {
-    return _saveCenterDocs.apply(this, arguments);
+  function saveClients(_x5) {
+    return _saveClients.apply(this, arguments);
   }
-  function _saveCenterDocs() {
-    _saveCenterDocs = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(data) {
+  function _saveClients() {
+    _saveClients = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(data) {
       var _t5;
       return _regenerator().w(function (_context5) {
         while (1) switch (_context5.p = _context5.n) {
           case 0:
-            setCenterDocs(data);
+            setClients(data);
             _context5.p = 1;
             _context5.n = 2;
-            return window.storage.set("htc-center-docs", JSON.stringify(data));
+            return storage.set("htc-clients", JSON.stringify(data));
           case 2:
             _context5.n = 4;
             break;
@@ -839,21 +840,21 @@ function App() {
         }
       }, _callee5, null, [[1, 3]]);
     }));
-    return _saveCenterDocs.apply(this, arguments);
+    return _saveClients.apply(this, arguments);
   }
-  function saveStaffDocs(_x5) {
-    return _saveStaffDocs.apply(this, arguments);
+  function saveInsts(_x6) {
+    return _saveInsts.apply(this, arguments);
   }
-  function _saveStaffDocs() {
-    _saveStaffDocs = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(data) {
+  function _saveInsts() {
+    _saveInsts = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(data) {
       var _t6;
       return _regenerator().w(function (_context6) {
         while (1) switch (_context6.p = _context6.n) {
           case 0:
-            setStaffDocs(data);
+            setInsts(data);
             _context6.p = 1;
             _context6.n = 2;
-            return window.storage.set("htc-staff-docs", JSON.stringify(data));
+            return storage.set("htc-insts", JSON.stringify(data));
           case 2:
             _context6.n = 4;
             break;
@@ -865,21 +866,21 @@ function App() {
         }
       }, _callee6, null, [[1, 3]]);
     }));
-    return _saveStaffDocs.apply(this, arguments);
+    return _saveInsts.apply(this, arguments);
   }
-  function saveStaffProfiles(_x6) {
-    return _saveStaffProfiles.apply(this, arguments);
+  function saveCenterDocs(_x7) {
+    return _saveCenterDocs.apply(this, arguments);
   }
-  function _saveStaffProfiles() {
-    _saveStaffProfiles = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7(data) {
+  function _saveCenterDocs() {
+    _saveCenterDocs = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7(data) {
       var _t7;
       return _regenerator().w(function (_context7) {
         while (1) switch (_context7.p = _context7.n) {
           case 0:
-            setStaffProfiles(data);
+            setCenterDocs(data);
             _context7.p = 1;
             _context7.n = 2;
-            return window.storage.set("htc-staff-profiles", JSON.stringify(data));
+            return storage.set("htc-center-docs", JSON.stringify(data));
           case 2:
             _context7.n = 4;
             break;
@@ -891,21 +892,21 @@ function App() {
         }
       }, _callee7, null, [[1, 3]]);
     }));
-    return _saveStaffProfiles.apply(this, arguments);
+    return _saveCenterDocs.apply(this, arguments);
   }
-  function saveDocs(_x7) {
-    return _saveDocs.apply(this, arguments);
+  function saveStaffDocs(_x8) {
+    return _saveStaffDocs.apply(this, arguments);
   }
-  function _saveDocs() {
-    _saveDocs = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8(data) {
+  function _saveStaffDocs() {
+    _saveStaffDocs = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8(data) {
       var _t8;
       return _regenerator().w(function (_context8) {
         while (1) switch (_context8.p = _context8.n) {
           case 0:
-            setDocs(data);
+            setStaffDocs(data);
             _context8.p = 1;
             _context8.n = 2;
-            return window.storage.set("htc-docs", JSON.stringify(data));
+            return storage.set("htc-staff-docs", JSON.stringify(data));
           case 2:
             _context8.n = 4;
             break;
@@ -917,21 +918,21 @@ function App() {
         }
       }, _callee8, null, [[1, 3]]);
     }));
-    return _saveDocs.apply(this, arguments);
+    return _saveStaffDocs.apply(this, arguments);
   }
-  function saveRecv(_x8) {
-    return _saveRecv.apply(this, arguments);
+  function saveStaffProfiles(_x9) {
+    return _saveStaffProfiles.apply(this, arguments);
   }
-  function _saveRecv() {
-    _saveRecv = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9(data) {
+  function _saveStaffProfiles() {
+    _saveStaffProfiles = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9(data) {
       var _t9;
       return _regenerator().w(function (_context9) {
         while (1) switch (_context9.p = _context9.n) {
           case 0:
-            setRecv(data);
+            setStaffProfiles(data);
             _context9.p = 1;
             _context9.n = 2;
-            return window.storage.set("htc-recv", JSON.stringify(data));
+            return storage.set("htc-staff-profiles", JSON.stringify(data));
           case 2:
             _context9.n = 4;
             break;
@@ -942,6 +943,58 @@ function App() {
             return _context9.a(2);
         }
       }, _callee9, null, [[1, 3]]);
+    }));
+    return _saveStaffProfiles.apply(this, arguments);
+  }
+  function saveDocs(_x0) {
+    return _saveDocs.apply(this, arguments);
+  }
+  function _saveDocs() {
+    _saveDocs = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0(data) {
+      var _t0;
+      return _regenerator().w(function (_context0) {
+        while (1) switch (_context0.p = _context0.n) {
+          case 0:
+            setDocs(data);
+            _context0.p = 1;
+            _context0.n = 2;
+            return storage.set("htc-docs", JSON.stringify(data));
+          case 2:
+            _context0.n = 4;
+            break;
+          case 3:
+            _context0.p = 3;
+            _t0 = _context0.v;
+          case 4:
+            return _context0.a(2);
+        }
+      }, _callee0, null, [[1, 3]]);
+    }));
+    return _saveDocs.apply(this, arguments);
+  }
+  function saveRecv(_x1) {
+    return _saveRecv.apply(this, arguments);
+  }
+  function _saveRecv() {
+    _saveRecv = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee1(data) {
+      var _t1;
+      return _regenerator().w(function (_context1) {
+        while (1) switch (_context1.p = _context1.n) {
+          case 0:
+            setRecv(data);
+            _context1.p = 1;
+            _context1.n = 2;
+            return storage.set("htc-recv", JSON.stringify(data));
+          case 2:
+            _context1.n = 4;
+            break;
+          case 3:
+            _context1.p = 3;
+            _t1 = _context1.v;
+          case 4:
+            return _context1.a(2);
+        }
+      }, _callee1, null, [[1, 3]]);
     }));
     return _saveRecv.apply(this, arguments);
   }
