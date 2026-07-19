@@ -15,23 +15,8 @@ input,select,textarea,button{font-family:inherit;}
 <body>
 <div id="root"></div>
 <script>
-// React 전역 설정
 var useState   = React.useState;
 var useEffect  = React.useEffect;
-var useRef     = React.useRef;
-var useCallback= React.useCallback;
-var useMemo    = React.useMemo;
-var createElement = React.createElement;
-
-// localStorage 래퍼
-var storage = {
-  get: async function(key) {
-    try { var v = localStorage.getItem(key); return v ? {value: v} : null; } catch(e) { return null; }
-  },
-  set: async function(key, value) {
-    try { localStorage.setItem(key, value); return true; } catch(e) { return null; }
-  }
-};
 "use strict";
 
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
@@ -57,8 +42,6 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 var _React = React,
   useState = _React.useState,
   useEffect = _React.useEffect;
-
-// localStorage 래퍼 (window.storage 대체)
 var storage = {
   get: function () {
     var _get = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(key) {
@@ -140,324 +123,29 @@ var ROLES = {
 };
 var DEFAULT_USERS = [{
   id: "u1",
-  name: "김예진",
-  role: "staff",
-  pw: "1234"
-}, {
-  id: "u2",
-  name: "이수민",
-  role: "branch",
-  pw: "1234"
-}, {
-  id: "u3",
   name: "박진우",
   role: "director",
   pw: "1234"
-}, {
-  id: "u4",
-  name: "박지현",
-  role: "staff",
-  pw: "1234"
 }];
-var DEFAULT_CLIENTS = [{
-  id: "C-001",
-  name: "김 ○ ○",
-  age: 9,
-  inst: "삼산초등학교",
-  program: "느린학습자 원예치료",
-  therapist: "김예진",
-  done: 12,
-  total: 12,
-  status: "진행중",
-  goal: "주의집중력 향상",
-  note: "또래 자발적 대화 관찰",
-  sessions: [{
-    no: 1,
-    date: "2026.04.07",
-    attend: true,
-    activity: "자기소개 꽃 이름표 만들기",
-    memo: "라포 형성. 다소 긴장된 모습이나 활동 참여 양호."
-  }, {
-    no: 2,
-    date: "2026.04.14",
-    attend: true,
-    activity: "채소 씨앗 파종 및 관찰일지 작성",
-    memo: "씨앗 심기 활동에 집중. 지속시간 약 8분."
-  }, {
-    no: 11,
-    date: "2026.06.23",
-    attend: true,
-    activity: "미니 테라리움 제작",
-    memo: "또래와 자발적 대화 2회 관찰. 집중 지속시간 18분으로 증가."
-  }, {
-    no: 12,
-    date: "2026.06.30",
-    attend: true,
-    activity: "성장 전시회·수료식",
-    memo: "소감 발표 완수. 집중 지속시간 22분 달성."
-  }],
-  outcomes: [{
-    item: "주의집중 지속시간",
-    pre: "5분",
-    post: "22분"
-  }, {
-    item: "충동적 행동",
-    pre: "8회/회기",
-    post: "2회/회기"
-  }]
-}, {
-  id: "C-002",
-  name: "이 ○ ○",
-  age: 8,
-  inst: "삼산초등학교",
-  program: "느린학습자 원예치료",
-  therapist: "김예진",
-  done: 10,
-  total: 12,
-  status: "진행중",
-  goal: "감각통합 촉진",
-  note: "허브 4종 구분 성공",
-  sessions: [{
-    no: 1,
-    date: "2026.04.07",
-    attend: true,
-    activity: "자기소개 꽃 이름표 만들기",
-    memo: "흙 만지기 거부. 장갑 착용 후 참여."
-  }, {
-    no: 10,
-    date: "2026.06.16",
-    attend: true,
-    activity: "상추 수확 및 미니 샐러드",
-    memo: "흙 거부 없음. 허브 4종 정확히 구분."
-  }],
-  outcomes: [{
-    item: "감각 거부 반응",
-    pre: "빈번",
-    post: "거의 없음"
-  }]
-}, {
-  id: "C-003",
-  name: "박 ○ ○",
-  age: 10,
-  inst: "남구청 복지관",
-  program: "ADHD 원예치료",
-  therapist: "이수민",
-  done: 12,
-  total: 12,
-  status: "종결완료",
-  goal: "충동 조절",
-  note: "수료식 소감 발표 완수",
-  sessions: [{
-    no: 12,
-    date: "2026.06.28",
-    attend: true,
-    activity: "마무리 수료식",
-    memo: "소감 발표 자발적으로 완수. 충동 행동 현저히 감소."
-  }],
-  outcomes: [{
-    item: "충동적 행동 빈도",
-    pre: "회기당 8회",
-    post: "회기당 2회"
-  }, {
-    item: "자기효능감 척도",
-    pre: "2.1점",
-    post: "3.8점"
-  }]
-}];
+var DEFAULT_CLIENTS = [];
+var DEFAULT_INSTS = [];
+var DEFAULT_DOCS = [];
+var DEFAULT_RECV = [];
 var DEFAULT_CENTER_DOCS = [{
   id: "CD-001",
   type: "사업자등록증",
   name: "박진우원예치료센터 사업자등록증",
   uploadDate: "",
-  file: null,
   registered: false
 }, {
   id: "CD-002",
   type: "통장사본",
   name: "박진우원예치료센터 통장사본",
   uploadDate: "",
-  file: null,
   registered: false
 }];
-var DEFAULT_STAFF_PROFILES = {
-  "김예진": {
-    name: "김예진",
-    birth: "1995",
-    gender: "여",
-    phone: "010-0000-0000",
-    email: "",
-    address: "울산광역시",
-    education: [{
-      year: "2018",
-      school: "○○대학교",
-      major: "원예학과",
-      degree: "학사"
-    }],
-    certs: [{
-      year: "2020",
-      name: "원예치료사 1급",
-      issuer: "한국원예치료복지협회",
-      no: "제2020-001호"
-    }],
-    career: [{
-      period: "2021.03 ~ 현재",
-      org: "박진우원예치료센터",
-      position: "원예치료사",
-      note: ""
-    }],
-    training: [{
-      year: "2022",
-      name: "사례개념화 기반 원예치료 전문과정",
-      org: "한국원예치유연구소",
-      hours: 20
-    }]
-  },
-  "박지현": {
-    name: "박지현",
-    birth: "1997",
-    gender: "여",
-    phone: "010-0000-0000",
-    email: "",
-    address: "울산광역시",
-    education: [{
-      year: "2020",
-      school: "○○대학교",
-      major: "원예치료학과",
-      degree: "학사"
-    }],
-    certs: [{
-      year: "2022",
-      name: "원예치료사 2급",
-      issuer: "한국원예치료복지협회",
-      no: "제2022-015호"
-    }],
-    career: [{
-      period: "2022.09 ~ 현재",
-      org: "박진우원예치료센터",
-      position: "원예치료사",
-      note: ""
-    }],
-    training: []
-  }
-};
-var DEFAULT_STAFF_DOCS = {
-  "김예진": [{
-    id: "SD-001",
-    type: "자격증사본",
-    name: "원예치료사 1급 자격증",
-    uploadDate: "",
-    registered: false
-  }, {
-    id: "SD-003",
-    type: "강사료입금통장",
-    name: "강사료 입금 통장사본",
-    uploadDate: "",
-    registered: false
-  }],
-  "박지현": [{
-    id: "SD-004",
-    type: "자격증사본",
-    name: "원예치료사 2급 자격증",
-    uploadDate: "",
-    registered: false
-  }, {
-    id: "SD-006",
-    type: "강사료입금통장",
-    name: "강사료 입금 통장사본",
-    uploadDate: "",
-    registered: false
-  }]
-};
-var DEFAULT_INSTS = [{
-  id: "I-001",
-  name: "삼산초등학교",
-  type: "학교",
-  contact: "교장 선생님",
-  phone: "052-000-0001",
-  email: ""
-}, {
-  id: "I-002",
-  name: "남구청 복지관",
-  type: "복지관",
-  contact: "프로그램팀장",
-  phone: "052-000-0002",
-  email: ""
-}, {
-  id: "I-003",
-  name: "동구 장애인복지관",
-  type: "복지관",
-  contact: "재활팀장",
-  phone: "052-000-0003",
-  email: ""
-}, {
-  id: "I-004",
-  name: "북구 드림센터",
-  type: "센터",
-  contact: "교육팀장",
-  phone: "052-000-0004",
-  email: ""
-}];
-var DEFAULT_DOCS = [{
-  id: "HTC-2026-011",
-  type: "plan",
-  title: "느린학습자 원예치료 계획서",
-  inst: "삼산초등학교",
-  writer: "김예진",
-  date: "2026.07.12",
-  status: "지부장대기",
-  comment: ""
-}, {
-  id: "HTC-2026-010",
-  type: "gongmun",
-  title: "ADHD 원예치료 MOU 체결 요청",
-  inst: "남구청 복지관",
-  writer: "이수민",
-  date: "2026.07.10",
-  status: "완료",
-  comment: "검토 완료. 승인합니다."
-}, {
-  id: "HTC-2026-009",
-  type: "est",
-  title: "감각통합 원예치료 견적서",
-  inst: "동구 장애인복지관",
-  writer: "박지현",
-  date: "2026.07.08",
-  status: "센터장대기",
-  comment: ""
-}, {
-  id: "INT-2026-008",
-  type: "vac",
-  title: "연차 휴가 신청",
-  inst: "내부",
-  writer: "김예진",
-  date: "2026.07.07",
-  status: "완료",
-  comment: "승인합니다."
-}, {
-  id: "INT-2026-007",
-  type: "exp",
-  title: "7월 재료비 지출결의서",
-  inst: "내부",
-  writer: "박지현",
-  date: "2026.07.05",
-  status: "완료",
-  comment: ""
-}];
-var DEFAULT_RECV = [{
-  id: "RECV-002",
-  from: "동구 장애인복지관",
-  title: "예산 확인 요청 공문",
-  date: "2026.07.08",
-  status: "미확인",
-  urgent: true
-}, {
-  id: "RECV-001",
-  from: "삼산초등학교",
-  title: "원예치료 프로그램 운영 승인",
-  date: "2026.07.05",
-  status: "검토중",
-  urgent: false
-}];
+var DEFAULT_STAFF_PROFILES = {};
+var DEFAULT_STAFF_DOCS = {};
 function Badge(_ref) {
   var status = _ref.status;
   var map = {
