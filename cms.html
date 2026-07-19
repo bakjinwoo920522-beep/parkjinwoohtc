@@ -6,17 +6,12 @@
 <title>박진우원예치료센터 통합 시스템</title>
 <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-<style>
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif;background:#F1F8E9;}
-input,select,textarea,button{font-family:inherit;}
-</style>
+<style>*{box-sizing:border-box;margin:0;padding:0;}body{font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif;background:#F1F8E9;}input,select,textarea,button{font-family:inherit;}</style>
 </head>
 <body>
 <div id="root"></div>
 <script>
-var useState   = React.useState;
-var useEffect  = React.useEffect;
+var useState=React.useState;var useEffect=React.useEffect;
 "use strict";
 
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
@@ -914,8 +909,8 @@ function App() {
     var _useState37 = useState({
         name: "",
         age: "",
-        inst: "삼산초등학교",
-        program: "느린학습자 원예치료",
+        inst: "",
+        program: "",
         therapist: user.name,
         total: "12",
         goal: ""
@@ -1667,19 +1662,27 @@ function App() {
       style: {
         display: "flex"
       }
-    }, [{
-      role: "기안자",
-      name: d.writer,
-      ok: true
-    }, {
-      role: "지부장",
-      name: "이수민",
-      ok: d.status !== "지부장대기"
-    }, {
-      role: "센터장",
-      name: "박진우",
-      ok: d.status === "완료"
-    }].map(function (ap, i) {
+    }, function () {
+      var branchUser = users.find(function (x) {
+        return x.role === "branch";
+      });
+      var dirUser = users.find(function (x) {
+        return x.role === "director";
+      });
+      return [{
+        role: "기안자",
+        name: d.writer,
+        ok: true
+      }, {
+        role: "지부장",
+        name: branchUser ? branchUser.name : "지부장",
+        ok: d.status !== "지부장대기"
+      }, {
+        role: "센터장",
+        name: dirUser ? dirUser.name : "센터장",
+        ok: d.status === "완료"
+      }];
+    }().map(function (ap, i) {
       return /*#__PURE__*/React.createElement("div", {
         key: i,
         style: {
@@ -1787,9 +1790,13 @@ function App() {
   function DocWriteForm() {
     var _useState51 = useState({
         type: "plan",
-        inst: "삼산초등학교",
+        inst: "",
         title: "",
-        leader: "이수민 (울산 지부)"
+        leader: users.find(function (x) {
+          return x.role === "branch";
+        }) ? users.find(function (x) {
+          return x.role === "branch";
+        }).name + " (지부장)" : "없음 (센터장 직결)"
       }),
       _useState52 = _slicedToArray(_useState51, 2),
       df = _useState52[0],
@@ -1890,7 +1897,13 @@ function App() {
         });
       },
       style: inputStyle
-    }, /*#__PURE__*/React.createElement("option", null, "\uC5C6\uC74C (\uC13C\uD130\uC7A5 \uC9C1\uACB0)"), /*#__PURE__*/React.createElement("option", null, "\uC774\uC218\uBBFC (\uC6B8\uC0B0 \uC9C0\uBD80)"), /*#__PURE__*/React.createElement("option", null, "\uBC15\uC9C0\uD604 (\uBD80\uC0B0 \uC9C0\uBD80)"))), /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("option", null, "\uC5C6\uC74C (\uC13C\uD130\uC7A5 \uC9C1\uACB0)"), users.filter(function (x) {
+      return x.role === "branch";
+    }).map(function (x) {
+      return /*#__PURE__*/React.createElement("option", {
+        key: x.id
+      }, x.name, " (\uC9C0\uBD80\uC7A5)");
+    }))), /*#__PURE__*/React.createElement("div", {
       style: {
         background: G[25],
         borderRadius: 8,
@@ -1899,7 +1912,12 @@ function App() {
         color: G[700],
         marginBottom: 12
       }
-    }, "\uACB0\uC7AC\uC120: ", user.name, " \u2192 ", df.leader === "없음 (센터장 직결)" ? "센터장 박진우 (직결)" : df.leader + " → 센터장 박진우"), /*#__PURE__*/React.createElement("div", {
+    }, function () {
+      var dir = users.find(function (x) {
+        return x.role === "director";
+      });
+      return "\uACB0\uC7AC\uC120: ".concat(user.name, " \u2192 ").concat(df.leader === "없음 (센터장 직결)" ? "".concat(dir ? dir.name : "센터장", " (\uC9C1\uACB0)") : df.leader + " → " + (dir ? dir.name : "센터장"));
+    }()), /*#__PURE__*/React.createElement("div", {
       style: {
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
@@ -2075,7 +2093,11 @@ function App() {
         type: "연차",
         reason: "",
         purpose: "",
-        leader: "이수민 (울산 지부)"
+        leader: users.find(function (x) {
+          return x.role === "branch";
+        }) ? users.find(function (x) {
+          return x.role === "branch";
+        }).name + " (지부장)" : "없음 (센터장 직결)"
       }),
       _useState58 = _slicedToArray(_useState57, 2),
       inf = _useState58[0],
@@ -2238,7 +2260,13 @@ function App() {
         });
       },
       style: inputStyle
-    }, /*#__PURE__*/React.createElement("option", null, "\uC5C6\uC74C (\uC13C\uD130\uC7A5 \uC9C1\uACB0)"), /*#__PURE__*/React.createElement("option", null, "\uC774\uC218\uBBFC (\uC6B8\uC0B0 \uC9C0\uBD80)"))), /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("option", null, "\uC5C6\uC74C (\uC13C\uD130\uC7A5 \uC9C1\uACB0)"), users.filter(function (x) {
+      return x.role === "branch";
+    }).map(function (x) {
+      return /*#__PURE__*/React.createElement("option", {
+        key: x.id
+      }, x.name, " (\uC9C0\uBD80\uC7A5)");
+    }))), /*#__PURE__*/React.createElement("div", {
       style: {
         background: G[25],
         borderRadius: 8,
@@ -2247,7 +2275,12 @@ function App() {
         color: G[700],
         marginBottom: 12
       }
-    }, "\uACB0\uC7AC\uC120: ", user.name, " \u2192 ", inf.leader === "없음 (센터장 직결)" ? "센터장 직결" : inf.leader + " → 센터장"), /*#__PURE__*/React.createElement("div", {
+    }, function () {
+      var dir = users.find(function (x) {
+        return x.role === "director";
+      });
+      return "\uACB0\uC7AC\uC120: ".concat(user.name, " \u2192 ").concat(inf.leader === "없음 (센터장 직결)" ? "".concat(dir ? dir.name : "센터장", " (\uC9C1\uACB0)") : inf.leader + " → " + (dir ? dir.name : "센터장"));
+    }()), /*#__PURE__*/React.createElement("div", {
       style: {
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
@@ -2334,8 +2367,8 @@ function App() {
   // ── 견적서 ────────────────────────────────────────────────
   function Est() {
     var _useState59 = useState({
-        inst: "삼산초등학교",
-        name: "느린학습자 원예치료 (1:1)",
+        inst: "",
+        name: "",
         spec: "60분/회기",
         qty: "12",
         unit: "60000"
@@ -2865,6 +2898,18 @@ function App() {
         isCenter = _ref22.isCenter;
       var canEdit = isCenter ? role === "director" : true;
       var canDownload = doc.registered;
+      function handleFileSelect() {
+        var input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.pdf,.jpg,.jpeg,.png';
+        input.onchange = function (e) {
+          var file = e.target.files[0];
+          if (!file) return;
+          // 파일명과 등록일 저장 (실제 파일은 localStorage에 저장 불가, 상태만 저장)
+          onRegister(file.name);
+        };
+        input.click();
+      }
       return /*#__PURE__*/React.createElement("div", {
         style: {
           background: "#fff",
@@ -2901,7 +2946,7 @@ function App() {
           fontSize: 11,
           color: G.gray4
         }
-      }, doc.type, doc.uploadDate ? " · 등록일: " + doc.uploadDate : ""))), /*#__PURE__*/React.createElement("div", {
+      }, doc.type, doc.fileName ? " \xB7 ".concat(doc.fileName) : "", doc.uploadDate ? " \xB7 ".concat(doc.uploadDate) : ""))), /*#__PURE__*/React.createElement("div", {
         style: {
           display: "flex",
           flexDirection: "column",
@@ -2918,19 +2963,19 @@ function App() {
       }, "\uD83D\uDD12 \uB4F1\uB85D\uC740 \uC13C\uD130\uC7A5\uB9CC"))), /*#__PURE__*/React.createElement("div", {
         style: {
           display: "grid",
-          gridTemplateColumns: canEdit && canDownload ? "1fr 1fr" : canDownload ? "1fr" : "1fr",
+          gridTemplateColumns: canEdit && canDownload ? "1fr 1fr" : "1fr",
           gap: 8
         }
       }, canEdit && /*#__PURE__*/React.createElement("button", {
-        onClick: onRegister,
+        onClick: handleFileSelect,
         style: _objectSpread(_objectSpread({}, btnG), {}, {
           padding: "7px 0",
           fontSize: 12,
           background: doc.registered ? G[500] : G[700]
         })
-      }, doc.registered ? "📎 재등록" : "📎 파일 등록"), canDownload && /*#__PURE__*/React.createElement("button", {
+      }, doc.registered ? "📎 재등록" : "📎 파일 선택"), canDownload && /*#__PURE__*/React.createElement("button", {
         onClick: function onClick() {
-          return showToast("📥 다운로드 중...");
+          return showToast("📥 실제 파일은 서버 연동 후 다운로드 가능합니다.");
         },
         style: _objectSpread(_objectSpread({}, btnO), {}, {
           padding: "7px 0",
@@ -3165,7 +3210,7 @@ function App() {
         key: doc.id,
         doc: doc,
         isCenter: true,
-        onRegister: function onRegister() {
+        onRegister: function onRegister(fileName) {
           if (role !== "director") {
             showToast("센터장만 등록할 수 있습니다.");
             return;
@@ -3173,11 +3218,12 @@ function App() {
           var nd = centerDocs.map(function (x) {
             return x.id === doc.id ? _objectSpread(_objectSpread({}, x), {}, {
               registered: true,
-              uploadDate: today
+              uploadDate: today,
+              fileName: fileName
             }) : x;
           });
           saveCenterDocs(nd);
-          showToast("\u2705 ".concat(doc.name, " \uB4F1\uB85D \uC644\uB8CC!"));
+          showToast("\u2705 ".concat(doc.name, " \uB4F1\uB85D \uC644\uB8CC! (").concat(fileName, ")"));
         }
       });
     }), role === "director" && /*#__PURE__*/React.createElement("button", {
@@ -3720,15 +3766,16 @@ function App() {
         key: doc.id,
         doc: doc,
         isCenter: false,
-        onRegister: function onRegister() {
+        onRegister: function onRegister(fileName) {
           var nd = _objectSpread(_objectSpread({}, staffDocs), {}, _defineProperty({}, targetName, staffDocs[targetName].map(function (x) {
             return x.id === doc.id ? _objectSpread(_objectSpread({}, x), {}, {
               registered: true,
-              uploadDate: today
+              uploadDate: today,
+              fileName: fileName
             }) : x;
           })));
           saveStaffDocs(nd);
-          showToast("\u2705 ".concat(doc.name, " \uB4F1\uB85D\uB410\uC2B5\uB2C8\uB2E4!"));
+          showToast("\u2705 ".concat(doc.name, " \uB4F1\uB85D\uB410\uC2B5\uB2C8\uB2E4! (").concat(fileName, ")"));
         }
       });
     }), /*#__PURE__*/React.createElement("button", {
@@ -3841,7 +3888,7 @@ function App() {
         }
       }, roleLabels[u.role]))), u.id !== user.id && /*#__PURE__*/React.createElement("button", {
         onClick: function onClick() {
-          if (!window.confirm("".concat(u.name, "\uC744 \uC0AD\uC81C\uD560\uAE4C\uC694?"))) return;
+          if (!confirm("".concat(u.name, "\uC744 \uC0AD\uC81C\uD560\uAE4C\uC694?"))) return;
           var nd = users.filter(function (x) {
             return x.id !== u.id;
           });
@@ -3884,7 +3931,7 @@ function App() {
               showToast("본인 권한은 변경할 수 없습니다.");
               return;
             }
-            if (!window.confirm("".concat(u.name, "\uC758 \uAD8C\uD55C\uC744 ").concat(l, "(\uC73C)\uB85C \uBCC0\uACBD\uD560\uAE4C\uC694?"))) return;
+            if (!confirm("".concat(u.name, "\uC758 \uAD8C\uD55C\uC744 ").concat(l, "(\uC73C)\uB85C \uBCC0\uACBD\uD560\uAE4C\uC694?"))) return;
             var nd = users.map(function (x) {
               return x.id === u.id ? _objectSpread(_objectSpread({}, x), {}, {
                 role: r
@@ -4282,6 +4329,4 @@ function App() {
   }));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App));
-</script>
-</body>
-</html>
+</script></body></html>

@@ -17,107 +17,25 @@ const ROLES = {
 };
 
 const DEFAULT_USERS = [
-  { id:"u1", name:"김예진", role:"staff",    pw:"1234" },
-  { id:"u2", name:"이수민", role:"branch",   pw:"1234" },
-  { id:"u3", name:"박진우", role:"director", pw:"1234" },
-  { id:"u4", name:"박지현", role:"staff",    pw:"1234" },
+  { id:"u1", name:"박진우", role:"director", pw:"1234" },
 ];
 
-const DEFAULT_CLIENTS = [
-  { id:"C-001", name:"김 ○ ○", age:9,  inst:"삼산초등학교",    program:"느린학습자 원예치료", therapist:"김예진", done:12, total:12, status:"진행중",   goal:"주의집중력 향상", note:"또래 자발적 대화 관찰",
-    sessions:[
-      {no:1, date:"2026.04.07", attend:true, activity:"자기소개 꽃 이름표 만들기", memo:"라포 형성. 다소 긴장된 모습이나 활동 참여 양호."},
-      {no:2, date:"2026.04.14", attend:true, activity:"채소 씨앗 파종 및 관찰일지 작성", memo:"씨앗 심기 활동에 집중. 지속시간 약 8분."},
-      {no:11,date:"2026.06.23", attend:true, activity:"미니 테라리움 제작", memo:"또래와 자발적 대화 2회 관찰. 집중 지속시간 18분으로 증가."},
-      {no:12,date:"2026.06.30", attend:true, activity:"성장 전시회·수료식",  memo:"소감 발표 완수. 집중 지속시간 22분 달성."},
-    ],
-    outcomes:[{item:"주의집중 지속시간",pre:"5분",post:"22분"},{item:"충동적 행동",pre:"8회/회기",post:"2회/회기"}]
-  },
-  { id:"C-002", name:"이 ○ ○", age:8,  inst:"삼산초등학교",    program:"느린학습자 원예치료", therapist:"김예진", done:10, total:12, status:"진행중",   goal:"감각통합 촉진",   note:"허브 4종 구분 성공",
-    sessions:[
-      {no:1, date:"2026.04.07", attend:true, activity:"자기소개 꽃 이름표 만들기", memo:"흙 만지기 거부. 장갑 착용 후 참여."},
-      {no:10,date:"2026.06.16", attend:true, activity:"상추 수확 및 미니 샐러드",   memo:"흙 거부 없음. 허브 4종 정확히 구분."},
-    ],
-    outcomes:[{item:"감각 거부 반응",pre:"빈번",post:"거의 없음"}]
-  },
-  { id:"C-003", name:"박 ○ ○", age:10, inst:"남구청 복지관",   program:"ADHD 원예치료",       therapist:"이수민", done:12, total:12, status:"종결완료", goal:"충동 조절",       note:"수료식 소감 발표 완수",
-    sessions:[
-      {no:12,date:"2026.06.28", attend:true, activity:"마무리 수료식", memo:"소감 발표 자발적으로 완수. 충동 행동 현저히 감소."},
-    ],
-    outcomes:[{item:"충동적 행동 빈도",pre:"회기당 8회",post:"회기당 2회"},{item:"자기효능감 척도",pre:"2.1점",post:"3.8점"}]
-  },
-];
+const DEFAULT_CLIENTS = [];
+
+const DEFAULT_INSTS = [];
+
+const DEFAULT_DOCS = [];
+
+const DEFAULT_RECV = [];
 
 const DEFAULT_CENTER_DOCS = [
-  { id:"CD-001", type:"사업자등록증",  name:"박진우원예치료센터 사업자등록증", uploadDate:"", file:null, registered:false },
-  { id:"CD-002", type:"통장사본",      name:"박진우원예치료센터 통장사본",     uploadDate:"", file:null, registered:false },
+  { id:"CD-001", type:"사업자등록증", name:"박진우원예치료센터 사업자등록증", uploadDate:"", registered:false },
+  { id:"CD-002", type:"통장사본",     name:"박진우원예치료센터 통장사본",     uploadDate:"", registered:false },
 ];
 
-const DEFAULT_STAFF_PROFILES = {
-  "김예진": {
-    name:"김예진", birth:"1995", gender:"여",
-    phone:"010-0000-0000", email:"",
-    address:"울산광역시",
-    education:[
-      { year:"2018", school:"○○대학교", major:"원예학과", degree:"학사" },
-    ],
-    certs:[
-      { year:"2020", name:"원예치료사 1급", issuer:"한국원예치료복지협회", no:"제2020-001호" },
-    ],
-    career:[
-      { period:"2021.03 ~ 현재", org:"박진우원예치료센터", position:"원예치료사", note:"" },
-    ],
-    training:[
-      { year:"2022", name:"사례개념화 기반 원예치료 전문과정", org:"한국원예치유연구소", hours:20 },
-    ],
-  },
-  "박지현": {
-    name:"박지현", birth:"1997", gender:"여",
-    phone:"010-0000-0000", email:"",
-    address:"울산광역시",
-    education:[
-      { year:"2020", school:"○○대학교", major:"원예치료학과", degree:"학사" },
-    ],
-    certs:[
-      { year:"2022", name:"원예치료사 2급", issuer:"한국원예치료복지협회", no:"제2022-015호" },
-    ],
-    career:[
-      { period:"2022.09 ~ 현재", org:"박진우원예치료센터", position:"원예치료사", note:"" },
-    ],
-    training:[],
-  },
-};
+const DEFAULT_STAFF_PROFILES = {};
+const DEFAULT_STAFF_DOCS = {};
 
-const DEFAULT_STAFF_DOCS = {
-  "김예진": [
-    { id:"SD-001", type:"자격증사본",     name:"원예치료사 1급 자격증", uploadDate:"", registered:false },
-    { id:"SD-003", type:"강사료입금통장", name:"강사료 입금 통장사본",  uploadDate:"", registered:false },
-  ],
-  "박지현": [
-    { id:"SD-004", type:"자격증사본",     name:"원예치료사 2급 자격증", uploadDate:"", registered:false },
-    { id:"SD-006", type:"강사료입금통장", name:"강사료 입금 통장사본",  uploadDate:"", registered:false },
-  ],
-};
-
-const DEFAULT_INSTS = [
-  { id:"I-001", name:"삼산초등학교",      type:"학교",  contact:"교장 선생님", phone:"052-000-0001", email:"" },
-  { id:"I-002", name:"남구청 복지관",      type:"복지관", contact:"프로그램팀장", phone:"052-000-0002", email:"" },
-  { id:"I-003", name:"동구 장애인복지관",  type:"복지관", contact:"재활팀장",    phone:"052-000-0003", email:"" },
-  { id:"I-004", name:"북구 드림센터",      type:"센터",  contact:"교육팀장",    phone:"052-000-0004", email:"" },
-];
-
-const DEFAULT_DOCS = [
-  { id:"HTC-2026-011", type:"plan",    title:"느린학습자 원예치료 계획서",   inst:"삼산초등학교",       writer:"김예진", date:"2026.07.12", status:"지부장대기", comment:"" },
-  { id:"HTC-2026-010", type:"gongmun", title:"ADHD 원예치료 MOU 체결 요청", inst:"남구청 복지관",       writer:"이수민", date:"2026.07.10", status:"완료",      comment:"검토 완료. 승인합니다." },
-  { id:"HTC-2026-009", type:"est",     title:"감각통합 원예치료 견적서",     inst:"동구 장애인복지관",   writer:"박지현", date:"2026.07.08", status:"센터장대기", comment:"" },
-  { id:"INT-2026-008", type:"vac",     title:"연차 휴가 신청",               inst:"내부",               writer:"김예진", date:"2026.07.07", status:"완료",      comment:"승인합니다." },
-  { id:"INT-2026-007", type:"exp",     title:"7월 재료비 지출결의서",         inst:"내부",               writer:"박지현", date:"2026.07.05", status:"완료",      comment:"" },
-];
-
-const DEFAULT_RECV = [
-  { id:"RECV-002", from:"동구 장애인복지관", title:"예산 확인 요청 공문",           date:"2026.07.08", status:"미확인", urgent:true  },
-  { id:"RECV-001", from:"삼산초등학교",      title:"원예치료 프로그램 운영 승인",   date:"2026.07.05", status:"검토중", urgent:false },
-];
 
 function Badge({ status }) {
   const map = {
@@ -202,35 +120,35 @@ export default function App() {
   useEffect(() => {
     async function load() {
       try {
-        const ru = await window.storage.get("htc-users");
+        const ru = await storage.get("htc-users");
         if (ru) setUsers(JSON.parse(ru.value));
-        const r1 = await window.storage.get("htc-clients");
+        const r1 = await storage.get("htc-clients");
         if (r1) setClients(JSON.parse(r1.value));
-        const ri = await window.storage.get("htc-insts");
+        const ri = await storage.get("htc-insts");
         if (ri) setInsts(JSON.parse(ri.value));
-        const rcd = await window.storage.get("htc-center-docs");
+        const rcd = await storage.get("htc-center-docs");
         if (rcd) setCenterDocs(JSON.parse(rcd.value));
-        const rsd = await window.storage.get("htc-staff-docs");
+        const rsd = await storage.get("htc-staff-docs");
         if (rsd) setStaffDocs(JSON.parse(rsd.value));
-        const rsp = await window.storage.get("htc-staff-profiles");
+        const rsp = await storage.get("htc-staff-profiles");
         if (rsp) setStaffProfiles(JSON.parse(rsp.value));
-        const r2 = await window.storage.get("htc-docs");
+        const r2 = await storage.get("htc-docs");
         if (r2) setDocs(JSON.parse(r2.value));
-        const r3 = await window.storage.get("htc-recv");
+        const r3 = await storage.get("htc-recv");
         if (r3) setRecv(JSON.parse(r3.value));
       } catch(e) {}
     }
     load();
   }, []);
 
-  async function saveUsers(data)      { setUsers(data);      try { await window.storage.set("htc-users",        JSON.stringify(data)); } catch(e){} }
-  async function saveClients(data)    { setClients(data);    try { await window.storage.set("htc-clients",      JSON.stringify(data)); } catch(e){} }
-  async function saveInsts(data)      { setInsts(data);      try { await window.storage.set("htc-insts",       JSON.stringify(data)); } catch(e){} }
-  async function saveCenterDocs(data)    { setCenterDocs(data);    try { await window.storage.set("htc-center-docs",   JSON.stringify(data)); } catch(e){} }
-  async function saveStaffDocs(data)     { setStaffDocs(data);     try { await window.storage.set("htc-staff-docs",    JSON.stringify(data)); } catch(e){} }
-  async function saveStaffProfiles(data) { setStaffProfiles(data); try { await window.storage.set("htc-staff-profiles",JSON.stringify(data)); } catch(e){} }
-  async function saveDocs(data)    { setDocs(data);    try { await window.storage.set("htc-docs",    JSON.stringify(data)); } catch(e){} }
-  async function saveRecv(data)    { setRecv(data);    try { await window.storage.set("htc-recv",    JSON.stringify(data)); } catch(e){} }
+  async function saveUsers(data)      { setUsers(data);      try { await storage.set("htc-users",        JSON.stringify(data)); } catch(e){} }
+  async function saveClients(data)    { setClients(data);    try { await storage.set("htc-clients",      JSON.stringify(data)); } catch(e){} }
+  async function saveInsts(data)      { setInsts(data);      try { await storage.set("htc-insts",       JSON.stringify(data)); } catch(e){} }
+  async function saveCenterDocs(data)    { setCenterDocs(data);    try { await storage.set("htc-center-docs",   JSON.stringify(data)); } catch(e){} }
+  async function saveStaffDocs(data)     { setStaffDocs(data);     try { await storage.set("htc-staff-docs",    JSON.stringify(data)); } catch(e){} }
+  async function saveStaffProfiles(data) { setStaffProfiles(data); try { await storage.set("htc-staff-profiles",JSON.stringify(data)); } catch(e){} }
+  async function saveDocs(data)    { setDocs(data);    try { await storage.set("htc-docs",    JSON.stringify(data)); } catch(e){} }
+  async function saveRecv(data)    { setRecv(data);    try { await storage.set("htc-recv",    JSON.stringify(data)); } catch(e){} }
 
   function showToast(msg) { setToast(msg); setTimeout(() => setToast(""), 2500); }
   function goMenu(m) { setMenu(m); setSub("list"); setSelDoc(null); setSelClient(null); }
@@ -288,7 +206,7 @@ export default function App() {
   // ── 내담자 관리 ───────────────────────────────────────────
   function Clients() {
     const [showForm, setShowForm] = useState(false);
-    const [nf, setNf] = useState({ name:"", age:"", inst:"삼산초등학교", program:"느린학습자 원예치료", therapist:user.name, total:"12", goal:"" });
+    const [nf, setNf] = useState({ name:"", age:"", inst:"", program:"", therapist:user.name, total:"12", goal:"" });
 
     if (selClient) return <ClientDetail client={selClient} onBack={()=>setSelClient(null)}/>;
     if (showForm) return (
@@ -530,7 +448,13 @@ export default function App() {
         <div style={cardStyle}>
           <div style={cardTitleStyle}>결재선</div>
           <div style={{ display:"flex" }}>
-            {[{role:"기안자",name:d.writer,ok:true},{role:"지부장",name:"이수민",ok:d.status!=="지부장대기"},{role:"센터장",name:"박진우",ok:d.status==="완료"}].map((ap,i)=>(
+            {(()=>{
+              const branchUser = users.find(x=>x.role==="branch");
+              const dirUser    = users.find(x=>x.role==="director");
+              return [{role:"기안자",name:d.writer,ok:true},
+                      {role:"지부장",name:branchUser?branchUser.name:"지부장",ok:d.status!=="지부장대기"},
+                      {role:"센터장",name:dirUser?dirUser.name:"센터장",ok:d.status==="완료"}];
+            })().map((ap,i)=>(
               <div key={i} style={{ flex:1, border:"1px solid #E5E7EB", textAlign:"center", borderLeft:i===0?"1px solid #E5E7EB":"none" }}>
                 <div style={{ fontSize:10, fontWeight:700, background:ap.ok?G[700]:"#9CA3AF", color:"#fff", padding:"4px 0" }}>{ap.role}</div>
                 <div style={{ fontSize:12, padding:"6px 4px", color:G.gray9 }}>{ap.name}</div>
@@ -567,7 +491,7 @@ export default function App() {
   }
 
   function DocWriteForm() {
-    const [df, setDf] = useState({ type:"plan", inst:"삼산초등학교", title:"", leader:"이수민 (울산 지부)" });
+    const [df, setDf] = useState({ type:"plan", inst:"", title:"", leader:users.find(function(x){return x.role==="branch";})?users.find(function(x){return x.role==="branch";}).name+" (지부장)":"없음 (센터장 직결)" });
     const types = [["plan","📋 프로그램 계획서"],["gongmun","🤝 협약 공문"],["est","💰 견적서"],["report","📊 결과보고서"],["tms","📄 거래명세서"]];
     return (
       <div>
@@ -596,12 +520,11 @@ export default function App() {
             <label style={labelStyle}>결재 지부장</label>
             <select value={df.leader} onChange={e=>setDf(p=>({...p,leader:e.target.value}))} style={inputStyle}>
               <option>없음 (센터장 직결)</option>
-              <option>이수민 (울산 지부)</option>
-              <option>박지현 (부산 지부)</option>
+              {users.filter(x=>x.role==="branch").map(x=><option key={x.id}>{x.name} (지부장)</option>)}
             </select>
           </div>
           <div style={{ background:G[25], borderRadius:8, padding:"8px 12px", fontSize:12, color:G[700], marginBottom:12 }}>
-            결재선: {user.name} → {df.leader==="없음 (센터장 직결)"?"센터장 박진우 (직결)":df.leader+" → 센터장 박진우"}
+            {(()=>{const dir=users.find(x=>x.role==="director");return `결재선: ${user.name} → ${df.leader==="없음 (센터장 직결)"?`${dir?dir.name:"센터장"} (직결)`:df.leader+" → "+(dir?dir.name:"센터장")}`})()}
           </div>
           <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:8 }}>
             <button onClick={()=>setSub("list")} style={btnO}>취소</button>
@@ -661,7 +584,7 @@ export default function App() {
   function Internal() {
     const [iForm, setIForm] = useState(false);
     const [it, setIt] = useState("vac");
-    const [inf, setInf] = useState({ startDate:"", endDate:"", days:"1", type:"연차", reason:"", purpose:"", leader:"이수민 (울산 지부)" });
+    const [inf, setInf] = useState({ startDate:"", endDate:"", days:"1", type:"연차", reason:"", purpose:"", leader:users.find(function(x){return x.role==="branch";})?users.find(function(x){return x.role==="branch";}).name+" (지부장)":"없음 (센터장 직결)" });
     const intDocs = docs.filter(d=>["vac","exp","rep","mtg"].includes(d.type));
 
     if (iForm) return (
@@ -688,11 +611,11 @@ export default function App() {
             <label style={labelStyle}>결재 지부장</label>
             <select value={inf.leader} onChange={e=>setInf(p=>({...p,leader:e.target.value}))} style={inputStyle}>
               <option>없음 (센터장 직결)</option>
-              <option>이수민 (울산 지부)</option>
+              {users.filter(x=>x.role==="branch").map(x=><option key={x.id}>{x.name} (지부장)</option>)}
             </select>
           </div>
           <div style={{ background:G[25], borderRadius:8, padding:"8px 12px", fontSize:12, color:G[700], marginBottom:12 }}>
-            결재선: {user.name} → {inf.leader==="없음 (센터장 직결)"?"센터장 직결":inf.leader+" → 센터장"}
+            {(()=>{const dir=users.find(x=>x.role==="director");return `결재선: ${user.name} → ${inf.leader==="없음 (센터장 직결)"?`${dir?dir.name:"센터장"} (직결)`:inf.leader+" → "+(dir?dir.name:"센터장")}`})()}
           </div>
           <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:8 }}>
             <button onClick={()=>setIForm(false)} style={btnO}>취소</button>
@@ -722,7 +645,7 @@ export default function App() {
 
   // ── 견적서 ────────────────────────────────────────────────
   function Est() {
-    const [ef, setEf] = useState({ inst:"삼산초등학교", name:"느린학습자 원예치료 (1:1)", spec:"60분/회기", qty:"12", unit:"60000" });
+    const [ef, setEf] = useState({ inst:"", name:"", spec:"60분/회기", qty:"12", unit:"60000" });
     const supply = parseInt(ef.qty||0) * parseInt(ef.unit||0);
     const vat    = Math.round(supply*0.1);
     return (
@@ -857,6 +780,20 @@ export default function App() {
     function DocRow({ doc, onRegister, isCenter }) {
       const canEdit = isCenter ? role === "director" : true;
       const canDownload = doc.registered;
+
+      function handleFileSelect() {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.pdf,.jpg,.jpeg,.png';
+        input.onchange = function(e) {
+          const file = e.target.files[0];
+          if (!file) return;
+          // 파일명과 등록일 저장 (실제 파일은 localStorage에 저장 불가, 상태만 저장)
+          onRegister(file.name);
+        };
+        input.click();
+      }
+
       return (
         <div style={{ background:"#fff", border:`1.5px solid ${doc.registered?"#E5E7EB":"#FCD34D"}`, borderRadius:10, padding:14, marginBottom:8 }}>
           <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:8 }}>
@@ -864,7 +801,11 @@ export default function App() {
               <span style={{ fontSize:20 }}>{DocTypeIcon[doc.type]||"📎"}</span>
               <div>
                 <div style={{ fontSize:13, fontWeight:700, color:G.gray9 }}>{doc.name}</div>
-                <div style={{ fontSize:11, color:G.gray4 }}>{doc.type}{doc.uploadDate?" · 등록일: "+doc.uploadDate:""}</div>
+                <div style={{ fontSize:11, color:G.gray4 }}>
+                  {doc.type}
+                  {doc.fileName ? ` · ${doc.fileName}` : ""}
+                  {doc.uploadDate ? ` · ${doc.uploadDate}` : ""}
+                </div>
               </div>
             </div>
             <div style={{ display:"flex", flexDirection:"column", alignItems:"flex-end", gap:4 }}>
@@ -872,14 +813,14 @@ export default function App() {
               {isCenter && role!=="director" && <span style={{ fontSize:10, color:G.gray4 }}>🔒 등록은 센터장만</span>}
             </div>
           </div>
-          <div style={{ display:"grid", gridTemplateColumns: canEdit&&canDownload?"1fr 1fr":canDownload?"1fr":"1fr", gap:8 }}>
+          <div style={{ display:"grid", gridTemplateColumns: canEdit&&canDownload?"1fr 1fr":"1fr", gap:8 }}>
             {canEdit && (
-              <button onClick={onRegister} style={{ ...btnG, padding:"7px 0", fontSize:12, background:doc.registered?G[500]:G[700] }}>
-                {doc.registered ? "📎 재등록" : "📎 파일 등록"}
+              <button onClick={handleFileSelect} style={{ ...btnG, padding:"7px 0", fontSize:12, background:doc.registered?G[500]:G[700] }}>
+                {doc.registered ? "📎 재등록" : "📎 파일 선택"}
               </button>
             )}
             {canDownload && (
-              <button onClick={()=>showToast("📥 다운로드 중...")} style={{ ...btnO, padding:"7px 0", fontSize:12 }}>
+              <button onClick={()=>showToast("📥 실제 파일은 서버 연동 후 다운로드 가능합니다.")} style={{ ...btnO, padding:"7px 0", fontSize:12 }}>
                 📥 다운로드
               </button>
             )}
@@ -973,10 +914,10 @@ export default function App() {
               </div>
             )}
             {centerDocs.map(doc=>(
-              <DocRow key={doc.id} doc={doc} isCenter={true} onRegister={()=>{
+              <DocRow key={doc.id} doc={doc} isCenter={true} onRegister={(fileName)=>{
                 if(role!=="director"){showToast("센터장만 등록할 수 있습니다.");return;}
-                const nd = centerDocs.map(x=>x.id===doc.id?{...x,registered:true,uploadDate:today}:x);
-                saveCenterDocs(nd); showToast(`✅ ${doc.name} 등록 완료!`);
+                const nd = centerDocs.map(x=>x.id===doc.id?{...x,registered:true,uploadDate:today,fileName}:x);
+                saveCenterDocs(nd); showToast(`✅ ${doc.name} 등록 완료! (${fileName})`);
               }}/>
             ))}
             {role==="director" && (
@@ -1204,9 +1145,9 @@ export default function App() {
               📌 공문 발송 시 선택하여 첨부할 수 있습니다.
             </div>
             {(staffDocs[targetName]||[]).map(doc=>(
-              <DocRow key={doc.id} doc={doc} isCenter={false} onRegister={()=>{
-                const nd = {...staffDocs, [targetName]:staffDocs[targetName].map(x=>x.id===doc.id?{...x,registered:true,uploadDate:today}:x)};
-                saveStaffDocs(nd); showToast(`✅ ${doc.name} 등록됐습니다!`);
+              <DocRow key={doc.id} doc={doc} isCenter={false} onRegister={(fileName)=>{
+                const nd = {...staffDocs, [targetName]:staffDocs[targetName].map(x=>x.id===doc.id?{...x,registered:true,uploadDate:today,fileName}:x)};
+                saveStaffDocs(nd); showToast(`✅ ${doc.name} 등록됐습니다! (${fileName})`);
               }}/>
             ))}
             <button onClick={()=>{
@@ -1248,7 +1189,7 @@ export default function App() {
               </div>
               {u.id !== user.id && (
                 <button onClick={()=>{
-                  if(!window.confirm(`${u.name}을 삭제할까요?`)) return;
+                  if(!confirm(`${u.name}을 삭제할까요?`)) return;
                   const nd = users.filter(x=>x.id!==u.id);
                   saveUsers(nd); showToast(`✅ ${u.name} 삭제됐습니다.`);
                 }} style={{ background:"none", border:"none", color:G.gray4, fontSize:18, cursor:"pointer" }}>✕</button>
@@ -1262,7 +1203,7 @@ export default function App() {
                   {[["staff","치료사"],["branch","지부장"],["director","센터장"]].map(([r,l])=>(
                     <button key={r} onClick={()=>{
                       if(u.id===user.id){showToast("본인 권한은 변경할 수 없습니다.");return;}
-                      if(!window.confirm(`${u.name}의 권한을 ${l}(으)로 변경할까요?`))return;
+                      if(!confirm(`${u.name}의 권한을 ${l}(으)로 변경할까요?`))return;
                       const nd=users.map(x=>x.id===u.id?{...x,role:r}:x);
                       saveUsers(nd); showToast(`✅ ${u.name} 권한이 ${l}(으)로 변경됐습니다!`);
                     }} style={{ flex:1, padding:"6px 0", borderRadius:8, border:`1.5px solid ${u.role===r?roleColors[r]:"#E5E7EB"}`, background:u.role===r?G[25]:"#fff", color:u.role===r?roleColors[r]:G.gray4, fontSize:12, fontWeight:u.role===r?700:400, cursor:"pointer" }}>
