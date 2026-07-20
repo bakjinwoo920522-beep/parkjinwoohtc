@@ -1647,10 +1647,17 @@ function App() {
       _useState50 = _slicedToArray(_useState49, 2),
       comment = _useState50[0],
       setComment = _useState50[1];
+    var _useState51 = useState(false),
+      _useState52 = _slicedToArray(_useState51, 2),
+      preview = _useState52[0],
+      setPreview = _useState52[1];
     var canAp = role === "branch" && d.status === "지부장대기" || role === "director" && d.status === "센터장대기";
     var isApproved = d.status === "완료";
     var dirUser = users.find(function (x) {
       return x.role === "director";
+    });
+    var branchUser = users.find(function (x) {
+      return x.role === "branch";
     });
     function decide(action) {
       var nd = docs.map(function (x) {
@@ -1664,6 +1671,256 @@ function App() {
       showToast(action === "ok" ? "✅ 승인됐습니다!" : "❌ 반려 처리됐습니다.");
       onBack();
     }
+
+    // 미리보기 화면
+    if (preview) return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return setPreview(false);
+      },
+      style: backBtnStyle
+    }, "\u2190 \uBB38\uC11C \uC0C1\uC138"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#fff",
+        border: "1.5px solid #E5E7EB",
+        borderRadius: 12,
+        padding: "24px 28px",
+        fontFamily: "'Apple SD Gothic Neo','Malgun Gothic',sans-serif"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        textAlign: "center",
+        fontSize: 9,
+        color: "#888",
+        marginBottom: 8
+      }
+    }, "\uC2DD\uBB3C\uC774 \uAC74\uB124\uB294 \uC704\uB85C, \uACFC\uD559\uC774 \uC124\uACC4\uD558\uB294 \uD68C\uBCF5"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        marginBottom: 4
+      }
+    }, /*#__PURE__*/React.createElement("img", {
+      src: LOGO_H,
+      alt: "\uB85C\uACE0",
+      style: {
+        height: 30,
+        objectFit: "contain",
+        marginRight: 8
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1,
+        fontSize: 22,
+        fontWeight: 800,
+        color: "#111",
+        textAlign: "center"
+      }
+    }, "\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130"), /*#__PURE__*/React.createElement("img", {
+      src: LOGO_V,
+      alt: "\uB85C\uACE0",
+      style: {
+        height: 34,
+        objectFit: "contain"
+      }
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        borderBottom: "2px solid #111",
+        marginBottom: 12
+      }
+    }), /*#__PURE__*/React.createElement("table", {
+      style: {
+        width: "100%",
+        borderCollapse: "collapse",
+        marginBottom: 12,
+        fontSize: 13
+      }
+    }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", {
+      style: {
+        width: 60,
+        fontWeight: 700,
+        paddingBottom: 5
+      }
+    }, "\uC218\u3000\uC2E0"), /*#__PURE__*/React.createElement("td", {
+      style: {
+        paddingBottom: 5
+      }
+    }, d.inst, " (\uB2F4\uB2F9\uC790 \uADC0\uC911)")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", {
+      style: {
+        fontWeight: 700,
+        paddingBottom: 5,
+        borderBottom: "1px solid #111"
+      }
+    }, "\uC81C\u3000\uBAA9"), /*#__PURE__*/React.createElement("td", {
+      style: {
+        fontWeight: 700,
+        paddingBottom: 5,
+        borderBottom: "1px solid #111"
+      }
+    }, d.title)))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        lineHeight: 2,
+        marginBottom: 12
+      }
+    }, /*#__PURE__*/React.createElement("p", null, "1. \uADC0 \uAE30\uAD00\uC758 \uBB34\uAD81\uD55C \uBC1C\uC804\uC744 \uAE30\uC6D0\uD569\uB2C8\uB2E4."), /*#__PURE__*/React.createElement("p", null, "2. \uB2F9 \uC13C\uD130\uC5D0\uC11C\uB294 \uADC0 \uAE30\uAD00\uACFC\uC758 \uC6D0\uC608\uCE58\uB8CC \uD504\uB85C\uADF8\uB7A8 \uC6B4\uC601\uACFC \uAD00\uB828\uD558\uC5EC \uC544\uB798\uC640 \uAC19\uC774 \uC11C\uB958\uB97C \uC81C\uCD9C\uD558\uC624\uB2C8 \uAC80\uD1A0\uD558\uC5EC \uC8FC\uC2DC\uAE30 \uBC14\uB78D\uB2C8\uB2E4."), /*#__PURE__*/React.createElement("p", null, "3. \uC774\uC5D0 \uAD00\uB828 \uC11C\uB958\uB97C \uBD99\uC784\uACFC \uAC19\uC774 \uC81C\uCD9C\uD558\uC624\uB2C8 \uAC80\uD1A0 \uD6C4 \uC2B9\uC778\uD558\uC5EC \uC8FC\uC2DC\uAE30 \uBC14\uB78D\uB2C8\uB2E4.")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        marginBottom: 20
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontWeight: 700,
+        marginBottom: 6
+      }
+    }, "\uBD99\u3000\uC784"), [["1. 원예치료 프로그램 계획서  1부.", ""], ["2. 견적서  1부.", ""], ["3. 결과보고서  1부.", "※ 프로그램 종료 후 첨부"], ["4. 거래명세서  1부.", "※ 프로그램 종료 후 첨부"], ["5. 담당 치료사 이력서 및 자격증 사본  각 1부.  끝.", ""]].map(function (_ref16, i) {
+      var _ref17 = _slicedToArray(_ref16, 2),
+        txt = _ref17[0],
+        note = _ref17[1];
+      return /*#__PURE__*/React.createElement("div", {
+        key: i,
+        style: {
+          display: "flex",
+          justifyContent: "space-between",
+          paddingLeft: 12,
+          marginBottom: 3
+        }
+      }, /*#__PURE__*/React.createElement("span", null, txt), note && /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 11,
+          color: "#C2410C"
+        }
+      }, note));
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        textAlign: "center",
+        marginBottom: 16,
+        position: "relative",
+        display: "inline-block",
+        width: "100%"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 4
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 18,
+        fontWeight: 800
+      }
+    }, "\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130\uC7A5"), isApproved && /*#__PURE__*/React.createElement("img", {
+      src: SEAL_CENTER,
+      alt: "\uC9C1\uC778",
+      style: {
+        width: 44,
+        height: 44,
+        opacity: 0.85,
+        marginLeft: -6,
+        marginTop: -4
+      }
+    }), !isApproved && /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 12,
+        color: "#9CA3AF",
+        marginLeft: 4
+      }
+    }, "(\uACB0\uC7AC \uC644\uB8CC \uD6C4 \uC9C1\uC778 \uD45C\uC2DC)"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        borderTop: "1.5px solid #111",
+        paddingTop: 6,
+        marginBottom: 6
+      }
+    }, /*#__PURE__*/React.createElement("table", {
+      style: {
+        width: "100%",
+        borderCollapse: "collapse",
+        fontSize: 11
+      }
+    }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", {
+      style: {
+        width: 60,
+        fontWeight: 700
+      }
+    }, "\uC8FC\uBB34\uAD00"), /*#__PURE__*/React.createElement("td", {
+      style: {
+        width: 90
+      }
+    }, d.writer), /*#__PURE__*/React.createElement("td", {
+      style: {
+        width: 20
+      }
+    }), /*#__PURE__*/React.createElement("td", {
+      style: {
+        width: 60,
+        fontWeight: 700
+      }
+    }, "\uC9C0\uBD80\uC7A5"), /*#__PURE__*/React.createElement("td", {
+      style: {
+        width: 90,
+        position: "relative"
+      }
+    }, branchUser ? branchUser.name : "○ ○ ○"), /*#__PURE__*/React.createElement("td", {
+      style: {
+        width: 20
+      }
+    }), /*#__PURE__*/React.createElement("td", {
+      style: {
+        width: 60,
+        fontWeight: 700
+      }
+    }, "\uC13C\uD130\uC7A5"), /*#__PURE__*/React.createElement("td", {
+      style: {
+        position: "relative"
+      }
+    }, /*#__PURE__*/React.createElement("span", null, dirUser ? dirUser.name : "박진우"), isApproved && /*#__PURE__*/React.createElement("img", {
+      src: SEAL_PERSONAL,
+      alt: "\uC9C1\uC778",
+      style: {
+        position: "absolute",
+        top: -8,
+        left: 0,
+        width: 36,
+        height: 32,
+        opacity: 0.85
+      }
+    })))))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        borderTop: "0.5px solid #ccc",
+        marginBottom: 10
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: "#555",
+        lineHeight: 1.8
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 16
+      }
+    }, /*#__PURE__*/React.createElement("span", null, "\uC2DC\uD589 ", d.id, " (", new Date().toLocaleDateString("ko-KR"), ")")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 16
+      }
+    }, /*#__PURE__*/React.createElement("span", null, "\uC6B0 44925 \uC6B8\uC0B0\uAD11\uC5ED\uC2DC \uC6B8\uC8FC\uAD70 \uC0BC\uB0A8\uC74D \uC2E0\uBCF51\uAE38 26"), /*#__PURE__*/React.createElement("span", null, "\uD648\uD398\uC774\uC9C0 www.parkjinwoohtc.com")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 16
+      }
+    }, /*#__PURE__*/React.createElement("span", null, "\uC804\uD654 010-3491-0013"), /*#__PURE__*/React.createElement("span", null, "\uC804\uC790\uC6B0\uD3B8 info@parkjinwoohtc.com / \uACF5\uAC1C")))), !isApproved && /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: G.ambBg,
+        border: "1px solid #FCD34D",
+        borderRadius: 8,
+        padding: "10px 14px",
+        marginTop: 12,
+        fontSize: 12,
+        color: "#92400E"
+      }
+    }, "\u26A0\uFE0F \uACB0\uC7AC \uC644\uB8CC \uD6C4 \uC9C1\uC778\uC774 \uC790\uB3D9\uC73C\uB85C \uCC0D\uD799\uB2C8\uB2E4."));
     return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
       onClick: onBack,
       style: backBtnStyle
@@ -1842,16 +2099,28 @@ function App() {
       style: _objectSpread(_objectSpread({}, btnG), {}, {
         background: G.red
       })
-    }, "\u274C \uBC18\uB824"))), /*#__PURE__*/React.createElement("button", {
+    }, "\u274C \uBC18\uB824"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: 8
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return setPreview(true);
+      },
+      style: _objectSpread(_objectSpread({}, btnO), {}, {
+        padding: 10
+      })
+    }, "\uD83D\uDD0D \uBB38\uC11C \uBBF8\uB9AC\uBCF4\uAE30"), /*#__PURE__*/React.createElement("button", {
       onClick: function onClick() {
         return showToast("📥 PDF 생성됨!");
       },
       style: _objectSpread(_objectSpread({}, btnG), {}, {
-        width: "100%",
         padding: 10,
         background: G.blue
       })
-    }, "\uD83D\uDCE5 PDF \uB2E4\uC6B4\uB85C\uB4DC"));
+    }, "\uD83D\uDCE5 PDF \uB2E4\uC6B4\uB85C\uB4DC")));
   }
   function DocsOut() {
     if (selDoc) return /*#__PURE__*/React.createElement(DocDetail, {
@@ -1886,7 +2155,7 @@ function App() {
     }, "+ \uC0C8 \uBB38\uC11C \uC791\uC131"));
   }
   function DocWriteForm() {
-    var _useState51 = useState({
+    var _useState53 = useState({
         type: "plan",
         inst: "",
         title: "",
@@ -1896,9 +2165,9 @@ function App() {
           return x.role === "branch";
         }).name + " (지부장)" : "없음 (센터장 직결)"
       }),
-      _useState52 = _slicedToArray(_useState51, 2),
-      df = _useState52[0],
-      setDf = _useState52[1];
+      _useState54 = _slicedToArray(_useState53, 2),
+      df = _useState54[0],
+      setDf = _useState54[1];
     var types = [["plan", "📋 프로그램 계획서"], ["gongmun", "🤝 협약 공문"], ["est", "💰 견적서"], ["report", "📊 결과보고서"], ["tms", "📄 거래명세서"]];
     return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
       onClick: function onClick() {
@@ -1909,10 +2178,10 @@ function App() {
       style: cardStyle
     }, /*#__PURE__*/React.createElement("div", {
       style: cardTitleStyle
-    }, "\uBB38\uC11C \uC885\uB958"), types.map(function (_ref16) {
-      var _ref17 = _slicedToArray(_ref16, 2),
-        t = _ref17[0],
-        l = _ref17[1];
+    }, "\uBB38\uC11C \uC885\uB958"), types.map(function (_ref18) {
+      var _ref19 = _slicedToArray(_ref18, 2),
+        t = _ref19[0],
+        l = _ref19[1];
       return /*#__PURE__*/React.createElement("div", {
         key: t,
         onClick: function onClick() {
@@ -2108,19 +2377,215 @@ function App() {
 
   // ── 수신 공문 ─────────────────────────────────────────────
   function DocsIn() {
-    var _useState53 = useState(false),
-      _useState54 = _slicedToArray(_useState53, 2),
-      showForm = _useState54[0],
-      setShowForm = _useState54[1];
-    var _useState55 = useState({
+    var _useState55 = useState(false),
+      _useState56 = _slicedToArray(_useState55, 2),
+      showForm = _useState56[0],
+      setShowForm = _useState56[1];
+    var _useState57 = useState(null),
+      _useState58 = _slicedToArray(_useState57, 2),
+      selRecv = _useState58[0],
+      setSelRecv = _useState58[1];
+    var _useState59 = useState({
         from: "",
         title: "",
         date: new Date().toISOString().slice(0, 10),
         urgent: false
       }),
-      _useState56 = _slicedToArray(_useState55, 2),
-      nf = _useState56[0],
-      setNf = _useState56[1];
+      _useState60 = _slicedToArray(_useState59, 2),
+      nf = _useState60[0],
+      setNf = _useState60[1];
+
+    // 파일 선택 핸들러
+    function handleFileAttach(id) {
+      var input = document.createElement('input');
+      input.type = 'file';
+      input.accept = '.pdf,.jpg,.jpeg,.png,.hwp,.doc,.docx';
+      input.onchange = function (e) {
+        var file = e.target.files[0];
+        if (!file) return;
+        var nr = recv.map(function (x) {
+          return x.id === id ? _objectSpread(_objectSpread({}, x), {}, {
+            fileName: file.name,
+            fileAttached: true
+          }) : x;
+        });
+        saveRecv(nr);
+        showToast("\uD83D\uDCCE ".concat(file.name, " \uB4F1\uB85D\uB410\uC2B5\uB2C8\uB2E4!"));
+      };
+      input.click();
+    }
+
+    // 상세보기
+    if (selRecv) {
+      var d = recv.find(function (x) {
+        return x.id === selRecv;
+      });
+      if (!d) return null;
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+        onClick: function onClick() {
+          return setSelRecv(null);
+        },
+        style: backBtnStyle
+      }, "\u2190 \uBAA9\uB85D"), /*#__PURE__*/React.createElement("div", {
+        style: cardStyle
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "flex-start",
+          marginBottom: 8
+        }
+      }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 10,
+          color: G.gray4,
+          marginBottom: 4
+        }
+      }, d.id), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 16,
+          fontWeight: 800,
+          color: G.gray9,
+          marginBottom: 4
+        }
+      }, d.title), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 12,
+          color: G.gray6
+        }
+      }, d.from, " \xB7 ", d.date)), /*#__PURE__*/React.createElement(Badge, {
+        status: d.status
+      })), d.urgent && /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          color: G.red,
+          fontWeight: 700,
+          marginTop: 6
+        }
+      }, "\uD83D\uDEA8 \uAE34\uAE09 \uACF5\uBB38")), /*#__PURE__*/React.createElement("div", {
+        style: cardStyle
+      }, /*#__PURE__*/React.createElement("div", {
+        style: cardTitleStyle
+      }, "\uD83D\uDCCE \uACF5\uBB38 \uD30C\uC77C"), d.fileAttached ? /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+          background: G[25],
+          borderRadius: 8,
+          padding: "10px 12px",
+          marginBottom: 10
+        }
+      }, /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 20
+        }
+      }, "\uD83D\uDCC4"), /*#__PURE__*/React.createElement("div", {
+        style: {
+          flex: 1
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 13,
+          fontWeight: 700,
+          color: G.gray9
+        }
+      }, d.fileName), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          color: G.gray4
+        }
+      }, "\uB4F1\uB85D \uC644\uB8CC")), /*#__PURE__*/React.createElement(Badge, {
+        status: "\uB4F1\uB85D\uC644\uB8CC"
+      })), /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 8
+        }
+      }, /*#__PURE__*/React.createElement("button", {
+        onClick: function onClick() {
+          return handleFileAttach(d.id);
+        },
+        style: _objectSpread(_objectSpread({}, btnO), {}, {
+          padding: "8px 0",
+          fontSize: 12
+        })
+      }, "\uD83D\uDCCE \uC7AC\uB4F1\uB85D"), /*#__PURE__*/React.createElement("button", {
+        onClick: function onClick() {
+          return showToast("📥 다운로드 기능은 서버 연동 후 가능합니다.");
+        },
+        style: _objectSpread(_objectSpread({}, btnG), {}, {
+          padding: "8px 0",
+          fontSize: 12
+        })
+      }, "\uD83D\uDCE5 \uB2E4\uC6B4\uB85C\uB4DC"))) : /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 12,
+          color: G.gray4,
+          marginBottom: 10
+        }
+      }, "\uB4F1\uB85D\uB41C \uD30C\uC77C\uC774 \uC5C6\uC2B5\uB2C8\uB2E4."), /*#__PURE__*/React.createElement("button", {
+        onClick: function onClick() {
+          return handleFileAttach(d.id);
+        },
+        style: _objectSpread(_objectSpread({}, btnG), {}, {
+          width: "100%",
+          padding: 10,
+          fontSize: 13
+        })
+      }, "\uD83D\uDCCE \uD30C\uC77C \uB4F1\uB85D"))), /*#__PURE__*/React.createElement("div", {
+        style: cardStyle
+      }, /*#__PURE__*/React.createElement("div", {
+        style: cardTitleStyle
+      }, "\uCC98\uB9AC \uC0C1\uD0DC"), /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr 1fr",
+          gap: 6
+        }
+      }, ["미확인", "검토중", "처리완료"].map(function (s) {
+        return /*#__PURE__*/React.createElement("button", {
+          key: s,
+          onClick: function onClick() {
+            var nr = recv.map(function (x) {
+              return x.id === d.id ? _objectSpread(_objectSpread({}, x), {}, {
+                status: s
+              }) : x;
+            });
+            saveRecv(nr);
+            showToast("\u2705 ".concat(s, "\uB85C \uBCC0\uACBD\uB410\uC2B5\uB2C8\uB2E4!"));
+            setSelRecv(null);
+          },
+          style: {
+            padding: "8px 0",
+            borderRadius: 8,
+            border: "1.5px solid ".concat(d.status === s ? G[700] : "#E5E7EB"),
+            background: d.status === s ? G[25] : "#fff",
+            color: d.status === s ? G[700] : G.gray6,
+            fontSize: 12,
+            fontWeight: d.status === s ? 700 : 400,
+            cursor: "pointer"
+          }
+        }, s);
+      }))), /*#__PURE__*/React.createElement("button", {
+        onClick: function onClick() {
+          if (!confirm("이 공문을 삭제할까요?")) return;
+          var nr = recv.filter(function (x) {
+            return x.id !== d.id;
+          });
+          saveRecv(nr);
+          showToast("삭제됐습니다.");
+          setSelRecv(null);
+        },
+        style: _objectSpread(_objectSpread({}, btnG), {}, {
+          width: "100%",
+          padding: 10,
+          background: G.red,
+          fontSize: 13
+        })
+      }, "\uD83D\uDDD1 \uC0AD\uC81C"));
+    }
     if (showForm) return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
       onClick: function onClick() {
         return setShowForm(false);
@@ -2260,7 +2725,9 @@ function App() {
           title: nf.title,
           date: nf.date,
           status: "미확인",
-          urgent: nf.urgent
+          urgent: nf.urgent,
+          fileAttached: false,
+          fileName: ""
         }].concat(_toConsumableArray(recv));
         saveRecv(nr);
         showToast("📬 공문이 등록됐습니다!");
@@ -2278,13 +2745,7 @@ function App() {
       return /*#__PURE__*/React.createElement("div", {
         key: d.id,
         onClick: function onClick() {
-          var nr = recv.map(function (x) {
-            return x.id === d.id ? _objectSpread(_objectSpread({}, x), {}, {
-              status: "처리완료"
-            }) : x;
-          });
-          saveRecv(nr);
-          showToast("✅ 처리완료로 변경됐습니다!");
+          return setSelRecv(d.id);
         },
         style: {
           background: "#fff",
@@ -2306,9 +2767,20 @@ function App() {
           fontSize: 10,
           color: G.gray4
         }
-      }, d.id), /*#__PURE__*/React.createElement(Badge, {
+      }, d.id), /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          gap: 6,
+          alignItems: "center"
+        }
+      }, d.fileAttached && /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 10,
+          color: G[700]
+        }
+      }, "\uD83D\uDCCE"), /*#__PURE__*/React.createElement(Badge, {
         status: d.status
-      })), /*#__PURE__*/React.createElement("div", {
+      }))), /*#__PURE__*/React.createElement("div", {
         style: {
           fontSize: 14,
           fontWeight: 700,
@@ -2342,15 +2814,15 @@ function App() {
 
   // ── 내부결재 ──────────────────────────────────────────────
   function Internal() {
-    var _useState57 = useState(false),
-      _useState58 = _slicedToArray(_useState57, 2),
-      iForm = _useState58[0],
-      setIForm = _useState58[1];
-    var _useState59 = useState("vac"),
-      _useState60 = _slicedToArray(_useState59, 2),
-      it = _useState60[0],
-      setIt = _useState60[1];
-    var _useState61 = useState({
+    var _useState61 = useState(false),
+      _useState62 = _slicedToArray(_useState61, 2),
+      iForm = _useState62[0],
+      setIForm = _useState62[1];
+    var _useState63 = useState("vac"),
+      _useState64 = _slicedToArray(_useState63, 2),
+      it = _useState64[0],
+      setIt = _useState64[1];
+    var _useState65 = useState({
         startDate: "",
         endDate: "",
         days: "1",
@@ -2363,9 +2835,9 @@ function App() {
           return x.role === "branch";
         }).name + " (지부장)" : "없음 (센터장 직결)"
       }),
-      _useState62 = _slicedToArray(_useState61, 2),
-      inf = _useState62[0],
-      setInf = _useState62[1];
+      _useState66 = _slicedToArray(_useState65, 2),
+      inf = _useState66[0],
+      setInf = _useState66[1];
     var intDocs = docs.filter(function (d) {
       return ["vac", "exp", "rep", "mtg"].includes(d.type);
     });
@@ -2381,10 +2853,10 @@ function App() {
         gap: 6,
         marginBottom: 12
       }
-    }, [["vac", "🌴 휴가·연차"], ["exp", "💸 지출결의"], ["rep", "📊 업무보고"], ["mtg", "🗒 회의록"]].map(function (_ref18) {
-      var _ref19 = _slicedToArray(_ref18, 2),
-        t = _ref19[0],
-        l = _ref19[1];
+    }, [["vac", "🌴 휴가·연차"], ["exp", "💸 지출결의"], ["rep", "📊 업무보고"], ["mtg", "🗒 회의록"]].map(function (_ref20) {
+      var _ref21 = _slicedToArray(_ref20, 2),
+        t = _ref21[0],
+        l = _ref21[1];
       return /*#__PURE__*/React.createElement("div", {
         key: t,
         onClick: function onClick() {
@@ -2589,10 +3061,10 @@ function App() {
         gap: 8,
         marginBottom: 16
       }
-    }, [["🌴", "휴가·연차"], ["💸", "지출결의"], ["📊", "업무보고"], ["🗒", "회의록"]].map(function (_ref20) {
-      var _ref21 = _slicedToArray(_ref20, 2),
-        ic = _ref21[0],
-        l = _ref21[1];
+    }, [["🌴", "휴가·연차"], ["💸", "지출결의"], ["📊", "업무보고"], ["🗒", "회의록"]].map(function (_ref22) {
+      var _ref23 = _slicedToArray(_ref22, 2),
+        ic = _ref23[0],
+        l = _ref23[1];
       return /*#__PURE__*/React.createElement("div", {
         key: l,
         onClick: function onClick() {
@@ -2633,16 +3105,16 @@ function App() {
 
   // ── 견적서 ────────────────────────────────────────────────
   function Est() {
-    var _useState63 = useState({
+    var _useState67 = useState({
         inst: "",
         name: "",
         spec: "60분/회기",
         qty: "12",
         unit: "60000"
       }),
-      _useState64 = _slicedToArray(_useState63, 2),
-      ef = _useState64[0],
-      setEf = _useState64[1];
+      _useState68 = _slicedToArray(_useState67, 2),
+      ef = _useState68[0],
+      setEf = _useState68[1];
     var supply = parseInt(ef.qty || 0) * parseInt(ef.unit || 0);
     return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
       style: cardStyle
@@ -2790,10 +3262,10 @@ function App() {
 
   // ── 통합 PDF ─────────────────────────────────────────────
   function Pdf() {
-    var _useState65 = useState(["공문(표지)", "프로그램 계획서", "견적서", "결과보고서", "거래명세서", "치료사 이력서"]),
-      _useState66 = _slicedToArray(_useState65, 2),
-      sel = _useState66[0],
-      setSel = _useState66[1];
+    var _useState69 = useState(["공문(표지)", "프로그램 계획서", "견적서", "결과보고서", "거래명세서", "치료사 이력서"]),
+      _useState70 = _slicedToArray(_useState69, 2),
+      sel = _useState70[0],
+      setSel = _useState70[1];
     var all = ["공문(표지)", "프로그램 계획서", "견적서", "결과보고서", "거래명세서", "치료사 이력서"];
     return /*#__PURE__*/React.createElement("div", {
       style: cardStyle
@@ -2862,20 +3334,20 @@ function App() {
 
   // ── 기관 관리 ────────────────────────────────────────────
   function Insts() {
-    var _useState67 = useState(false),
-      _useState68 = _slicedToArray(_useState67, 2),
-      showForm = _useState68[0],
-      setShowForm = _useState68[1];
-    var _useState69 = useState({
+    var _useState71 = useState(false),
+      _useState72 = _slicedToArray(_useState71, 2),
+      showForm = _useState72[0],
+      setShowForm = _useState72[1];
+    var _useState73 = useState({
         name: "",
         type: "학교",
         contact: "",
         phone: "",
         email: ""
       }),
-      _useState70 = _slicedToArray(_useState69, 2),
-      nf = _useState70[0],
-      setNf = _useState70[1];
+      _useState74 = _slicedToArray(_useState73, 2),
+      nf = _useState74[0],
+      setNf = _useState74[1];
     var types = ["학교", "복지관", "센터", "병원", "기타"];
     if (showForm) return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
       onClick: function onClick() {
@@ -3103,22 +3575,22 @@ function App() {
 
   // ── 서류 관리 ────────────────────────────────────────────
   function DocsReg() {
-    var _useState71 = useState(role === "staff" ? "resume" : "center"),
-      _useState72 = _slicedToArray(_useState71, 2),
-      docTab = _useState72[0],
-      setDocTab = _useState72[1];
-    var _useState73 = useState(role === "staff" ? user.name : Object.keys(staffProfiles)[0] || ""),
-      _useState74 = _slicedToArray(_useState73, 2),
-      selStaff = _useState74[0],
-      setSelStaff = _useState74[1];
-    var _useState75 = useState(null),
+    var _useState75 = useState(role === "staff" ? "resume" : "center"),
       _useState76 = _slicedToArray(_useState75, 2),
-      editSection = _useState76[0],
-      setEditSection = _useState76[1];
-    var _useState77 = useState({}),
+      docTab = _useState76[0],
+      setDocTab = _useState76[1];
+    var _useState77 = useState(role === "staff" ? user.name : Object.keys(staffProfiles)[0] || ""),
       _useState78 = _slicedToArray(_useState77, 2),
-      newRow = _useState78[0],
-      setNewRow = _useState78[1];
+      selStaff = _useState78[0],
+      setSelStaff = _useState78[1];
+    var _useState79 = useState(null),
+      _useState80 = _slicedToArray(_useState79, 2),
+      editSection = _useState80[0],
+      setEditSection = _useState80[1];
+    var _useState81 = useState({}),
+      _useState82 = _slicedToArray(_useState81, 2),
+      newRow = _useState82[0],
+      setNewRow = _useState82[1];
     var today = new Date().toLocaleDateString("ko-KR");
     var targetName = role === "staff" ? user.name : selStaff;
     var profile = staffProfiles[targetName] || {};
@@ -3142,10 +3614,10 @@ function App() {
       "자격증사본": "📜",
       "강사료입금통장": "💳"
     };
-    function DocRow(_ref22) {
-      var doc = _ref22.doc,
-        onRegister = _ref22.onRegister,
-        isCenter = _ref22.isCenter;
+    function DocRow(_ref24) {
+      var doc = _ref24.doc,
+        onRegister = _ref24.onRegister,
+        isCenter = _ref24.isCenter;
       var canEdit = isCenter ? role === "director" : true;
       var canDownload = doc.registered;
       function handleFileSelect() {
@@ -3244,13 +3716,13 @@ function App() {
     }
 
     // 이력 섹션 컴포넌트
-    function ResumeSection(_ref23) {
-      var title = _ref23.title,
-        icon = _ref23.icon,
-        items = _ref23.items,
-        fields = _ref23.fields,
-        onAdd = _ref23.onAdd,
-        onDel = _ref23.onDel;
+    function ResumeSection(_ref25) {
+      var title = _ref25.title,
+        icon = _ref25.icon,
+        items = _ref25.items,
+        fields = _ref25.fields,
+        onAdd = _ref25.onAdd,
+        onDel = _ref25.onDel;
       var isEditing = editSection === title;
       return /*#__PURE__*/React.createElement("div", {
         style: {
@@ -3291,10 +3763,10 @@ function App() {
           marginBottom: 8,
           border: "1px solid ".concat(G[200])
         }
-      }, fields.map(function (_ref24) {
-        var _ref25 = _slicedToArray(_ref24, 2),
-          l = _ref25[0],
-          k = _ref25[1];
+      }, fields.map(function (_ref26) {
+        var _ref27 = _slicedToArray(_ref26, 2),
+          l = _ref27[0],
+          k = _ref27[1];
         return /*#__PURE__*/React.createElement("div", {
           key: k,
           style: {
@@ -3311,10 +3783,10 @@ function App() {
       }), /*#__PURE__*/React.createElement("button", {
         onClick: function onClick() {
           var row = {};
-          fields.forEach(function (_ref26) {
-            var _ref27 = _slicedToArray(_ref26, 2),
-              l = _ref27[0],
-              k = _ref27[1];
+          fields.forEach(function (_ref28) {
+            var _ref29 = _slicedToArray(_ref28, 2),
+              l = _ref29[0],
+              k = _ref29[1];
             var el = document.getElementById('resume-input-' + title + '-' + k);
             if (el) row[k] = el.value;
           });
@@ -3353,9 +3825,9 @@ function App() {
             color: G.gray9,
             flex: 1
           }
-        }, fields.map(function (_ref28) {
-          var _ref29 = _slicedToArray(_ref28, 2),
-            k = _ref29[1];
+        }, fields.map(function (_ref30) {
+          var _ref31 = _slicedToArray(_ref30, 2),
+            k = _ref31[1];
           return it[k];
         }).filter(Boolean).join(" · ")), /*#__PURE__*/React.createElement("button", {
           onClick: function onClick() {
@@ -3373,9 +3845,9 @@ function App() {
         }, "\u2715"));
       }));
     }
-    var TabBtn = function TabBtn(_ref30) {
-      var id = _ref30.id,
-        label = _ref30.label;
+    var TabBtn = function TabBtn(_ref32) {
+      var id = _ref32.id,
+        label = _ref32.label;
       return /*#__PURE__*/React.createElement("button", {
         onClick: function onClick() {
           return setDocTab(id);
@@ -3510,10 +3982,10 @@ function App() {
       style: cardStyle
     }, /*#__PURE__*/React.createElement("div", {
       style: cardTitleStyle
-    }, "\uAE30\uBCF8 \uC815\uBCF4"), [["이름", "name"], ["생년(년도)", "birth"], ["연락처", "phone"], ["이메일", "email"], ["주소", "address"]].map(function (_ref31) {
-      var _ref32 = _slicedToArray(_ref31, 2),
-        l = _ref32[0],
-        k = _ref32[1];
+    }, "\uAE30\uBCF8 \uC815\uBCF4"), [["이름", "name"], ["생년(년도)", "birth"], ["연락처", "phone"], ["이메일", "email"], ["주소", "address"]].map(function (_ref33) {
+      var _ref34 = _slicedToArray(_ref33, 2),
+        l = _ref34[0],
+        k = _ref34[1];
       return /*#__PURE__*/React.createElement("div", {
         key: k,
         style: {
@@ -3612,10 +4084,10 @@ function App() {
         gap: 8,
         marginBottom: 12
       }
-    }, [["담당 기관", autoInsts.length + "개"], ["내담자", autoClients.length + "명"], ["총 회기", autoTotalSess + "회"]].map(function (_ref33) {
-      var _ref34 = _slicedToArray(_ref33, 2),
-        l = _ref34[0],
-        v = _ref34[1];
+    }, [["담당 기관", autoInsts.length + "개"], ["내담자", autoClients.length + "명"], ["총 회기", autoTotalSess + "회"]].map(function (_ref35) {
+      var _ref36 = _slicedToArray(_ref35, 2),
+        l = _ref36[0],
+        v = _ref36[1];
       return /*#__PURE__*/React.createElement("div", {
         key: l,
         style: {
@@ -3757,10 +4229,10 @@ function App() {
         gap: 8,
         marginBottom: 16
       }
-    }, [["담당 기관", autoInsts.length + "개"], ["내담자", autoClients.length + "명"], ["총 회기", autoTotalSess + "회"]].map(function (_ref35) {
-      var _ref36 = _slicedToArray(_ref35, 2),
-        l = _ref36[0],
-        v = _ref36[1];
+    }, [["담당 기관", autoInsts.length + "개"], ["내담자", autoClients.length + "명"], ["총 회기", autoTotalSess + "회"]].map(function (_ref37) {
+      var _ref38 = _slicedToArray(_ref37, 2),
+        l = _ref38[0],
+        v = _ref38[1];
       return /*#__PURE__*/React.createElement("div", {
         key: l,
         style: {
@@ -4054,22 +4526,22 @@ function App() {
 
   // ── 사용자 관리 (센터장 전용) ────────────────────────────
   function Users() {
-    var _useState79 = useState(false),
-      _useState80 = _slicedToArray(_useState79, 2),
-      showForm = _useState80[0],
-      setShowForm = _useState80[1];
-    var _useState81 = useState(null),
-      _useState82 = _slicedToArray(_useState81, 2),
-      editId = _useState82[0],
-      setEditId = _useState82[1];
-    var _useState83 = useState({
+    var _useState83 = useState(false),
+      _useState84 = _slicedToArray(_useState83, 2),
+      showForm = _useState84[0],
+      setShowForm = _useState84[1];
+    var _useState85 = useState(null),
+      _useState86 = _slicedToArray(_useState85, 2),
+      editId = _useState86[0],
+      setEditId = _useState86[1];
+    var _useState87 = useState({
         name: "",
         role: "staff",
         pw: ""
       }),
-      _useState84 = _slicedToArray(_useState83, 2),
-      nf = _useState84[0],
-      setNf = _useState84[1];
+      _useState88 = _slicedToArray(_useState87, 2),
+      nf = _useState88[0],
+      setNf = _useState88[1];
     var roleLabels = {
       staff: "치료사",
       branch: "지부장",
@@ -4175,10 +4647,10 @@ function App() {
           display: "flex",
           gap: 6
         }
-      }, [["staff", "치료사"], ["branch", "지부장"], ["director", "센터장"]].map(function (_ref37) {
-        var _ref38 = _slicedToArray(_ref37, 2),
-          r = _ref38[0],
-          l = _ref38[1];
+      }, [["staff", "치료사"], ["branch", "지부장"], ["director", "센터장"]].map(function (_ref39) {
+        var _ref40 = _slicedToArray(_ref39, 2),
+          r = _ref40[0],
+          l = _ref40[1];
         return /*#__PURE__*/React.createElement("button", {
           key: r,
           onClick: function onClick() {
