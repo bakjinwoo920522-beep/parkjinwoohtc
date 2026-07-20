@@ -502,41 +502,15 @@ function App() {
     return _saveUsers.apply(this, arguments);
   }
   function _saveUsers() {
-    _saveUsers = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4(data) {
-      var _t4;
-      return _regenerator().w(function (_context4) {
-        while (1) switch (_context4.p = _context4.n) {
-          case 0:
-            setUsers(data);
-            _context4.p = 1;
-            _context4.n = 2;
-            return storage.set("htc-users", JSON.stringify(data));
-          case 2:
-            _context4.n = 4;
-            break;
-          case 3:
-            _context4.p = 3;
-            _t4 = _context4.v;
-          case 4:
-            return _context4.a(2);
-        }
-      }, _callee4, null, [[1, 3]]);
-    }));
-    return _saveUsers.apply(this, arguments);
-  }
-  function saveClients(_x5) {
-    return _saveClients.apply(this, arguments);
-  }
-  function _saveClients() {
-    _saveClients = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(data) {
+    _saveUsers = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(data) {
       var _t5;
       return _regenerator().w(function (_context5) {
         while (1) switch (_context5.p = _context5.n) {
           case 0:
-            setClients(data);
+            setUsers(data);
             _context5.p = 1;
             _context5.n = 2;
-            return storage.set("htc-clients", JSON.stringify(data));
+            return storage.set("htc-users", JSON.stringify(data));
           case 2:
             _context5.n = 4;
             break;
@@ -548,21 +522,21 @@ function App() {
         }
       }, _callee5, null, [[1, 3]]);
     }));
+    return _saveUsers.apply(this, arguments);
+  }
+  function saveClients(_x5) {
     return _saveClients.apply(this, arguments);
   }
-  function saveInsts(_x6) {
-    return _saveInsts.apply(this, arguments);
-  }
-  function _saveInsts() {
-    _saveInsts = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(data) {
+  function _saveClients() {
+    _saveClients = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(data) {
       var _t6;
       return _regenerator().w(function (_context6) {
         while (1) switch (_context6.p = _context6.n) {
           case 0:
-            setInsts(data);
+            setClients(data);
             _context6.p = 1;
             _context6.n = 2;
-            return storage.set("htc-insts", JSON.stringify(data));
+            return storage.set("htc-clients", JSON.stringify(data));
           case 2:
             _context6.n = 4;
             break;
@@ -574,21 +548,21 @@ function App() {
         }
       }, _callee6, null, [[1, 3]]);
     }));
+    return _saveClients.apply(this, arguments);
+  }
+  function saveInsts(_x6) {
     return _saveInsts.apply(this, arguments);
   }
-  function saveCenterDocs(_x7) {
-    return _saveCenterDocs.apply(this, arguments);
-  }
-  function _saveCenterDocs() {
-    _saveCenterDocs = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7(data) {
+  function _saveInsts() {
+    _saveInsts = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7(data) {
       var _t7;
       return _regenerator().w(function (_context7) {
         while (1) switch (_context7.p = _context7.n) {
           case 0:
-            setCenterDocs(data);
+            setInsts(data);
             _context7.p = 1;
             _context7.n = 2;
-            return storage.set("htc-center-docs", JSON.stringify(data));
+            return storage.set("htc-insts", JSON.stringify(data));
           case 2:
             _context7.n = 4;
             break;
@@ -600,21 +574,21 @@ function App() {
         }
       }, _callee7, null, [[1, 3]]);
     }));
+    return _saveInsts.apply(this, arguments);
+  }
+  function saveCenterDocs(_x7) {
     return _saveCenterDocs.apply(this, arguments);
   }
-  function saveStaffDocs(_x8) {
-    return _saveStaffDocs.apply(this, arguments);
-  }
-  function _saveStaffDocs() {
-    _saveStaffDocs = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8(data) {
+  function _saveCenterDocs() {
+    _saveCenterDocs = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8(data) {
       var _t8;
       return _regenerator().w(function (_context8) {
         while (1) switch (_context8.p = _context8.n) {
           case 0:
-            setStaffDocs(data);
+            setCenterDocs(data);
             _context8.p = 1;
             _context8.n = 2;
-            return storage.set("htc-staff-docs", JSON.stringify(data));
+            return storage.set("htc-center-docs", JSON.stringify(data));
           case 2:
             _context8.n = 4;
             break;
@@ -626,21 +600,21 @@ function App() {
         }
       }, _callee8, null, [[1, 3]]);
     }));
+    return _saveCenterDocs.apply(this, arguments);
+  }
+  function saveStaffDocs(_x8) {
     return _saveStaffDocs.apply(this, arguments);
   }
-  function saveStaffProfiles(_x9) {
-    return _saveStaffProfiles.apply(this, arguments);
-  }
-  function _saveStaffProfiles() {
-    _saveStaffProfiles = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9(data) {
+  function _saveStaffDocs() {
+    _saveStaffDocs = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9(data) {
       var _t9;
       return _regenerator().w(function (_context9) {
         while (1) switch (_context9.p = _context9.n) {
           case 0:
-            setStaffProfiles(data);
+            setStaffDocs(data);
             _context9.p = 1;
             _context9.n = 2;
-            return storage.set("htc-staff-profiles", JSON.stringify(data));
+            return storage.set("htc-staff-docs", JSON.stringify(data));
           case 2:
             _context9.n = 4;
             break;
@@ -652,21 +626,21 @@ function App() {
         }
       }, _callee9, null, [[1, 3]]);
     }));
+    return _saveStaffDocs.apply(this, arguments);
+  }
+  function saveStaffProfiles(_x9) {
     return _saveStaffProfiles.apply(this, arguments);
   }
-  function saveDocs(_x0) {
-    return _saveDocs.apply(this, arguments);
-  }
-  function _saveDocs() {
-    _saveDocs = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0(data) {
+  function _saveStaffProfiles() {
+    _saveStaffProfiles = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0(data) {
       var _t0;
       return _regenerator().w(function (_context0) {
         while (1) switch (_context0.p = _context0.n) {
           case 0:
-            setDocs(data);
+            setStaffProfiles(data);
             _context0.p = 1;
             _context0.n = 2;
-            return storage.set("htc-docs", JSON.stringify(data));
+            return storage.set("htc-staff-profiles", JSON.stringify(data));
           case 2:
             _context0.n = 4;
             break;
@@ -678,21 +652,21 @@ function App() {
         }
       }, _callee0, null, [[1, 3]]);
     }));
+    return _saveStaffProfiles.apply(this, arguments);
+  }
+  function saveDocs(_x0) {
     return _saveDocs.apply(this, arguments);
   }
-  function saveRecv(_x1) {
-    return _saveRecv.apply(this, arguments);
-  }
-  function _saveRecv() {
-    _saveRecv = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee1(data) {
+  function _saveDocs() {
+    _saveDocs = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee1(data) {
       var _t1;
       return _regenerator().w(function (_context1) {
         while (1) switch (_context1.p = _context1.n) {
           case 0:
-            setRecv(data);
+            setDocs(data);
             _context1.p = 1;
             _context1.n = 2;
-            return storage.set("htc-recv", JSON.stringify(data));
+            return storage.set("htc-docs", JSON.stringify(data));
           case 2:
             _context1.n = 4;
             break;
@@ -703,6 +677,32 @@ function App() {
             return _context1.a(2);
         }
       }, _callee1, null, [[1, 3]]);
+    }));
+    return _saveDocs.apply(this, arguments);
+  }
+  function saveRecv(_x1) {
+    return _saveRecv.apply(this, arguments);
+  }
+  function _saveRecv() {
+    _saveRecv = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee10(data) {
+      var _t10;
+      return _regenerator().w(function (_context10) {
+        while (1) switch (_context10.p = _context10.n) {
+          case 0:
+            setRecv(data);
+            _context10.p = 1;
+            _context10.n = 2;
+            return storage.set("htc-recv", JSON.stringify(data));
+          case 2:
+            _context10.n = 4;
+            break;
+          case 3:
+            _context10.p = 3;
+            _t10 = _context10.v;
+          case 4:
+            return _context10.a(2);
+        }
+      }, _callee10, null, [[1, 3]]);
     }));
     return _saveRecv.apply(this, arguments);
   }
@@ -2120,7 +2120,63 @@ function App() {
         padding: 10,
         background: G.blue
       })
-    }, "\uD83D\uDCE5 PDF \uB2E4\uC6B4\uB85C\uB4DC")));
+    }, "\uD83D\uDCE5 PDF \uB2E4\uC6B4\uB85C\uB4DC")), isApproved && /*#__PURE__*/React.createElement("button", {
+      onClick: /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4() {
+        var inst, to, res, result, _t4;
+        return _regenerator().w(function (_context4) {
+          while (1) switch (_context4.p = _context4.n) {
+            case 0:
+              inst = insts.find(function (x) {
+                return x.name === d.inst;
+              });
+              to = (inst === null || inst === void 0 ? void 0 : inst.email) || "";
+              if (to) {
+                _context4.n = 1;
+                break;
+              }
+              showToast("❌ 수신기관 이메일이 없어요! 기관 관리에서 먼저 등록해주세요.");
+              return _context4.a(2);
+            case 1:
+              showToast("📨 이메일 발송 중...");
+              _context4.p = 2;
+              _context4.n = 3;
+              return fetch("https://jinwoo92.cafe24.com/send_mail.php", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                  to: to,
+                  subject: "[\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130] ".concat(d.title),
+                  body: "\uC548\uB155\uD558\uC138\uC694.\n\n\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130\uC785\uB2C8\uB2E4.\n\n".concat(d.title, " \uAD00\uB828 \uC11C\uB958\uB97C \uBCF4\uB0B4\uB4DC\uB9BD\uB2C8\uB2E4.\n\n\uBB38\uC758\uC0AC\uD56D\uC740 \uC544\uB798 \uC5F0\uB77D\uCC98\uB85C \uC5F0\uB77D\uC8FC\uC138\uC694.\n\n\uAC10\uC0AC\uD569\uB2C8\uB2E4."),
+                  doc_id: d.id
+                })
+              });
+            case 3:
+              res = _context4.v;
+              _context4.n = 4;
+              return res.json();
+            case 4:
+              result = _context4.v;
+              showToast(result.success ? "✅ 이메일 발송됐습니다!" : "❌ 발송 실패: " + result.message);
+              _context4.n = 6;
+              break;
+            case 5:
+              _context4.p = 5;
+              _t4 = _context4.v;
+              showToast("❌ 서버 연결 실패. send_mail.php 확인하세요.");
+            case 6:
+              return _context4.a(2);
+          }
+        }, _callee4, null, [[2, 5]]);
+      })),
+      style: _objectSpread(_objectSpread({}, btnG), {}, {
+        width: "100%",
+        padding: 10,
+        marginTop: 8,
+        background: "#059669"
+      })
+    }, "\uD83D\uDCE7 \uC218\uC2E0\uAE30\uAD00\uC5D0 \uC774\uBA54\uC77C \uBC1C\uC1A1"));
   }
   function DocsOut() {
     if (selDoc) return /*#__PURE__*/React.createElement(DocDetail, {
@@ -2178,10 +2234,10 @@ function App() {
       style: cardStyle
     }, /*#__PURE__*/React.createElement("div", {
       style: cardTitleStyle
-    }, "\uBB38\uC11C \uC885\uB958"), types.map(function (_ref18) {
-      var _ref19 = _slicedToArray(_ref18, 2),
-        t = _ref19[0],
-        l = _ref19[1];
+    }, "\uBB38\uC11C \uC885\uB958"), types.map(function (_ref19) {
+      var _ref20 = _slicedToArray(_ref19, 2),
+        t = _ref20[0],
+        l = _ref20[1];
       return /*#__PURE__*/React.createElement("div", {
         key: t,
         onClick: function onClick() {
@@ -2853,10 +2909,10 @@ function App() {
         gap: 6,
         marginBottom: 12
       }
-    }, [["vac", "🌴 휴가·연차"], ["exp", "💸 지출결의"], ["rep", "📊 업무보고"], ["mtg", "🗒 회의록"]].map(function (_ref20) {
-      var _ref21 = _slicedToArray(_ref20, 2),
-        t = _ref21[0],
-        l = _ref21[1];
+    }, [["vac", "🌴 휴가·연차"], ["exp", "💸 지출결의"], ["rep", "📊 업무보고"], ["mtg", "🗒 회의록"]].map(function (_ref21) {
+      var _ref22 = _slicedToArray(_ref21, 2),
+        t = _ref22[0],
+        l = _ref22[1];
       return /*#__PURE__*/React.createElement("div", {
         key: t,
         onClick: function onClick() {
@@ -3061,10 +3117,10 @@ function App() {
         gap: 8,
         marginBottom: 16
       }
-    }, [["🌴", "휴가·연차"], ["💸", "지출결의"], ["📊", "업무보고"], ["🗒", "회의록"]].map(function (_ref22) {
-      var _ref23 = _slicedToArray(_ref22, 2),
-        ic = _ref23[0],
-        l = _ref23[1];
+    }, [["🌴", "휴가·연차"], ["💸", "지출결의"], ["📊", "업무보고"], ["🗒", "회의록"]].map(function (_ref23) {
+      var _ref24 = _slicedToArray(_ref23, 2),
+        ic = _ref24[0],
+        l = _ref24[1];
       return /*#__PURE__*/React.createElement("div", {
         key: l,
         onClick: function onClick() {
@@ -3614,10 +3670,10 @@ function App() {
       "자격증사본": "📜",
       "강사료입금통장": "💳"
     };
-    function DocRow(_ref24) {
-      var doc = _ref24.doc,
-        onRegister = _ref24.onRegister,
-        isCenter = _ref24.isCenter;
+    function DocRow(_ref25) {
+      var doc = _ref25.doc,
+        onRegister = _ref25.onRegister,
+        isCenter = _ref25.isCenter;
       var canEdit = isCenter ? role === "director" : true;
       var canDownload = doc.registered;
       function handleFileSelect() {
@@ -3716,13 +3772,13 @@ function App() {
     }
 
     // 이력 섹션 컴포넌트
-    function ResumeSection(_ref25) {
-      var title = _ref25.title,
-        icon = _ref25.icon,
-        items = _ref25.items,
-        fields = _ref25.fields,
-        onAdd = _ref25.onAdd,
-        onDel = _ref25.onDel;
+    function ResumeSection(_ref26) {
+      var title = _ref26.title,
+        icon = _ref26.icon,
+        items = _ref26.items,
+        fields = _ref26.fields,
+        onAdd = _ref26.onAdd,
+        onDel = _ref26.onDel;
       var isEditing = editSection === title;
       return /*#__PURE__*/React.createElement("div", {
         style: {
@@ -3763,10 +3819,10 @@ function App() {
           marginBottom: 8,
           border: "1px solid ".concat(G[200])
         }
-      }, fields.map(function (_ref26) {
-        var _ref27 = _slicedToArray(_ref26, 2),
-          l = _ref27[0],
-          k = _ref27[1];
+      }, fields.map(function (_ref27) {
+        var _ref28 = _slicedToArray(_ref27, 2),
+          l = _ref28[0],
+          k = _ref28[1];
         return /*#__PURE__*/React.createElement("div", {
           key: k,
           style: {
@@ -3783,10 +3839,10 @@ function App() {
       }), /*#__PURE__*/React.createElement("button", {
         onClick: function onClick() {
           var row = {};
-          fields.forEach(function (_ref28) {
-            var _ref29 = _slicedToArray(_ref28, 2),
-              l = _ref29[0],
-              k = _ref29[1];
+          fields.forEach(function (_ref29) {
+            var _ref30 = _slicedToArray(_ref29, 2),
+              l = _ref30[0],
+              k = _ref30[1];
             var el = document.getElementById('resume-input-' + title + '-' + k);
             if (el) row[k] = el.value;
           });
@@ -3825,9 +3881,9 @@ function App() {
             color: G.gray9,
             flex: 1
           }
-        }, fields.map(function (_ref30) {
-          var _ref31 = _slicedToArray(_ref30, 2),
-            k = _ref31[1];
+        }, fields.map(function (_ref31) {
+          var _ref32 = _slicedToArray(_ref31, 2),
+            k = _ref32[1];
           return it[k];
         }).filter(Boolean).join(" · ")), /*#__PURE__*/React.createElement("button", {
           onClick: function onClick() {
@@ -3845,9 +3901,9 @@ function App() {
         }, "\u2715"));
       }));
     }
-    var TabBtn = function TabBtn(_ref32) {
-      var id = _ref32.id,
-        label = _ref32.label;
+    var TabBtn = function TabBtn(_ref33) {
+      var id = _ref33.id,
+        label = _ref33.label;
       return /*#__PURE__*/React.createElement("button", {
         onClick: function onClick() {
           return setDocTab(id);
@@ -3982,10 +4038,10 @@ function App() {
       style: cardStyle
     }, /*#__PURE__*/React.createElement("div", {
       style: cardTitleStyle
-    }, "\uAE30\uBCF8 \uC815\uBCF4"), [["이름", "name"], ["생년(년도)", "birth"], ["연락처", "phone"], ["이메일", "email"], ["주소", "address"]].map(function (_ref33) {
-      var _ref34 = _slicedToArray(_ref33, 2),
-        l = _ref34[0],
-        k = _ref34[1];
+    }, "\uAE30\uBCF8 \uC815\uBCF4"), [["이름", "name"], ["생년(년도)", "birth"], ["연락처", "phone"], ["이메일", "email"], ["주소", "address"]].map(function (_ref34) {
+      var _ref35 = _slicedToArray(_ref34, 2),
+        l = _ref35[0],
+        k = _ref35[1];
       return /*#__PURE__*/React.createElement("div", {
         key: k,
         style: {
@@ -4084,10 +4140,10 @@ function App() {
         gap: 8,
         marginBottom: 12
       }
-    }, [["담당 기관", autoInsts.length + "개"], ["내담자", autoClients.length + "명"], ["총 회기", autoTotalSess + "회"]].map(function (_ref35) {
-      var _ref36 = _slicedToArray(_ref35, 2),
-        l = _ref36[0],
-        v = _ref36[1];
+    }, [["담당 기관", autoInsts.length + "개"], ["내담자", autoClients.length + "명"], ["총 회기", autoTotalSess + "회"]].map(function (_ref36) {
+      var _ref37 = _slicedToArray(_ref36, 2),
+        l = _ref37[0],
+        v = _ref37[1];
       return /*#__PURE__*/React.createElement("div", {
         key: l,
         style: {
@@ -4229,10 +4285,10 @@ function App() {
         gap: 8,
         marginBottom: 16
       }
-    }, [["담당 기관", autoInsts.length + "개"], ["내담자", autoClients.length + "명"], ["총 회기", autoTotalSess + "회"]].map(function (_ref37) {
-      var _ref38 = _slicedToArray(_ref37, 2),
-        l = _ref38[0],
-        v = _ref38[1];
+    }, [["담당 기관", autoInsts.length + "개"], ["내담자", autoClients.length + "명"], ["총 회기", autoTotalSess + "회"]].map(function (_ref38) {
+      var _ref39 = _slicedToArray(_ref38, 2),
+        l = _ref39[0],
+        v = _ref39[1];
       return /*#__PURE__*/React.createElement("div", {
         key: l,
         style: {
@@ -4647,10 +4703,10 @@ function App() {
           display: "flex",
           gap: 6
         }
-      }, [["staff", "치료사"], ["branch", "지부장"], ["director", "센터장"]].map(function (_ref39) {
-        var _ref40 = _slicedToArray(_ref39, 2),
-          r = _ref40[0],
-          l = _ref40[1];
+      }, [["staff", "치료사"], ["branch", "지부장"], ["director", "센터장"]].map(function (_ref40) {
+        var _ref41 = _slicedToArray(_ref40, 2),
+          r = _ref41[0],
+          l = _ref41[1];
         return /*#__PURE__*/React.createElement("button", {
           key: r,
           onClick: function onClick() {
