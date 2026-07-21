@@ -3251,7 +3251,7 @@ function App() {
     }
     function _generatePDF() {
       _generatePDF = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
-        var today, estNo, div, canvas, jsPDF, doc, imgData, pageW, pageH, ratio, imgH, _t6;
+        var today, estNo, overlay, div, canvas, jsPDF, pdf, pW, pH, imgData, ratio, imgH, y, sliceH, sliceCanvas, _t6;
         return _regenerator().w(function (_context5) {
           while (1) switch (_context5.p = _context5.n) {
             case 0:
@@ -3284,48 +3284,74 @@ function App() {
               });
             case 3:
               today = new Date().toLocaleDateString('ko-KR');
-              estNo = 'EST-' + new Date().getFullYear() + '-' + String(Math.floor(Math.random() * 900) + 100); // 견적서 HTML 생성
+              estNo = 'EST-' + new Date().getFullYear() + '-' + String(Math.floor(Math.random() * 900) + 100); // 오버레이로 보여주기
+              overlay = document.createElement('div');
+              overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:9999;display:flex;justify-content:center;overflow-y:auto;padding:20px;';
               div = document.createElement('div');
-              div.style.cssText = 'width:794px;padding:40px;background:#fff;font-family:Malgun Gothic,Apple SD Gothic Neo,sans-serif;position:fixed;left:-9999px;top:0;';
-              div.innerHTML = "\n          <div style=\"text-align:center;margin-bottom:20px;\">\n            <div style=\"font-size:24px;font-weight:bold;margin-bottom:4px;\">\uACAC  \uC801  \uC11C</div>\n            <div style=\"font-size:12px;color:#666;\">(\uBD80\uAC00\uAC00\uCE58\uC138 \uBA74\uC138\uC0AC\uC5C5\uC790)</div>\n          </div>\n          <table style=\"width:100%;border-collapse:collapse;margin-bottom:16px;font-size:13px;\">\n            <tr>\n              <td style=\"border:1px solid #333;padding:8px 12px;width:80px;font-weight:bold;background:#f9f9f9;\">\uC218  \uC2E0</td>\n              <td style=\"border:1px solid #333;padding:8px 12px;\">".concat(ef.inst || '(수신기관)', "</td>\n              <td style=\"border:1px solid #333;padding:8px 12px;width:80px;font-weight:bold;background:#f9f9f9;\">\uACAC\uC801\uBC88\uD638</td>\n              <td style=\"border:1px solid #333;padding:8px 12px;\">").concat(estNo, "</td>\n            </tr>\n            <tr>\n              <td style=\"border:1px solid #333;padding:8px 12px;font-weight:bold;background:#f9f9f9;\">\uC791\uC131\uC77C</td>\n              <td style=\"border:1px solid #333;padding:8px 12px;\">").concat(today, "</td>\n              <td style=\"border:1px solid #333;padding:8px 12px;font-weight:bold;background:#f9f9f9;\">\uC720\uD6A8\uAE30\uAC04</td>\n              <td style=\"border:1px solid #333;padding:8px 12px;\">30\uC77C</td>\n            </tr>\n          </table>\n          <div style=\"background:#F1F8E9;border:2px solid #2E7D32;border-radius:6px;padding:14px 20px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;\">\n            <span style=\"font-size:14px;font-weight:bold;color:#1B5E20;\">\uACF5\uAE09\uAC00\uC561 \uD569\uACC4</span>\n            <span style=\"font-size:20px;font-weight:bold;color:#2E7D32;\">").concat(supply.toLocaleString(), " \uC6D0</span>\n          </div>\n          <div style=\"font-size:11px;color:#888;text-align:center;margin-bottom:16px;\">\u203B \uBA74\uC138\uC0AC\uC5C5\uC790 \u2014 \uBD80\uAC00\uC138 \uD574\uB2F9 \uC5C6\uC74C</div>\n          <table style=\"width:100%;border-collapse:collapse;font-size:13px;margin-bottom:8px;\">\n            <thead>\n              <tr style=\"background:#2E7D32;color:#fff;\">\n                <th style=\"border:1px solid #2E7D32;padding:8px;text-align:left;\">\uD488\uBAA9\uBA85</th>\n                <th style=\"border:1px solid #2E7D32;padding:8px;width:100px;\">\uADDC\uACA9</th>\n                <th style=\"border:1px solid #2E7D32;padding:8px;width:60px;\">\uC218\uB7C9</th>\n                <th style=\"border:1px solid #2E7D32;padding:8px;width:100px;\">\uB2E8\uAC00(\uC6D0)</th>\n                <th style=\"border:1px solid #2E7D32;padding:8px;width:120px;\">\uACF5\uAE09\uAC00\uC561(\uC6D0)</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                <td style=\"border:1px solid #ccc;padding:8px;\">").concat(ef.name || '원예치료 프로그램', "</td>\n                <td style=\"border:1px solid #ccc;padding:8px;text-align:center;\">").concat(ef.spec, "</td>\n                <td style=\"border:1px solid #ccc;padding:8px;text-align:center;\">").concat(ef.qty, "</td>\n                <td style=\"border:1px solid #ccc;padding:8px;text-align:right;\">").concat(parseInt(ef.unit || 0).toLocaleString(), "</td>\n                <td style=\"border:1px solid #ccc;padding:8px;text-align:right;\">").concat(supply.toLocaleString(), "</td>\n              </tr>\n              <tr style=\"background:#F1F8E9;font-weight:bold;\">\n                <td colspan=\"4\" style=\"border:1px solid #ccc;padding:8px;text-align:center;\">\uD569  \uACC4</td>\n                <td style=\"border:1px solid #ccc;padding:8px;text-align:right;\">").concat(supply.toLocaleString(), " \uC6D0</td>\n              </tr>\n            </tbody>\n          </table>\n          <div style=\"font-size:11px;color:#666;margin-bottom:60px;\">\u203B \uC7AC\uB8CC\uBE44 \uD3EC\uD568 \xB7 \uC720\uD6A8\uAE30\uAC04 30\uC77C \xB7 \uBA74\uC138\uC0AC\uC5C5\uC790\uB85C \uBD80\uAC00\uC138 \uC5C6\uC74C</div>\n          <div style=\"text-align:center;font-size:18px;font-weight:bold;margin-bottom:80px;\">\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130\uC7A5</div>\n          <hr style=\"border:1px solid #333;margin-bottom:10px;\">\n          <div style=\"font-size:11px;color:#555;line-height:1.8;\">\n            <div>\uC0C1\uD638: \uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130 &nbsp;|&nbsp; \uB300\uD45C: \uBC15\uC9C4\uC6B0 &nbsp;|&nbsp; \uC0AC\uC5C5\uC790\uB4F1\uB85D\uBC88\uD638: 612-96-07060</div>\n            <div>\uC8FC\uC18C: \uC6B8\uC0B0\uAD11\uC5ED\uC2DC \uC6B8\uC8FC\uAD70 \uC0BC\uB0A8\uC74D \uC2E0\uBCF51\uAE38 26</div>\n            <div>\uC804\uD654: 010-3491-0013 &nbsp;|&nbsp; \uC774\uBA54\uC77C: info@parkjinwoohtc.com &nbsp;|&nbsp; \uD648\uD398\uC774\uC9C0: parkjinwoohtc.com</div>\n          </div>\n        ");
-              document.body.appendChild(div);
+              div.style.cssText = 'width:794px;min-height:1123px;padding:50px;background:#fff;font-family:Malgun Gothic,Apple SD Gothic Neo,sans-serif;';
+              div.innerHTML = "\n          <div style=\"text-align:center;margin-bottom:24px;\">\n            <div style=\"font-size:28px;font-weight:bold;letter-spacing:8px;margin-bottom:6px;\">\uACAC  \uC801  \uC11C</div>\n            <div style=\"font-size:13px;color:#666;\">(\uBD80\uAC00\uAC00\uCE58\uC138 \uBA74\uC138\uC0AC\uC5C5\uC790)</div>\n          </div>\n          <table style=\"width:100%;border-collapse:collapse;margin-bottom:20px;font-size:13px;\">\n            <tr>\n              <td style=\"border:1px solid #333;padding:10px 14px;width:90px;font-weight:bold;background:#f5f5f5;\">\uC218  \uC2E0</td>\n              <td style=\"border:1px solid #333;padding:10px 14px;\">".concat(ef.inst || '(수신기관)', "</td>\n              <td style=\"border:1px solid #333;padding:10px 14px;width:90px;font-weight:bold;background:#f5f5f5;\">\uACAC\uC801\uBC88\uD638</td>\n              <td style=\"border:1px solid #333;padding:10px 14px;\">").concat(estNo, "</td>\n            </tr>\n            <tr>\n              <td style=\"border:1px solid #333;padding:10px 14px;font-weight:bold;background:#f5f5f5;\">\uC791\uC131\uC77C</td>\n              <td style=\"border:1px solid #333;padding:10px 14px;\">").concat(today, "</td>\n              <td style=\"border:1px solid #333;padding:10px 14px;font-weight:bold;background:#f5f5f5;\">\uC720\uD6A8\uAE30\uAC04</td>\n              <td style=\"border:1px solid #333;padding:10px 14px;\">30\uC77C</td>\n            </tr>\n          </table>\n          <div style=\"background:#F1F8E9;border:2px solid #2E7D32;border-radius:6px;padding:16px 24px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;\">\n            <span style=\"font-size:15px;font-weight:bold;color:#1B5E20;\">\uACF5\uAE09\uAC00\uC561 \uD569\uACC4</span>\n            <span style=\"font-size:22px;font-weight:bold;color:#2E7D32;\">").concat(supply.toLocaleString(), " \uC6D0</span>\n          </div>\n          <div style=\"font-size:11px;color:#888;text-align:center;margin-bottom:20px;\">\u203B \uBA74\uC138\uC0AC\uC5C5\uC790 \u2014 \uBD80\uAC00\uC138 \uD574\uB2F9 \uC5C6\uC74C</div>\n          <table style=\"width:100%;border-collapse:collapse;font-size:13px;margin-bottom:10px;\">\n            <thead>\n              <tr style=\"background:#2E7D32;color:#fff;\">\n                <th style=\"border:1px solid #2E7D32;padding:10px;text-align:left;width:35%;\">\uD488\uBAA9\uBA85</th>\n                <th style=\"border:1px solid #2E7D32;padding:10px;text-align:center;width:15%;\">\uADDC\uACA9</th>\n                <th style=\"border:1px solid #2E7D32;padding:10px;text-align:center;width:10%;\">\uC218\uB7C9</th>\n                <th style=\"border:1px solid #2E7D32;padding:10px;text-align:right;width:20%;\">\uB2E8\uAC00(\uC6D0)</th>\n                <th style=\"border:1px solid #2E7D32;padding:10px;text-align:right;width:20%;\">\uACF5\uAE09\uAC00\uC561(\uC6D0)</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                <td style=\"border:1px solid #ccc;padding:10px;\">").concat(ef.name || '원예치료 프로그램', "</td>\n                <td style=\"border:1px solid #ccc;padding:10px;text-align:center;\">").concat(ef.spec, "</td>\n                <td style=\"border:1px solid #ccc;padding:10px;text-align:center;\">").concat(ef.qty, "</td>\n                <td style=\"border:1px solid #ccc;padding:10px;text-align:right;\">").concat(parseInt(ef.unit || 0).toLocaleString(), "</td>\n                <td style=\"border:1px solid #ccc;padding:10px;text-align:right;\">").concat(supply.toLocaleString(), "</td>\n              </tr>\n              <tr style=\"background:#F1F8E9;font-weight:bold;\">\n                <td colspan=\"4\" style=\"border:1px solid #ccc;padding:10px;text-align:center;\">\uD569  \uACC4</td>\n                <td style=\"border:1px solid #ccc;padding:10px;text-align:right;\">").concat(supply.toLocaleString(), " \uC6D0</td>\n              </tr>\n            </tbody>\n          </table>\n          <div style=\"font-size:11px;color:#666;margin-bottom:80px;\">\u203B \uC7AC\uB8CC\uBE44 \uD3EC\uD568 \xB7 \uC720\uD6A8\uAE30\uAC04 30\uC77C \xB7 \uBA74\uC138\uC0AC\uC5C5\uC790\uB85C \uBD80\uAC00\uC138 \uC5C6\uC74C</div>\n          <div style=\"text-align:center;font-size:20px;font-weight:bold;margin-bottom:100px;\">\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130\uC7A5</div>\n          <hr style=\"border:1px solid #333;margin-bottom:12px;\">\n          <div style=\"font-size:11px;color:#555;line-height:2;\">\n            <div>\uC0C1\uD638: \uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130 &nbsp;|&nbsp; \uB300\uD45C: \uBC15\uC9C4\uC6B0 &nbsp;|&nbsp; \uC0AC\uC5C5\uC790\uB4F1\uB85D\uBC88\uD638: 612-96-07060</div>\n            <div>\uC8FC\uC18C: \uC6B8\uC0B0\uAD11\uC5ED\uC2DC \uC6B8\uC8FC\uAD70 \uC0BC\uB0A8\uC74D \uC2E0\uBCF51\uAE38 26</div>\n            <div>\uC804\uD654: 010-3491-0013 &nbsp;|&nbsp; \uC774\uBA54\uC77C: info@parkjinwoohtc.com &nbsp;|&nbsp; \uD648\uD398\uC774\uC9C0: parkjinwoohtc.com</div>\n          </div>\n        ");
+              overlay.appendChild(div);
+              document.body.appendChild(overlay);
+
+              // 렌더링 대기
               _context5.n = 4;
+              return new Promise(function (r) {
+                return setTimeout(r, 500);
+              });
+            case 4:
+              _context5.n = 5;
               return html2canvas(div, {
                 scale: 2,
                 useCORS: true,
-                backgroundColor: '#fff'
+                backgroundColor: '#fff',
+                width: 794,
+                logging: false
               });
-            case 4:
+            case 5:
               canvas = _context5.v;
-              document.body.removeChild(div);
+              document.body.removeChild(overlay);
               jsPDF = window.jspdf.jsPDF;
-              doc = new jsPDF({
+              pdf = new jsPDF({
                 orientation: 'p',
-                unit: 'mm',
+                unit: 'px',
                 format: 'a4'
               });
-              imgData = canvas.toDataURL('image/jpeg', 0.95);
-              pageW = doc.internal.pageSize.getWidth();
-              pageH = doc.internal.pageSize.getHeight();
+              pW = pdf.internal.pageSize.getWidth();
+              pH = pdf.internal.pageSize.getHeight();
+              imgData = canvas.toDataURL('image/jpeg', 1.0);
               ratio = canvas.height / canvas.width;
-              imgH = pageW * ratio;
-              if (imgH <= pageH) {
-                doc.addImage(imgData, 'JPEG', 0, 0, pageW, imgH);
+              imgH = pW * ratio;
+              if (imgH <= pH) {
+                pdf.addImage(imgData, 'JPEG', 0, 0, pW, imgH);
               } else {
-                doc.addImage(imgData, 'JPEG', 0, 0, pageW, pageH);
+                // 여러 페이지로 분할
+                y = 0;
+                while (y < canvas.height) {
+                  sliceH = Math.min(canvas.height - y, Math.floor(canvas.width * pH / pW));
+                  sliceCanvas = document.createElement('canvas');
+                  sliceCanvas.width = canvas.width;
+                  sliceCanvas.height = sliceH;
+                  sliceCanvas.getContext('2d').drawImage(canvas, 0, y, canvas.width, sliceH, 0, 0, canvas.width, sliceH);
+                  if (y > 0) pdf.addPage();
+                  pdf.addImage(sliceCanvas.toDataURL('image/jpeg', 1.0), 'JPEG', 0, 0, pW, pH);
+                  y += sliceH;
+                }
               }
-              doc.save("\uACAC\uC801\uC11C_".concat(ef.inst || '박진우원예치료센터', "_").concat(today, ".pdf"));
+              pdf.save("\uACAC\uC801\uC11C_".concat(ef.inst || '박진우원예치료센터', "_").concat(today, ".pdf"));
               showToast("✅ 견적서 PDF 저장됐습니다!");
-              _context5.n = 6;
+              _context5.n = 7;
               break;
-            case 5:
-              _context5.p = 5;
-              _t6 = _context5.v;
-              showToast("❌ PDF 생성 실패: " + _t6.message);
             case 6:
+              _context5.p = 6;
+              _t6 = _context5.v;
+              document.querySelectorAll('div[style*="z-index:9999"]').forEach(function (el) {
+                return el.remove();
+              });
+              showToast("❌ PDF 생성 실패: " + _t6.message);
+            case 7:
               return _context5.a(2);
           }
-        }, _callee5, null, [[1, 5]]);
+        }, _callee5, null, [[1, 6]]);
       }));
       return _generatePDF.apply(this, arguments);
     }
