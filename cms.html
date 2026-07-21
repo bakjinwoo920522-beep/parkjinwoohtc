@@ -3251,17 +3251,30 @@ function App() {
     }
     function _generatePDF() {
       _generatePDF = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
-        var fontRes, fontBuf, fontB64, jsPDF, doc, today, estNo, _t6;
+        var today, estNo, div, canvas, jsPDF, doc, imgData, pageW, pageH, ratio, imgH, _t6;
         return _regenerator().w(function (_context5) {
           while (1) switch (_context5.p = _context5.n) {
             case 0:
-              showToast("📄 한글 폰트 로딩 중...");
+              showToast("📄 견적서 PDF 생성 중...");
               _context5.p = 1;
-              if (window.jspdf) {
+              if (window.html2canvas) {
                 _context5.n = 2;
                 break;
               }
               _context5.n = 2;
+              return new Promise(function (resolve, reject) {
+                var s = document.createElement('script');
+                s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+                s.onload = resolve;
+                s.onerror = reject;
+                document.head.appendChild(s);
+              });
+            case 2:
+              if (window.jspdf) {
+                _context5.n = 3;
+                break;
+              }
+              _context5.n = 3;
               return new Promise(function (resolve, reject) {
                 var s = document.createElement('script');
                 s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
@@ -3269,125 +3282,38 @@ function App() {
                 s.onerror = reject;
                 document.head.appendChild(s);
               });
-            case 2:
-              _context5.n = 3;
-              return fetch('https://jinwoo92.cafe24.com/fonts/NanumGothic.ttf');
             case 3:
-              fontRes = _context5.v;
+              today = new Date().toLocaleDateString('ko-KR');
+              estNo = 'EST-' + new Date().getFullYear() + '-' + String(Math.floor(Math.random() * 900) + 100); // 견적서 HTML 생성
+              div = document.createElement('div');
+              div.style.cssText = 'width:794px;padding:40px;background:#fff;font-family:Malgun Gothic,Apple SD Gothic Neo,sans-serif;position:fixed;left:-9999px;top:0;';
+              div.innerHTML = "\n          <div style=\"text-align:center;margin-bottom:20px;\">\n            <div style=\"font-size:24px;font-weight:bold;margin-bottom:4px;\">\uACAC  \uC801  \uC11C</div>\n            <div style=\"font-size:12px;color:#666;\">(\uBD80\uAC00\uAC00\uCE58\uC138 \uBA74\uC138\uC0AC\uC5C5\uC790)</div>\n          </div>\n          <table style=\"width:100%;border-collapse:collapse;margin-bottom:16px;font-size:13px;\">\n            <tr>\n              <td style=\"border:1px solid #333;padding:8px 12px;width:80px;font-weight:bold;background:#f9f9f9;\">\uC218  \uC2E0</td>\n              <td style=\"border:1px solid #333;padding:8px 12px;\">".concat(ef.inst || '(수신기관)', "</td>\n              <td style=\"border:1px solid #333;padding:8px 12px;width:80px;font-weight:bold;background:#f9f9f9;\">\uACAC\uC801\uBC88\uD638</td>\n              <td style=\"border:1px solid #333;padding:8px 12px;\">").concat(estNo, "</td>\n            </tr>\n            <tr>\n              <td style=\"border:1px solid #333;padding:8px 12px;font-weight:bold;background:#f9f9f9;\">\uC791\uC131\uC77C</td>\n              <td style=\"border:1px solid #333;padding:8px 12px;\">").concat(today, "</td>\n              <td style=\"border:1px solid #333;padding:8px 12px;font-weight:bold;background:#f9f9f9;\">\uC720\uD6A8\uAE30\uAC04</td>\n              <td style=\"border:1px solid #333;padding:8px 12px;\">30\uC77C</td>\n            </tr>\n          </table>\n          <div style=\"background:#F1F8E9;border:2px solid #2E7D32;border-radius:6px;padding:14px 20px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;\">\n            <span style=\"font-size:14px;font-weight:bold;color:#1B5E20;\">\uACF5\uAE09\uAC00\uC561 \uD569\uACC4</span>\n            <span style=\"font-size:20px;font-weight:bold;color:#2E7D32;\">").concat(supply.toLocaleString(), " \uC6D0</span>\n          </div>\n          <div style=\"font-size:11px;color:#888;text-align:center;margin-bottom:16px;\">\u203B \uBA74\uC138\uC0AC\uC5C5\uC790 \u2014 \uBD80\uAC00\uC138 \uD574\uB2F9 \uC5C6\uC74C</div>\n          <table style=\"width:100%;border-collapse:collapse;font-size:13px;margin-bottom:8px;\">\n            <thead>\n              <tr style=\"background:#2E7D32;color:#fff;\">\n                <th style=\"border:1px solid #2E7D32;padding:8px;text-align:left;\">\uD488\uBAA9\uBA85</th>\n                <th style=\"border:1px solid #2E7D32;padding:8px;width:100px;\">\uADDC\uACA9</th>\n                <th style=\"border:1px solid #2E7D32;padding:8px;width:60px;\">\uC218\uB7C9</th>\n                <th style=\"border:1px solid #2E7D32;padding:8px;width:100px;\">\uB2E8\uAC00(\uC6D0)</th>\n                <th style=\"border:1px solid #2E7D32;padding:8px;width:120px;\">\uACF5\uAE09\uAC00\uC561(\uC6D0)</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                <td style=\"border:1px solid #ccc;padding:8px;\">").concat(ef.name || '원예치료 프로그램', "</td>\n                <td style=\"border:1px solid #ccc;padding:8px;text-align:center;\">").concat(ef.spec, "</td>\n                <td style=\"border:1px solid #ccc;padding:8px;text-align:center;\">").concat(ef.qty, "</td>\n                <td style=\"border:1px solid #ccc;padding:8px;text-align:right;\">").concat(parseInt(ef.unit || 0).toLocaleString(), "</td>\n                <td style=\"border:1px solid #ccc;padding:8px;text-align:right;\">").concat(supply.toLocaleString(), "</td>\n              </tr>\n              <tr style=\"background:#F1F8E9;font-weight:bold;\">\n                <td colspan=\"4\" style=\"border:1px solid #ccc;padding:8px;text-align:center;\">\uD569  \uACC4</td>\n                <td style=\"border:1px solid #ccc;padding:8px;text-align:right;\">").concat(supply.toLocaleString(), " \uC6D0</td>\n              </tr>\n            </tbody>\n          </table>\n          <div style=\"font-size:11px;color:#666;margin-bottom:60px;\">\u203B \uC7AC\uB8CC\uBE44 \uD3EC\uD568 \xB7 \uC720\uD6A8\uAE30\uAC04 30\uC77C \xB7 \uBA74\uC138\uC0AC\uC5C5\uC790\uB85C \uBD80\uAC00\uC138 \uC5C6\uC74C</div>\n          <div style=\"text-align:center;font-size:18px;font-weight:bold;margin-bottom:80px;\">\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130\uC7A5</div>\n          <hr style=\"border:1px solid #333;margin-bottom:10px;\">\n          <div style=\"font-size:11px;color:#555;line-height:1.8;\">\n            <div>\uC0C1\uD638: \uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130 &nbsp;|&nbsp; \uB300\uD45C: \uBC15\uC9C4\uC6B0 &nbsp;|&nbsp; \uC0AC\uC5C5\uC790\uB4F1\uB85D\uBC88\uD638: 612-96-07060</div>\n            <div>\uC8FC\uC18C: \uC6B8\uC0B0\uAD11\uC5ED\uC2DC \uC6B8\uC8FC\uAD70 \uC0BC\uB0A8\uC74D \uC2E0\uBCF51\uAE38 26</div>\n            <div>\uC804\uD654: 010-3491-0013 &nbsp;|&nbsp; \uC774\uBA54\uC77C: info@parkjinwoohtc.com &nbsp;|&nbsp; \uD648\uD398\uC774\uC9C0: parkjinwoohtc.com</div>\n          </div>\n        ");
+              document.body.appendChild(div);
               _context5.n = 4;
-              return fontRes.arrayBuffer();
+              return html2canvas(div, {
+                scale: 2,
+                useCORS: true,
+                backgroundColor: '#fff'
+              });
             case 4:
-              fontBuf = _context5.v;
-              fontB64 = btoa(String.fromCharCode.apply(String, _toConsumableArray(new Uint8Array(fontBuf))));
-              showToast("📄 견적서 PDF 생성 중...");
+              canvas = _context5.v;
+              document.body.removeChild(div);
               jsPDF = window.jspdf.jsPDF;
               doc = new jsPDF({
                 orientation: 'p',
                 unit: 'mm',
                 format: 'a4'
-              }); // 한글 폰트 등록
-              doc.addFileToVFS('NanumGothic.ttf', fontB64);
-              doc.addFont('NanumGothic.ttf', 'NanumGothic', 'normal');
-              doc.setFont('NanumGothic');
-              today = new Date().toLocaleDateString('ko-KR');
-              estNo = 'EST-' + new Date().getFullYear() + '-' + String(Math.floor(Math.random() * 900) + 100); // 헤더
-              doc.setFontSize(18);
-              doc.text('견  적  서', 105, 22, {
-                align: 'center'
               });
-              doc.setFontSize(9);
-              doc.text('(부가가치세 면세사업자)', 105, 28, {
-                align: 'center'
-              });
-
-              // 상단 정보 박스
-              doc.rect(15, 33, 180, 28);
-              doc.line(105, 33, 105, 61);
-              doc.line(15, 45, 105, 45);
-              doc.line(105, 45, 195, 45);
-              doc.setFontSize(10);
-              doc.text('수  신', 20, 41);
-              doc.text('견적번호', 110, 41);
-              doc.text(ef.inst || '(수신기관)', 45, 41);
-              doc.text(estNo, 135, 41);
-              doc.text('작성일', 20, 53);
-              doc.text('유효기간', 110, 53);
-              doc.text(today, 45, 53);
-              doc.text('30일', 135, 53);
-
-              // 공급가액 박스
-              doc.setFillColor(241, 248, 233);
-              doc.rect(15, 65, 180, 14, 'F');
-              doc.rect(15, 65, 180, 14);
-              doc.setFontSize(11);
-              doc.text('공급가액 합계', 30, 74);
-              doc.setFontSize(14);
-              doc.text(supply.toLocaleString() + ' 원', 160, 74, {
-                align: 'right'
-              });
-              doc.setFontSize(9);
-              doc.text('※ 면세사업자 — 부가세 해당 없음', 105, 83, {
-                align: 'center'
-              });
-
-              // 품목 테이블 헤더
-              doc.setFillColor(46, 125, 50);
-              doc.rect(15, 88, 180, 8, 'F');
-              doc.setTextColor(255, 255, 255);
-              doc.setFontSize(9);
-              doc.text('품목명', 17, 93);
-              doc.text('규격', 72, 93);
-              doc.text('수량', 105, 93);
-              doc.text('단가(원)', 125, 93);
-              doc.text('공급가액(원)', 158, 93);
-
-              // 품목 행
-              doc.setTextColor(0, 0, 0);
-              doc.rect(15, 96, 180, 12);
-              doc.line(68, 96, 68, 108);
-              doc.line(103, 96, 103, 108);
-              doc.line(123, 96, 123, 108);
-              doc.line(156, 96, 156, 108);
-              doc.setFontSize(10);
-              doc.text(ef.name || '원예치료 프로그램', 17, 104);
-              doc.text(ef.spec, 70, 104);
-              doc.text(String(ef.qty), 113, 104, {
-                align: 'center'
-              });
-              doc.text(parseInt(ef.unit || 0).toLocaleString(), 154, 104, {
-                align: 'right'
-              });
-              doc.text(supply.toLocaleString(), 193, 104, {
-                align: 'right'
-              });
-
-              // 합계
-              doc.setFillColor(241, 248, 233);
-              doc.rect(15, 108, 180, 9, 'F');
-              doc.rect(15, 108, 180, 9);
-              doc.text('합  계', 90, 114, {
-                align: 'center'
-              });
-              doc.text(supply.toLocaleString() + ' 원', 193, 114, {
-                align: 'right'
-              });
-
-              // 비고
-              doc.setFontSize(9);
-              doc.text('※ 재료비 포함  ·  유효기간 30일  ·  면세사업자로 부가세 별도 없음', 15, 124);
-
-              // 발신명의
-              doc.setFontSize(14);
-              doc.text('박진우원예치료센터장', 105, 180, {
-                align: 'center'
-              });
-
-              // 하단
-              doc.setFontSize(8);
-              doc.line(15, 250, 195, 250);
-              doc.text('상호: 박진우원예치료센터  대표: 박진우  사업자등록번호: 612-96-07060', 15, 255);
-              doc.text('주소: 울산광역시 울주군 삼남읍 신복1길 26', 15, 260);
-              doc.text('전화: 010-3491-0013  이메일: info@parkjinwoohtc.com  홈페이지: parkjinwoohtc.com', 15, 265);
+              imgData = canvas.toDataURL('image/jpeg', 0.95);
+              pageW = doc.internal.pageSize.getWidth();
+              pageH = doc.internal.pageSize.getHeight();
+              ratio = canvas.height / canvas.width;
+              imgH = pageW * ratio;
+              if (imgH <= pageH) {
+                doc.addImage(imgData, 'JPEG', 0, 0, pageW, imgH);
+              } else {
+                doc.addImage(imgData, 'JPEG', 0, 0, pageW, pageH);
+              }
               doc.save("\uACAC\uC801\uC11C_".concat(ef.inst || '박진우원예치료센터', "_").concat(today, ".pdf"));
               showToast("✅ 견적서 PDF 저장됐습니다!");
               _context5.n = 6;
