@@ -2129,10 +2129,15 @@ function App() {
       })
     }, "\uD83D\uDCE5 PDF \uB2E4\uC6B4\uB85C\uB4DC")), isApproved && /*#__PURE__*/React.createElement("button", {
       onClick: /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4() {
-        var inst, to, today, docHtml, res, result, _t4;
+        var inst, to, today, BASE, LOGO_ICON, LOGO_VERT, SEAL_C, SEAL_P, isGongmun, docTitle, sealImg, attachDocs, makeDocHtml, docHtml, attachHtmls, res, result, _t4;
         return _regenerator().w(function (_context4) {
           while (1) switch (_context4.p = _context4.n) {
             case 0:
+              makeDocHtml = function _makeDocHtml(doc, seal) {
+                var dt = doc.type === "gongmun" ? "공  문" : doc.type === "plan" ? "프로그램 계획서" : doc.type === "est" ? "견  적  서" : doc.type === "report" ? "결 과 보 고 서" : "거 래 명 세 서";
+                var sl = doc.type === "gongmun" ? SEAL_C : SEAL_P;
+                return "<!DOCTYPE html><html lang=\"ko\"><head><meta charset=\"UTF-8\">\n<style>\n@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');\n*{box-sizing:border-box;margin:0;padding:0;}\nbody{font-family:'Nanum Gothic','Malgun Gothic',sans-serif;padding:20mm;font-size:10pt;color:#111;}\n.slogan{text-align:center;font-size:8pt;color:#555;margin-bottom:4px;}\n.header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;border-bottom:2px solid #2E7D32;padding-bottom:10px;}\n.center-name{font-size:18pt;font-weight:bold;color:#1B5E20;letter-spacing:2px;}\n.doc-title{text-align:center;font-size:18pt;font-weight:bold;letter-spacing:8px;margin:20px 0 16px;}\ntable{width:100%;border-collapse:collapse;margin-bottom:12px;font-size:10pt;}\ntd,th{border:1px solid #555;padding:6px 10px;}\nth{background:#f0f0f0;font-weight:bold;width:70px;text-align:center;}\n.body-wrap{margin:20px 0;line-height:2.2;font-size:10pt;}\n.sig-wrap{text-align:center;margin:50px 0 30px;position:relative;display:inline-block;left:50%;transform:translateX(-50%);}\n.sig-text{font-size:14pt;font-weight:bold;}\n.sig-wrap img{position:absolute;top:-10px;right:-30px;width:55px;height:55px;opacity:0.85;}\n.approval{border:1px solid #555;margin-bottom:16px;}\n.approval-title{background:#f0f0f0;text-align:center;padding:4px;font-size:9pt;font-weight:bold;border-bottom:1px solid #555;}\n.approval-row{display:flex;}\n.approval-cell{flex:1;text-align:center;padding:6px 4px;font-size:9pt;border-right:1px solid #555;}\n.approval-cell:last-child{border-right:none;}\n.approval-cell .role{font-weight:bold;margin-bottom:4px;}\nhr{border:1px solid #333;margin:12px 0;}\n.footer{font-size:8pt;color:#555;line-height:1.8;}\n</style></head><body>\n<p class=\"slogan\">\uC2DD\uBB3C\uC774 \uAC74\uB124\uB294 \uC704\uB85C, \uACFC\uD559\uC774 \uC124\uACC4\uD558\uB294 \uD68C\uBCF5</p>\n<div class=\"header\">\n  <img src=\"".concat(LOGO_ICON, "\" style=\"width:44px;height:44px;\" alt=\"\uB85C\uACE0\">\n  <span class=\"center-name\">\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130</span>\n  <img src=\"").concat(LOGO_VERT, "\" style=\"height:44px;\" alt=\"\uB85C\uACE0\">\n</div>\n<div class=\"doc-title\">").concat(dt, "</div>\n<table>\n  <tr><th>\uC218 \uC2E0</th><td>").concat(doc.inst, "</td><th>\uBB38\uC11C\uBC88\uD638</th><td>").concat(doc.id, "</td></tr>\n  <tr><th>\uC81C \uBAA9</th><td colspan=\"3\">").concat(doc.title, "</td></tr>\n</table>\n<div class=\"body-wrap\">\n1. \uADC0 \uAE30\uAD00\uC758 \uBB34\uAD81\uD55C \uBC1C\uC804\uC744 \uAE30\uC6D0\uD569\uB2C8\uB2E4.<br>\n2. \uB2F9 \uC13C\uD130\uC5D0\uC11C \uC6B4\uC601\uD558\uB294 \uC6D0\uC608\uCE58\uB8CC \uD504\uB85C\uADF8\uB7A8 \uAD00\uB828 \uC11C\uB958\uB97C \uC81C\uCD9C\uD558\uC624\uB2C8<br>\n&nbsp;&nbsp;&nbsp;\uAC80\uD1A0\uD558\uC2DC\uACE0 \uD611\uC870\uD558\uC5EC \uC8FC\uC2DC\uAE30 \uBC14\uB78D\uB2C8\uB2E4.<br><br>\n\uBD99\uC784: \uAD00\uB828 \uC11C\uB958 1\uBD80. &nbsp; \uB05D.\n</div>\n<div class=\"approval\">\n  <div class=\"approval-title\">\uACB0 \uC7AC</div>\n  <div class=\"approval-row\">\n    <div class=\"approval-cell\"><div class=\"role\">\uC8FC\uBB34\uAD00</div>").concat(doc.writer, "</div>\n    <div class=\"approval-cell\"><div class=\"role\">\uC9C0\uBD80\uC7A5</div>&nbsp;</div>\n    <div class=\"approval-cell\"><div class=\"role\">\uC13C\uD130\uC7A5</div>\uBC15\uC9C4\uC6B0</div>\n  </div>\n</div>\n<div style=\"text-align:center;margin:30px 0 20px;\">\n  <div class=\"sig-wrap\">\n    <span class=\"sig-text\">\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130\uC7A5</span>\n    <img src=\"").concat(sl, "\" alt=\"\uC9C1\uC778\">\n  </div>\n</div>\n<hr>\n<div class=\"footer\">\n\uC2DC\uD589: ").concat(doc.id, " (").concat(doc.date || today, ") &nbsp;|&nbsp; \uC6B0) \uC6B8\uC0B0\uAD11\uC5ED\uC2DC \uC6B8\uC8FC\uAD70 \uC0BC\uB0A8\uC74D \uC2E0\uBCF51\uAE38 26<br>\n\uC804\uD654: 010-3491-0013 &nbsp;|&nbsp; \uC774\uBA54\uC77C: info@parkjinwoohtc.com &nbsp;|&nbsp; \uD648\uD398\uC774\uC9C0: parkjinwoohtc.com\n</div>\n</body></html>");
+              };
               inst = insts.find(function (x) {
                 return x.name === d.inst;
               });
@@ -2148,7 +2153,23 @@ function App() {
 
               // 문서 HTML 생성 (서버에서 PDF로 변환)
               today = new Date().toLocaleDateString('ko-KR');
-              docHtml = "<!DOCTYPE html><html lang=\"ko\"><head><meta charset=\"UTF-8\">\n<style>\nbody{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;padding:30px;max-width:750px;margin:0 auto;font-size:13px;}\nh2{text-align:center;font-size:20px;letter-spacing:4px;margin-bottom:4px;}\n.sub{text-align:center;font-size:11px;color:#666;margin-bottom:20px;}\ntable{width:100%;border-collapse:collapse;margin-bottom:14px;}\ntd,th{border:1px solid #333;padding:8px 12px;}\nth{background:#f5f5f5;font-weight:bold;}\n.sig{text-align:center;font-size:18px;font-weight:bold;margin:60px 0;}\nhr{border:1px solid #333;margin:12px 0;}\n.footer{font-size:11px;color:#555;line-height:2;}\n.body-text{line-height:2;margin:20px 0;}\n</style></head><body>\n<h2>".concat(d.type === "gongmun" ? "공  문" : d.type === "plan" ? "프로그램 계획서" : d.type === "est" ? "견  적  서" : d.type === "report" ? "결 과 보 고 서" : "거 래 명 세 서", "</h2>\n<p class=\"sub\">\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130</p>\n<table>\n<tr><th style=\"width:80px;\">\uC218\uC2E0</th><td>").concat(d.inst, "</td><th style=\"width:80px;\">\uBB38\uC11C\uBC88\uD638</th><td>").concat(d.id, "</td></tr>\n<tr><th>\uC81C\uBAA9</th><td>").concat(d.title, "</td><th>\uC791\uC131\uC77C</th><td>").concat(d.date || today, "</td></tr>\n</table>\n<div class=\"body-text\">\n1. \uADC0 \uAE30\uAD00\uC758 \uBB34\uAD81\uD55C \uBC1C\uC804\uC744 \uAE30\uC6D0\uD569\uB2C8\uB2E4.<br><br>\n2. \uB2F9 \uC13C\uD130\uC5D0\uC11C \uC6B4\uC601\uD558\uB294 \uC6D0\uC608\uCE58\uB8CC \uD504\uB85C\uADF8\uB7A8 \uAD00\uB828 \uC11C\uB958\uB97C \uC81C\uCD9C\uD558\uC624\uB2C8<br>\n&nbsp;&nbsp;&nbsp;\uAC80\uD1A0\uD558\uC2DC\uACE0 \uD611\uC870\uD558\uC5EC \uC8FC\uC2DC\uAE30 \uBC14\uB78D\uB2C8\uB2E4.<br><br>\n\uBD99\uC784: \uAD00\uB828 \uC11C\uB958 1\uBD80.\n</div>\n<div class=\"sig\">\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130\uC7A5</div>\n<hr>\n<div class=\"footer\">\n\uC2DC\uD589: ").concat(d.id, " (").concat(d.date || today, ")<br>\n\uC8FC\uC18C: \uC6B8\uC0B0\uAD11\uC5ED\uC2DC \uC6B8\uC8FC\uAD70 \uC0BC\uB0A8\uC74D \uC2E0\uBCF51\uAE38 26<br>\n\uC804\uD654: 010-3491-0013 | \uC774\uBA54\uC77C: info@parkjinwoohtc.com | \uD648\uD398\uC774\uC9C0: parkjinwoohtc.com\n</div>\n</body></html>");
+              BASE = 'https://jinwoo92.cafe24.com/images';
+              LOGO_ICON = BASE + '/logo_icon.png';
+              LOGO_VERT = BASE + '/logo_vertical.png';
+              SEAL_C = BASE + '/seal_center.png';
+              SEAL_P = BASE + '/seal_personal.png';
+              isGongmun = d.type === "gongmun";
+              docTitle = d.type === "gongmun" ? "공  문" : d.type === "plan" ? "프로그램 계획서" : d.type === "est" ? "견  적  서" : d.type === "report" ? "결 과 보 고 서" : "거 래 명 세 서";
+              sealImg = isGongmun ? SEAL_C : SEAL_P; // 붙임 문서 목록
+              attachDocs = (d.attachIds || []).map(function (id) {
+                return docs.find(function (x) {
+                  return x.id === id;
+                });
+              }).filter(Boolean);
+              docHtml = makeDocHtml(d, sealImg);
+              attachHtmls = attachDocs.map(function (x) {
+                return makeDocHtml(x, SEAL_P);
+              });
               showToast("📨 이메일 발송 중...");
               _context4.p = 2;
               _context4.n = 3;
@@ -2161,7 +2182,11 @@ function App() {
                   to: to,
                   subject: "[\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130] ".concat(d.title),
                   body: "<p>\uC548\uB155\uD558\uC138\uC694.</p><p>\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130\uC785\uB2C8\uB2E4.</p><p><b>".concat(d.title, "</b> \uAD00\uB828 \uC11C\uB958\uB97C \uCCA8\uBD80 \uD30C\uC77C\uB85C \uBCF4\uB0B4\uB4DC\uB9BD\uB2C8\uB2E4.</p><p>\uAC80\uD1A0\uD558\uC2DC\uACE0 \uD611\uC870\uD558\uC5EC \uC8FC\uC2DC\uAE30 \uBC14\uB78D\uB2C8\uB2E4.</p><br><p>\uAC10\uC0AC\uD569\uB2C8\uB2E4.</p><hr><p style=\"font-size:11px;color:#666;\">\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130 | 010-3491-0013 | info@parkjinwoohtc.com</p>"),
-                  html: docHtml
+                  html: docHtml,
+                  attach_htmls: attachHtmls,
+                  attach_names: attachDocs.map(function (x) {
+                    return "".concat(x.type === "plan" ? "계획서" : x.type === "est" ? "견적서" : x.type === "report" ? "결과보고서" : "거래명세서", "_").concat(x.inst, ".pdf");
+                  })
                 })
               });
             case 3:
@@ -2251,12 +2276,27 @@ function App() {
           return x.role === "branch";
         }) ? users.find(function (x) {
           return x.role === "branch";
-        }).name + " (지부장)" : "없음 (센터장 직결)"
+        }).name + " (지부장)" : "없음 (센터장 직결)",
+        attachIds: []
       }),
       _useState54 = _slicedToArray(_useState53, 2),
       df = _useState54[0],
       setDf = _useState54[1];
     var types = [["plan", "📋 프로그램 계획서"], ["gongmun", "🤝 협약 공문"], ["est", "💰 견적서"], ["report", "📊 결과보고서"], ["tms", "📄 거래명세서"]];
+
+    // 공문일 때 붙임 가능한 완료 문서 (같은 기관, 공문 제외)
+    var attachableDocs = df.type === "gongmun" && df.inst ? docs.filter(function (x) {
+      return x.inst === df.inst && x.type !== "gongmun" && x.status === "완료";
+    }) : [];
+    function toggleAttach(id) {
+      setDf(function (p) {
+        return _objectSpread(_objectSpread({}, p), {}, {
+          attachIds: p.attachIds.includes(id) ? p.attachIds.filter(function (x) {
+            return x !== id;
+          }) : [].concat(_toConsumableArray(p.attachIds), [id])
+        });
+      });
+    }
     return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
       onClick: function onClick() {
         return setSub("list");
@@ -2275,7 +2315,8 @@ function App() {
         onClick: function onClick() {
           return setDf(function (p) {
             return _objectSpread(_objectSpread({}, p), {}, {
-              type: t
+              type: t,
+              attachIds: []
             });
           });
         },
@@ -2327,7 +2368,8 @@ function App() {
       onChange: function onChange(e) {
         return setDf(function (p) {
           return _objectSpread(_objectSpread({}, p), {}, {
-            inst: e.target.value
+            inst: e.target.value,
+            attachIds: []
           });
         });
       },
@@ -2360,7 +2402,53 @@ function App() {
       return /*#__PURE__*/React.createElement("option", {
         key: x.id
       }, x.name, " (\uC9C0\uBD80\uC7A5)");
-    }))), /*#__PURE__*/React.createElement("div", {
+    }))), df.type === "gongmun" && df.inst && /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 12
+      }
+    }, /*#__PURE__*/React.createElement("label", {
+      style: labelStyle
+    }, "\uD83D\uDCCE \uBD99\uC784 \uBB38\uC11C \uC120\uD0DD (\uACB0\uC7AC \uC644\uB8CC\uB41C \uBB38\uC11C)"), attachableDocs.length === 0 ? /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: G.gray4,
+        padding: "8px 12px",
+        background: "#f9f9f9",
+        borderRadius: 8
+      }
+    }, df.inst, " \uAE30\uAD00\uC758 \uACB0\uC7AC \uC644\uB8CC \uBB38\uC11C\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4") : attachableDocs.map(function (x) {
+      return /*#__PURE__*/React.createElement("div", {
+        key: x.id,
+        onClick: function onClick() {
+          return toggleAttach(x.id);
+        },
+        style: {
+          display: "flex",
+          alignItems: "center",
+          gap: 10,
+          padding: "8px 12px",
+          borderRadius: 8,
+          border: "1.5px solid ".concat(df.attachIds.includes(x.id) ? G[700] : "#E5E7EB"),
+          background: df.attachIds.includes(x.id) ? G[25] : "#fff",
+          marginBottom: 6,
+          cursor: "pointer"
+        }
+      }, /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 16
+        }
+      }, df.attachIds.includes(x.id) ? "☑" : "☐"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 13,
+          fontWeight: 600
+        }
+      }, x.title), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          color: G.gray4
+        }
+      }, x.type === "plan" ? "계획서" : x.type === "est" ? "견적서" : x.type === "report" ? "결과보고서" : "거래명세서", " \xB7 ", x.date)));
+    })), /*#__PURE__*/React.createElement("div", {
       style: {
         background: G[25],
         borderRadius: 8,
@@ -2400,7 +2488,8 @@ function App() {
           writer: user.name,
           date: new Date().toLocaleDateString("ko-KR"),
           status: df.leader === "없음 (센터장 직결)" ? "센터장대기" : "지부장대기",
-          comment: ""
+          comment: "",
+          attachIds: df.attachIds
         }].concat(_toConsumableArray(docs));
         saveDocs(nd);
         showToast("✅ 결재 상신됐습니다!");
