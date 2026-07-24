@@ -15,6 +15,8 @@ var useState=React.useState;var useEffect=React.useEffect;
 "use strict";
 
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regeneratorValues(e) { if (null != e) { var t = e["function" == typeof Symbol && Symbol.iterator || "@@iterator"], r = 0; if (t) return t.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) return { next: function next() { return e && r >= e.length && (e = void 0), { value: e && e[r++], done: !e }; } }; } throw new TypeError(_typeof(e) + " is not iterable"); }
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t.return || t.return(); } finally { if (u) throw o; } } }; }
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
@@ -411,26 +413,34 @@ function App() {
     _useState24 = _slicedToArray(_useState23, 2),
     recv = _useState24[0],
     setRecv = _useState24[1];
-  var _useState25 = useState(""),
+  var _useState25 = useState([]),
     _useState26 = _slicedToArray(_useState25, 2),
-    toast = _useState26[0],
-    setToast = _useState26[1];
-  var _useState27 = useState(null),
+    certExams = _useState26[0],
+    setCertExams = _useState26[1]; // 자격증 시험 회차
+  var _useState27 = useState([]),
     _useState28 = _slicedToArray(_useState27, 2),
-    selDoc = _useState28[0],
-    setSelDoc = _useState28[1];
-  var _useState29 = useState(null),
+    certApplicants = _useState28[0],
+    setCertApplicants = _useState28[1]; // 응시자 명단
+  var _useState29 = useState(""),
     _useState30 = _slicedToArray(_useState29, 2),
-    selClient = _useState30[0],
-    setSelClient = _useState30[1];
-  var _useState31 = useState("list"),
+    toast = _useState30[0],
+    setToast = _useState30[1];
+  var _useState31 = useState(null),
     _useState32 = _slicedToArray(_useState31, 2),
-    subscreen = _useState32[0],
-    setSub = _useState32[1];
-  var _useState33 = useState({}),
+    selDoc = _useState32[0],
+    setSelDoc = _useState32[1];
+  var _useState33 = useState(null),
     _useState34 = _slicedToArray(_useState33, 2),
-    form = _useState34[0],
-    setForm = _useState34[1];
+    selClient = _useState34[0],
+    setSelClient = _useState34[1];
+  var _useState35 = useState("list"),
+    _useState36 = _slicedToArray(_useState35, 2),
+    subscreen = _useState36[0],
+    setSub = _useState36[1];
+  var _useState37 = useState({}),
+    _useState38 = _slicedToArray(_useState37, 2),
+    form = _useState38[0],
+    setForm = _useState38[1];
 
   // Storage API 로드
   useEffect(function () {
@@ -439,7 +449,7 @@ function App() {
     }
     function _load() {
       _load = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3() {
-        var ru, r1, ri, rcd, rsd, rsp, r2, r3, _t3;
+        var ru, r1, ri, rcd, rsd, rsp, r2, r3, rc1, rc2, _t3;
         return _regenerator().w(function (_context3) {
           while (1) switch (_context3.p = _context3.n) {
             case 0:
@@ -484,15 +494,25 @@ function App() {
             case 8:
               r3 = _context3.v;
               if (r3) setRecv(JSON.parse(r3.value));
-              _context3.n = 10;
-              break;
+              _context3.n = 9;
+              return storage.get("htc-cert-exams");
             case 9:
-              _context3.p = 9;
-              _t3 = _context3.v;
+              rc1 = _context3.v;
+              if (rc1) setCertExams(JSON.parse(rc1.value));
+              _context3.n = 10;
+              return storage.get("htc-cert-applicants");
             case 10:
+              rc2 = _context3.v;
+              if (rc2) setCertApplicants(JSON.parse(rc2.value));
+              _context3.n = 12;
+              break;
+            case 11:
+              _context3.p = 11;
+              _t3 = _context3.v;
+            case 12:
               return _context3.a(2);
           }
-        }, _callee3, null, [[0, 9]]);
+        }, _callee3, null, [[0, 11]]);
       }));
       return _load.apply(this, arguments);
     }
@@ -502,67 +522,15 @@ function App() {
     return _saveUsers.apply(this, arguments);
   }
   function _saveUsers() {
-    _saveUsers = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(data) {
-      var _t5;
-      return _regenerator().w(function (_context6) {
-        while (1) switch (_context6.p = _context6.n) {
-          case 0:
-            setUsers(data);
-            _context6.p = 1;
-            _context6.n = 2;
-            return storage.set("htc-users", JSON.stringify(data));
-          case 2:
-            _context6.n = 4;
-            break;
-          case 3:
-            _context6.p = 3;
-            _t5 = _context6.v;
-          case 4:
-            return _context6.a(2);
-        }
-      }, _callee6, null, [[1, 3]]);
-    }));
-    return _saveUsers.apply(this, arguments);
-  }
-  function saveClients(_x5) {
-    return _saveClients.apply(this, arguments);
-  }
-  function _saveClients() {
-    _saveClients = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7(data) {
-      var _t6;
-      return _regenerator().w(function (_context7) {
-        while (1) switch (_context7.p = _context7.n) {
-          case 0:
-            setClients(data);
-            _context7.p = 1;
-            _context7.n = 2;
-            return storage.set("htc-clients", JSON.stringify(data));
-          case 2:
-            _context7.n = 4;
-            break;
-          case 3:
-            _context7.p = 3;
-            _t6 = _context7.v;
-          case 4:
-            return _context7.a(2);
-        }
-      }, _callee7, null, [[1, 3]]);
-    }));
-    return _saveClients.apply(this, arguments);
-  }
-  function saveInsts(_x6) {
-    return _saveInsts.apply(this, arguments);
-  }
-  function _saveInsts() {
-    _saveInsts = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8(data) {
+    _saveUsers = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7(data) {
       var _t7;
       return _regenerator().w(function (_context8) {
         while (1) switch (_context8.p = _context8.n) {
           case 0:
-            setInsts(data);
+            setUsers(data);
             _context8.p = 1;
             _context8.n = 2;
-            return storage.set("htc-insts", JSON.stringify(data));
+            return storage.set("htc-users", JSON.stringify(data));
           case 2:
             _context8.n = 4;
             break;
@@ -572,23 +540,23 @@ function App() {
           case 4:
             return _context8.a(2);
         }
-      }, _callee8, null, [[1, 3]]);
+      }, _callee7, null, [[1, 3]]);
     }));
-    return _saveInsts.apply(this, arguments);
+    return _saveUsers.apply(this, arguments);
   }
-  function saveCenterDocs(_x7) {
-    return _saveCenterDocs.apply(this, arguments);
+  function saveClients(_x5) {
+    return _saveClients.apply(this, arguments);
   }
-  function _saveCenterDocs() {
-    _saveCenterDocs = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9(data) {
+  function _saveClients() {
+    _saveClients = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8(data) {
       var _t8;
       return _regenerator().w(function (_context9) {
         while (1) switch (_context9.p = _context9.n) {
           case 0:
-            setCenterDocs(data);
+            setClients(data);
             _context9.p = 1;
             _context9.n = 2;
-            return storage.set("htc-center-docs", JSON.stringify(data));
+            return storage.set("htc-clients", JSON.stringify(data));
           case 2:
             _context9.n = 4;
             break;
@@ -598,23 +566,23 @@ function App() {
           case 4:
             return _context9.a(2);
         }
-      }, _callee9, null, [[1, 3]]);
+      }, _callee8, null, [[1, 3]]);
     }));
-    return _saveCenterDocs.apply(this, arguments);
+    return _saveClients.apply(this, arguments);
   }
-  function saveStaffDocs(_x8) {
-    return _saveStaffDocs.apply(this, arguments);
+  function saveInsts(_x6) {
+    return _saveInsts.apply(this, arguments);
   }
-  function _saveStaffDocs() {
-    _saveStaffDocs = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0(data) {
+  function _saveInsts() {
+    _saveInsts = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9(data) {
       var _t9;
       return _regenerator().w(function (_context0) {
         while (1) switch (_context0.p = _context0.n) {
           case 0:
-            setStaffDocs(data);
+            setInsts(data);
             _context0.p = 1;
             _context0.n = 2;
-            return storage.set("htc-staff-docs", JSON.stringify(data));
+            return storage.set("htc-insts", JSON.stringify(data));
           case 2:
             _context0.n = 4;
             break;
@@ -624,23 +592,23 @@ function App() {
           case 4:
             return _context0.a(2);
         }
-      }, _callee0, null, [[1, 3]]);
+      }, _callee9, null, [[1, 3]]);
     }));
-    return _saveStaffDocs.apply(this, arguments);
+    return _saveInsts.apply(this, arguments);
   }
-  function saveStaffProfiles(_x9) {
-    return _saveStaffProfiles.apply(this, arguments);
+  function saveCenterDocs(_x7) {
+    return _saveCenterDocs.apply(this, arguments);
   }
-  function _saveStaffProfiles() {
-    _saveStaffProfiles = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee1(data) {
+  function _saveCenterDocs() {
+    _saveCenterDocs = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0(data) {
       var _t0;
       return _regenerator().w(function (_context1) {
         while (1) switch (_context1.p = _context1.n) {
           case 0:
-            setStaffProfiles(data);
+            setCenterDocs(data);
             _context1.p = 1;
             _context1.n = 2;
-            return storage.set("htc-staff-profiles", JSON.stringify(data));
+            return storage.set("htc-center-docs", JSON.stringify(data));
           case 2:
             _context1.n = 4;
             break;
@@ -650,23 +618,23 @@ function App() {
           case 4:
             return _context1.a(2);
         }
-      }, _callee1, null, [[1, 3]]);
+      }, _callee0, null, [[1, 3]]);
     }));
-    return _saveStaffProfiles.apply(this, arguments);
+    return _saveCenterDocs.apply(this, arguments);
   }
-  function saveDocs(_x0) {
-    return _saveDocs.apply(this, arguments);
+  function saveStaffDocs(_x8) {
+    return _saveStaffDocs.apply(this, arguments);
   }
-  function _saveDocs() {
-    _saveDocs = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee10(data) {
+  function _saveStaffDocs() {
+    _saveStaffDocs = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee1(data) {
       var _t1;
       return _regenerator().w(function (_context10) {
         while (1) switch (_context10.p = _context10.n) {
           case 0:
-            setDocs(data);
+            setStaffDocs(data);
             _context10.p = 1;
             _context10.n = 2;
-            return storage.set("htc-docs", JSON.stringify(data));
+            return storage.set("htc-staff-docs", JSON.stringify(data));
           case 2:
             _context10.n = 4;
             break;
@@ -676,23 +644,23 @@ function App() {
           case 4:
             return _context10.a(2);
         }
-      }, _callee10, null, [[1, 3]]);
+      }, _callee1, null, [[1, 3]]);
     }));
-    return _saveDocs.apply(this, arguments);
+    return _saveStaffDocs.apply(this, arguments);
   }
-  function saveRecv(_x1) {
-    return _saveRecv.apply(this, arguments);
+  function saveStaffProfiles(_x9) {
+    return _saveStaffProfiles.apply(this, arguments);
   }
-  function _saveRecv() {
-    _saveRecv = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee11(data) {
+  function _saveStaffProfiles() {
+    _saveStaffProfiles = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee10(data) {
       var _t10;
       return _regenerator().w(function (_context11) {
         while (1) switch (_context11.p = _context11.n) {
           case 0:
-            setRecv(data);
+            setStaffProfiles(data);
             _context11.p = 1;
             _context11.n = 2;
-            return storage.set("htc-recv", JSON.stringify(data));
+            return storage.set("htc-staff-profiles", JSON.stringify(data));
           case 2:
             _context11.n = 4;
             break;
@@ -702,9 +670,113 @@ function App() {
           case 4:
             return _context11.a(2);
         }
+      }, _callee10, null, [[1, 3]]);
+    }));
+    return _saveStaffProfiles.apply(this, arguments);
+  }
+  function saveDocs(_x0) {
+    return _saveDocs.apply(this, arguments);
+  }
+  function _saveDocs() {
+    _saveDocs = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee11(data) {
+      var _t11;
+      return _regenerator().w(function (_context12) {
+        while (1) switch (_context12.p = _context12.n) {
+          case 0:
+            setDocs(data);
+            _context12.p = 1;
+            _context12.n = 2;
+            return storage.set("htc-docs", JSON.stringify(data));
+          case 2:
+            _context12.n = 4;
+            break;
+          case 3:
+            _context12.p = 3;
+            _t11 = _context12.v;
+          case 4:
+            return _context12.a(2);
+        }
       }, _callee11, null, [[1, 3]]);
     }));
+    return _saveDocs.apply(this, arguments);
+  }
+  function saveRecv(_x1) {
     return _saveRecv.apply(this, arguments);
+  }
+  function _saveRecv() {
+    _saveRecv = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee12(data) {
+      var _t12;
+      return _regenerator().w(function (_context13) {
+        while (1) switch (_context13.p = _context13.n) {
+          case 0:
+            setRecv(data);
+            _context13.p = 1;
+            _context13.n = 2;
+            return storage.set("htc-recv", JSON.stringify(data));
+          case 2:
+            _context13.n = 4;
+            break;
+          case 3:
+            _context13.p = 3;
+            _t12 = _context13.v;
+          case 4:
+            return _context13.a(2);
+        }
+      }, _callee12, null, [[1, 3]]);
+    }));
+    return _saveRecv.apply(this, arguments);
+  }
+  function saveCertExams(_x10) {
+    return _saveCertExams.apply(this, arguments);
+  }
+  function _saveCertExams() {
+    _saveCertExams = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee13(data) {
+      var _t13;
+      return _regenerator().w(function (_context14) {
+        while (1) switch (_context14.p = _context14.n) {
+          case 0:
+            setCertExams(data);
+            _context14.p = 1;
+            _context14.n = 2;
+            return storage.set("htc-cert-exams", JSON.stringify(data));
+          case 2:
+            _context14.n = 4;
+            break;
+          case 3:
+            _context14.p = 3;
+            _t13 = _context14.v;
+          case 4:
+            return _context14.a(2);
+        }
+      }, _callee13, null, [[1, 3]]);
+    }));
+    return _saveCertExams.apply(this, arguments);
+  }
+  function saveCertApplicants(_x11) {
+    return _saveCertApplicants.apply(this, arguments);
+  }
+  function _saveCertApplicants() {
+    _saveCertApplicants = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee14(data) {
+      var _t14;
+      return _regenerator().w(function (_context15) {
+        while (1) switch (_context15.p = _context15.n) {
+          case 0:
+            setCertApplicants(data);
+            _context15.p = 1;
+            _context15.n = 2;
+            return storage.set("htc-cert-applicants", JSON.stringify(data));
+          case 2:
+            _context15.n = 4;
+            break;
+          case 3:
+            _context15.p = 3;
+            _t14 = _context15.v;
+          case 4:
+            return _context15.a(2);
+        }
+      }, _callee14, null, [[1, 3]]);
+    }));
+    return _saveCertApplicants.apply(this, arguments);
   }
   function showToast(msg) {
     setToast(msg);
@@ -747,23 +819,18 @@ function App() {
     label: "내담자 관리",
     roles: ["staff", "branch", "director"]
   }, {
-    id: "insts",
-    icon: "🏢",
-    label: "기관 관리",
-    roles: ["branch", "director"]
-  }, {
     id: "docs_out",
     icon: "📄",
     label: "발송 공문",
     roles: ["staff", "branch", "director"]
   }, {
     id: "docs_in",
-    icon: "📬",
+    icon: "📥",
     label: "수신 공문",
-    roles: ["branch", "director"]
+    roles: ["staff", "branch", "director"]
   }, {
     id: "approval",
-    icon: "✍️",
+    icon: "✅",
     label: "결재함",
     roles: ["branch", "director"]
   }, {
@@ -777,6 +844,11 @@ function App() {
     label: "견적·명세서",
     roles: ["staff", "branch", "director"]
   }, {
+    id: "cert",
+    icon: "🎓",
+    label: "자격증 관리",
+    roles: ["branch", "director"]
+  }, {
     id: "pdf",
     icon: "📦",
     label: "통합 PDF",
@@ -787,8 +859,13 @@ function App() {
     label: "서류 관리",
     roles: ["staff", "branch", "director"]
   }, {
+    id: "insts",
+    icon: "🏢",
+    label: "기관 관리",
+    roles: ["branch", "director"]
+  }, {
     id: "users",
-    icon: "⚙️",
+    icon: "👥",
     label: "사용자 관리",
     roles: ["director"]
   }].filter(function (m) {
@@ -910,11 +987,11 @@ function App() {
 
   // ── 내담자 관리 ───────────────────────────────────────────
   function Clients() {
-    var _useState35 = useState(false),
-      _useState36 = _slicedToArray(_useState35, 2),
-      showForm = _useState36[0],
-      setShowForm = _useState36[1];
-    var _useState37 = useState({
+    var _useState39 = useState(false),
+      _useState40 = _slicedToArray(_useState39, 2),
+      showForm = _useState40[0],
+      setShowForm = _useState40[1];
+    var _useState41 = useState({
         name: "",
         age: "",
         inst: "",
@@ -923,9 +1000,9 @@ function App() {
         total: "12",
         goal: ""
       }),
-      _useState38 = _slicedToArray(_useState37, 2),
-      nf = _useState38[0],
-      setNf = _useState38[1];
+      _useState42 = _slicedToArray(_useState41, 2),
+      nf = _useState42[0],
+      setNf = _useState42[1];
     if (selClient) return /*#__PURE__*/React.createElement(ClientDetail, {
       client: selClient,
       onBack: function onBack() {
@@ -1123,36 +1200,36 @@ function App() {
   function ClientDetail(_ref10) {
     var c = _ref10.client,
       onBack = _ref10.onBack;
-    var _useState39 = useState("sessions"),
-      _useState40 = _slicedToArray(_useState39, 2),
-      tab = _useState40[0],
-      setTab = _useState40[1];
-    var _useState41 = useState(false),
-      _useState42 = _slicedToArray(_useState41, 2),
-      closing = _useState42[0],
-      setClosing = _useState42[1];
-    var _useState43 = useState(false),
+    var _useState43 = useState("sessions"),
       _useState44 = _slicedToArray(_useState43, 2),
-      showSessForm = _useState44[0],
-      setShowSessForm = _useState44[1];
-    var _useState45 = useState({
+      tab = _useState44[0],
+      setTab = _useState44[1];
+    var _useState45 = useState(false),
+      _useState46 = _slicedToArray(_useState45, 2),
+      closing = _useState46[0],
+      setClosing = _useState46[1];
+    var _useState47 = useState(false),
+      _useState48 = _slicedToArray(_useState47, 2),
+      showSessForm = _useState48[0],
+      setShowSessForm = _useState48[1];
+    var _useState49 = useState({
         date: new Date().toISOString().slice(0, 10),
         attend: true,
         activity: "",
         memo: ""
       }),
-      _useState46 = _slicedToArray(_useState45, 2),
-      sf = _useState46[0],
-      setSf = _useState46[1];
-    var _useState47 = useState({
+      _useState50 = _slicedToArray(_useState49, 2),
+      sf = _useState50[0],
+      setSf = _useState50[1];
+    var _useState51 = useState({
         pre: "",
         post: "",
         summary: "",
         note: ""
       }),
-      _useState48 = _slicedToArray(_useState47, 2),
-      cf = _useState48[0],
-      setCf = _useState48[1];
+      _useState52 = _slicedToArray(_useState51, 2),
+      cf = _useState52[0],
+      setCf = _useState52[1];
     var pct = Math.round(c.done / c.total * 100);
     var sessions = c.sessions || [];
     function addSession() {
@@ -1643,14 +1720,14 @@ function App() {
   function DocDetail(_ref15) {
     var d = _ref15.doc,
       onBack = _ref15.onBack;
-    var _useState49 = useState(""),
-      _useState50 = _slicedToArray(_useState49, 2),
-      comment = _useState50[0],
-      setComment = _useState50[1];
-    var _useState51 = useState(false),
-      _useState52 = _slicedToArray(_useState51, 2),
-      preview = _useState52[0],
-      setPreview = _useState52[1];
+    var _useState53 = useState(""),
+      _useState54 = _slicedToArray(_useState53, 2),
+      comment = _useState54[0],
+      setComment = _useState54[1];
+    var _useState55 = useState(false),
+      _useState56 = _slicedToArray(_useState55, 2),
+      preview = _useState56[0],
+      setPreview = _useState56[1];
     var canAp = role === "branch" && d.status === "지부장대기" || role === "director" && d.status === "센터장대기";
     var isApproved = d.status === "완료";
     var dirUser = users.find(function (x) {
@@ -2136,7 +2213,9 @@ function App() {
               makeDocHtml = function _makeDocHtml(doc, seal) {
                 var dt = doc.type === "gongmun" ? "공  문" : doc.type === "plan" ? "프로그램 계획서" : doc.type === "est" ? "견  적  서" : doc.type === "report" ? "결 과 보 고 서" : "거 래 명 세 서";
                 var sl = doc.type === "gongmun" ? SEAL_C : SEAL_P;
-                return "<!DOCTYPE html><html lang=\"ko\"><head><meta charset=\"UTF-8\">\n<style>\n@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');\n*{box-sizing:border-box;margin:0;padding:0;}\nbody{font-family:'Nanum Gothic','Malgun Gothic',sans-serif;padding:20mm;font-size:10pt;color:#111;}\n.slogan{text-align:center;font-size:8pt;color:#555;margin-bottom:4px;}\n.header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;border-bottom:2px solid #2E7D32;padding-bottom:10px;}\n.center-name{font-size:18pt;font-weight:bold;color:#1B5E20;letter-spacing:2px;}\n.doc-title{text-align:center;font-size:18pt;font-weight:bold;letter-spacing:8px;margin:20px 0 16px;}\ntable{width:100%;border-collapse:collapse;margin-bottom:12px;font-size:10pt;}\ntd,th{border:1px solid #555;padding:6px 10px;}\nth{background:#f0f0f0;font-weight:bold;width:70px;text-align:center;}\n.body-wrap{margin:20px 0;line-height:2.2;font-size:10pt;}\n.sig-wrap{text-align:center;margin:50px 0 30px;position:relative;display:inline-block;left:50%;transform:translateX(-50%);}\n.sig-text{font-size:14pt;font-weight:bold;}\n.sig-wrap img{position:absolute;top:-10px;right:-30px;width:55px;height:55px;opacity:0.85;}\n.approval{border:1px solid #555;margin-bottom:16px;}\n.approval-title{background:#f0f0f0;text-align:center;padding:4px;font-size:9pt;font-weight:bold;border-bottom:1px solid #555;}\n.approval-row{display:flex;}\n.approval-cell{flex:1;text-align:center;padding:6px 4px;font-size:9pt;border-right:1px solid #555;}\n.approval-cell:last-child{border-right:none;}\n.approval-cell .role{font-weight:bold;margin-bottom:4px;}\nhr{border:1px solid #333;margin:12px 0;}\n.footer{font-size:8pt;color:#555;line-height:1.8;}\n</style></head><body>\n<p class=\"slogan\">\uC2DD\uBB3C\uC774 \uAC74\uB124\uB294 \uC704\uB85C, \uACFC\uD559\uC774 \uC124\uACC4\uD558\uB294 \uD68C\uBCF5</p>\n<div class=\"header\">\n  <img src=\"".concat(LOGO_ICON, "\" style=\"width:44px;height:44px;\" alt=\"\uB85C\uACE0\">\n  <span class=\"center-name\">\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130</span>\n  <img src=\"").concat(LOGO_VERT, "\" style=\"height:44px;\" alt=\"\uB85C\uACE0\">\n</div>\n<div class=\"doc-title\">").concat(dt, "</div>\n<table>\n  <tr><th>\uC218 \uC2E0</th><td>").concat(doc.inst, "</td><th>\uBB38\uC11C\uBC88\uD638</th><td>").concat(doc.id, "</td></tr>\n  <tr><th>\uC81C \uBAA9</th><td colspan=\"3\">").concat(doc.title, "</td></tr>\n</table>\n<div class=\"body-wrap\">\n1. \uADC0 \uAE30\uAD00\uC758 \uBB34\uAD81\uD55C \uBC1C\uC804\uC744 \uAE30\uC6D0\uD569\uB2C8\uB2E4.<br>\n2. \uB2F9 \uC13C\uD130\uC5D0\uC11C \uC6B4\uC601\uD558\uB294 \uC6D0\uC608\uCE58\uB8CC \uD504\uB85C\uADF8\uB7A8 \uAD00\uB828 \uC11C\uB958\uB97C \uC81C\uCD9C\uD558\uC624\uB2C8<br>\n&nbsp;&nbsp;&nbsp;\uAC80\uD1A0\uD558\uC2DC\uACE0 \uD611\uC870\uD558\uC5EC \uC8FC\uC2DC\uAE30 \uBC14\uB78D\uB2C8\uB2E4.<br><br>\n\uBD99\uC784: \uAD00\uB828 \uC11C\uB958 1\uBD80. &nbsp; \uB05D.\n</div>\n<div class=\"approval\">\n  <div class=\"approval-title\">\uACB0 \uC7AC</div>\n  <div class=\"approval-row\">\n    <div class=\"approval-cell\"><div class=\"role\">\uC8FC\uBB34\uAD00</div>").concat(doc.writer, "</div>\n    <div class=\"approval-cell\"><div class=\"role\">\uC9C0\uBD80\uC7A5</div>&nbsp;</div>\n    <div class=\"approval-cell\"><div class=\"role\">\uC13C\uD130\uC7A5</div>\uBC15\uC9C4\uC6B0</div>\n  </div>\n</div>\n<div style=\"text-align:center;margin:30px 0 20px;\">\n  <div class=\"sig-wrap\">\n    <span class=\"sig-text\">\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130\uC7A5</span>\n    <img src=\"").concat(sl, "\" alt=\"\uC9C1\uC778\">\n  </div>\n</div>\n<hr>\n<div class=\"footer\">\n\uC2DC\uD589: ").concat(doc.id, " (").concat(doc.date || today, ") &nbsp;|&nbsp; \uC6B0) \uC6B8\uC0B0\uAD11\uC5ED\uC2DC \uC6B8\uC8FC\uAD70 \uC0BC\uB0A8\uC74D \uC2E0\uBCF51\uAE38 26<br>\n\uC804\uD654: 010-3491-0013 &nbsp;|&nbsp; \uC774\uBA54\uC77C: info@parkjinwoohtc.com &nbsp;|&nbsp; \uD648\uD398\uC774\uC9C0: parkjinwoohtc.com\n</div>\n</body></html>");
+                return "<!DOCTYPE html><html lang=\"ko\"><head><meta charset=\"UTF-8\">\n<style>\n@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');\n*{box-sizing:border-box;margin:0;padding:0;}\nbody{font-family:'Nanum Gothic','Malgun Gothic',sans-serif;padding:20mm;font-size:10pt;color:#111;}\n.slogan{text-align:center;font-size:8pt;color:#555;margin-bottom:4px;}\n.header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;border-bottom:2px solid #2E7D32;padding-bottom:10px;}\n.center-name{font-size:18pt;font-weight:bold;color:#1B5E20;letter-spacing:2px;}\n.doc-title{text-align:center;font-size:18pt;font-weight:bold;letter-spacing:8px;margin:20px 0 16px;}\ntable{width:100%;border-collapse:collapse;margin-bottom:12px;font-size:10pt;}\ntd,th{border:1px solid #555;padding:6px 10px;}\nth{background:#f0f0f0;font-weight:bold;width:70px;text-align:center;}\n.body-wrap{margin:20px 0;line-height:2.2;font-size:10pt;}\n.sig-wrap{text-align:center;margin:50px 0 30px;position:relative;display:inline-block;left:50%;transform:translateX(-50%);}\n.sig-text{font-size:14pt;font-weight:bold;}\n.sig-wrap img{position:absolute;top:-10px;right:-30px;width:55px;height:55px;opacity:0.85;}\n.approval{border:1px solid #555;margin-bottom:16px;}\n.approval-title{background:#f0f0f0;text-align:center;padding:4px;font-size:9pt;font-weight:bold;border-bottom:1px solid #555;}\n.approval-row{display:flex;}\n.approval-cell{flex:1;text-align:center;padding:6px 4px;font-size:9pt;border-right:1px solid #555;}\n.approval-cell:last-child{border-right:none;}\n.approval-cell .role{font-weight:bold;margin-bottom:4px;}\nhr{border:1px solid #333;margin:12px 0;}\n.footer{font-size:8pt;color:#555;line-height:1.8;}\n</style></head><body>\n<p class=\"slogan\">\uC2DD\uBB3C\uC774 \uAC74\uB124\uB294 \uC704\uB85C, \uACFC\uD559\uC774 \uC124\uACC4\uD558\uB294 \uD68C\uBCF5</p>\n<div class=\"header\">\n  <img src=\"".concat(LOGO_ICON, "\" style=\"width:44px;height:44px;\" alt=\"\uB85C\uACE0\">\n  <span class=\"center-name\">\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130</span>\n  <img src=\"").concat(LOGO_VERT, "\" style=\"height:44px;\" alt=\"\uB85C\uACE0\">\n</div>\n<div class=\"doc-title\">").concat(dt, "</div>\n<table>\n  <tr><th>\uC218 \uC2E0</th><td>").concat(doc.inst, "</td><th>\uBB38\uC11C\uBC88\uD638</th><td>").concat(doc.id, "</td></tr>\n  <tr><th>\uC81C \uBAA9</th><td colspan=\"3\">").concat(doc.title, "</td></tr>\n</table>\n<div class=\"body-wrap\">\n1. \uADC0 \uAE30\uAD00\uC758 \uBB34\uAD81\uD55C \uBC1C\uC804\uC744 \uAE30\uC6D0\uD569\uB2C8\uB2E4.<br>\n").concat(doc.content ? doc.content.split('\n').map(function (line) {
+                  return "".concat(line, "<br>");
+                }).join('\n') : "2. \uB2F9 \uC13C\uD130\uC5D0\uC11C \uC6B4\uC601\uD558\uB294 \uC6D0\uC608\uCE58\uB8CC \uD504\uB85C\uADF8\uB7A8 \uAD00\uB828 \uC11C\uB958\uB97C \uC81C\uCD9C\uD558\uC624\uB2C8<br>\n&nbsp;&nbsp;&nbsp;\uAC80\uD1A0\uD558\uC2DC\uACE0 \uD611\uC870\uD558\uC5EC \uC8FC\uC2DC\uAE30 \uBC14\uB78D\uB2C8\uB2E4.<br>", "<br>\n\uBD99\uC784: \uAD00\uB828 \uC11C\uB958 1\uBD80. &nbsp; \uB05D.\n</div>\n<div class=\"approval\">\n  <div class=\"approval-title\">\uACB0 \uC7AC</div>\n  <div class=\"approval-row\">\n    <div class=\"approval-cell\"><div class=\"role\">\uC8FC\uBB34\uAD00</div>").concat(doc.writer, "</div>\n    <div class=\"approval-cell\"><div class=\"role\">\uC9C0\uBD80\uC7A5</div>&nbsp;</div>\n    <div class=\"approval-cell\"><div class=\"role\">\uC13C\uD130\uC7A5</div>\uBC15\uC9C4\uC6B0</div>\n  </div>\n</div>\n<div style=\"text-align:center;margin:30px 0 20px;\">\n  <div class=\"sig-wrap\">\n    <span class=\"sig-text\">\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130\uC7A5</span>\n    <img src=\"").concat(sl, "\" alt=\"\uC9C1\uC778\">\n  </div>\n</div>\n<hr>\n<div class=\"footer\">\n\uC2DC\uD589: ").concat(doc.id, " (").concat(doc.date || today, ") &nbsp;|&nbsp; \uC6B0) \uC6B8\uC0B0\uAD11\uC5ED\uC2DC \uC6B8\uC8FC\uAD70 \uC0BC\uB0A8\uC74D \uC2E0\uBCF51\uAE38 26<br>\n\uC804\uD654: 010-3491-0013 &nbsp;|&nbsp; \uC774\uBA54\uC77C: info@parkjinwoohtc.com &nbsp;|&nbsp; \uD648\uD398\uC774\uC9C0: parkjinwoohtc.com\n</div>\n</body></html>");
               };
               inst = insts.find(function (x) {
                 return x.name === d.inst;
@@ -2268,10 +2347,11 @@ function App() {
     }, "+ \uC0C8 \uBB38\uC11C \uC791\uC131"));
   }
   function DocWriteForm() {
-    var _useState53 = useState({
+    var _useState57 = useState({
         type: "plan",
         inst: "",
         title: "",
+        content: "",
         leader: users.find(function (x) {
           return x.role === "branch";
         }) ? users.find(function (x) {
@@ -2279,9 +2359,9 @@ function App() {
         }).name + " (지부장)" : "없음 (센터장 직결)",
         attachIds: []
       }),
-      _useState54 = _slicedToArray(_useState53, 2),
-      df = _useState54[0],
-      setDf = _useState54[1];
+      _useState58 = _slicedToArray(_useState57, 2),
+      df = _useState58[0],
+      setDf = _useState58[1];
     var types = [["plan", "📋 프로그램 계획서"], ["gongmun", "🤝 협약 공문"], ["est", "💰 견적서"], ["report", "📊 결과보고서"], ["tms", "📄 거래명세서"]];
 
     // 공문일 때 붙임 가능한 완료 문서 (같은 기관, 공문 제외)
@@ -2386,6 +2466,26 @@ function App() {
       }
     }, /*#__PURE__*/React.createElement("label", {
       style: labelStyle
+    }, "\uBCF8\uBB38 \uB0B4\uC6A9"), /*#__PURE__*/React.createElement("textarea", {
+      value: df.content,
+      onChange: function onChange(e) {
+        return setDf(function (p) {
+          return _objectSpread(_objectSpread({}, p), {}, {
+            content: e.target.value
+          });
+        });
+      },
+      rows: 5,
+      style: _objectSpread(_objectSpread({}, inputStyle), {}, {
+        height: "auto"
+      }),
+      placeholder: df.type === "gongmun" ? "1. 귀 기관의 무궁한 발전을 기원합니다.\n2. 당 센터에서 운영하는 원예치료 프로그램 관련 서류를 제출하오니\n   검토하시고 협조하여 주시기 바랍니다." : "본문 내용을 입력하세요..."
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 10
+      }
+    }, /*#__PURE__*/React.createElement("label", {
+      style: labelStyle
     }, "\uACB0\uC7AC \uC9C0\uBD80\uC7A5"), /*#__PURE__*/React.createElement("select", {
       value: df.leader,
       onChange: function onChange(e) {
@@ -2485,6 +2585,7 @@ function App() {
           type: df.type,
           title: df.title,
           inst: df.inst,
+          content: df.content,
           writer: user.name,
           date: new Date().toLocaleDateString("ko-KR"),
           status: df.leader === "없음 (센터장 직결)" ? "센터장대기" : "지부장대기",
@@ -2554,23 +2655,23 @@ function App() {
 
   // ── 수신 공문 ─────────────────────────────────────────────
   function DocsIn() {
-    var _useState55 = useState(false),
-      _useState56 = _slicedToArray(_useState55, 2),
-      showForm = _useState56[0],
-      setShowForm = _useState56[1];
-    var _useState57 = useState(null),
-      _useState58 = _slicedToArray(_useState57, 2),
-      selRecv = _useState58[0],
-      setSelRecv = _useState58[1];
-    var _useState59 = useState({
+    var _useState59 = useState(false),
+      _useState60 = _slicedToArray(_useState59, 2),
+      showForm = _useState60[0],
+      setShowForm = _useState60[1];
+    var _useState61 = useState(null),
+      _useState62 = _slicedToArray(_useState61, 2),
+      selRecv = _useState62[0],
+      setSelRecv = _useState62[1];
+    var _useState63 = useState({
         from: "",
         title: "",
         date: new Date().toISOString().slice(0, 10),
         urgent: false
       }),
-      _useState60 = _slicedToArray(_useState59, 2),
-      nf = _useState60[0],
-      setNf = _useState60[1];
+      _useState64 = _slicedToArray(_useState63, 2),
+      nf = _useState64[0],
+      setNf = _useState64[1];
 
     // 파일 선택 핸들러
     function handleFileAttach(id) {
@@ -2991,15 +3092,15 @@ function App() {
 
   // ── 내부결재 ──────────────────────────────────────────────
   function Internal() {
-    var _useState61 = useState(false),
-      _useState62 = _slicedToArray(_useState61, 2),
-      iForm = _useState62[0],
-      setIForm = _useState62[1];
-    var _useState63 = useState("vac"),
-      _useState64 = _slicedToArray(_useState63, 2),
-      it = _useState64[0],
-      setIt = _useState64[1];
-    var _useState65 = useState({
+    var _useState65 = useState(false),
+      _useState66 = _slicedToArray(_useState65, 2),
+      iForm = _useState66[0],
+      setIForm = _useState66[1];
+    var _useState67 = useState("vac"),
+      _useState68 = _slicedToArray(_useState67, 2),
+      it = _useState68[0],
+      setIt = _useState68[1];
+    var _useState69 = useState({
         startDate: "",
         endDate: "",
         days: "1",
@@ -3012,9 +3113,9 @@ function App() {
           return x.role === "branch";
         }).name + " (지부장)" : "없음 (센터장 직결)"
       }),
-      _useState66 = _slicedToArray(_useState65, 2),
-      inf = _useState66[0],
-      setInf = _useState66[1];
+      _useState70 = _slicedToArray(_useState69, 2),
+      inf = _useState70[0],
+      setInf = _useState70[1];
     var intDocs = docs.filter(function (d) {
       return ["vac", "exp", "rep", "mtg"].includes(d.type);
     });
@@ -3282,16 +3383,16 @@ function App() {
 
   // ── 견적서 ────────────────────────────────────────────────
   function Est() {
-    var _useState67 = useState({
+    var _useState71 = useState({
         inst: "",
         name: "",
         spec: "60분/회기",
         qty: "12",
         unit: "60000"
       }),
-      _useState68 = _slicedToArray(_useState67, 2),
-      ef = _useState68[0],
-      setEf = _useState68[1];
+      _useState72 = _slicedToArray(_useState71, 2),
+      ef = _useState72[0],
+      setEf = _useState72[1];
     var supply = parseInt(ef.qty || 0) * parseInt(ef.unit || 0);
     function generatePDF() {
       return _generatePDF.apply(this, arguments);
@@ -3460,10 +3561,10 @@ function App() {
 
   // ── 통합 PDF ─────────────────────────────────────────────
   function Pdf() {
-    var _useState69 = useState(["공문(표지)", "프로그램 계획서", "견적서", "결과보고서", "거래명세서", "치료사 이력서"]),
-      _useState70 = _slicedToArray(_useState69, 2),
-      sel = _useState70[0],
-      setSel = _useState70[1];
+    var _useState73 = useState(["공문(표지)", "프로그램 계획서", "견적서", "결과보고서", "거래명세서", "치료사 이력서"]),
+      _useState74 = _slicedToArray(_useState73, 2),
+      sel = _useState74[0],
+      setSel = _useState74[1];
     var all = ["공문(표지)", "프로그램 계획서", "견적서", "결과보고서", "거래명세서", "치료사 이력서"];
     return /*#__PURE__*/React.createElement("div", {
       style: cardStyle
@@ -3532,20 +3633,20 @@ function App() {
 
   // ── 기관 관리 ────────────────────────────────────────────
   function Insts() {
-    var _useState71 = useState(false),
-      _useState72 = _slicedToArray(_useState71, 2),
-      showForm = _useState72[0],
-      setShowForm = _useState72[1];
-    var _useState73 = useState({
+    var _useState75 = useState(false),
+      _useState76 = _slicedToArray(_useState75, 2),
+      showForm = _useState76[0],
+      setShowForm = _useState76[1];
+    var _useState77 = useState({
         name: "",
         type: "학교",
         contact: "",
         phone: "",
         email: ""
       }),
-      _useState74 = _slicedToArray(_useState73, 2),
-      nf = _useState74[0],
-      setNf = _useState74[1];
+      _useState78 = _slicedToArray(_useState77, 2),
+      nf = _useState78[0],
+      setNf = _useState78[1];
     var types = ["학교", "복지관", "센터", "병원", "기타"];
     if (showForm) return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
       onClick: function onClick() {
@@ -3773,22 +3874,22 @@ function App() {
 
   // ── 서류 관리 ────────────────────────────────────────────
   function DocsReg() {
-    var _useState75 = useState(role === "staff" ? "resume" : "center"),
-      _useState76 = _slicedToArray(_useState75, 2),
-      docTab = _useState76[0],
-      setDocTab = _useState76[1];
-    var _useState77 = useState(role === "staff" ? user.name : Object.keys(staffProfiles)[0] || ""),
-      _useState78 = _slicedToArray(_useState77, 2),
-      selStaff = _useState78[0],
-      setSelStaff = _useState78[1];
-    var _useState79 = useState(null),
+    var _useState79 = useState(role === "staff" ? "resume" : "center"),
       _useState80 = _slicedToArray(_useState79, 2),
-      editSection = _useState80[0],
-      setEditSection = _useState80[1];
-    var _useState81 = useState({}),
+      docTab = _useState80[0],
+      setDocTab = _useState80[1];
+    var _useState81 = useState(role === "staff" ? user.name : Object.keys(staffProfiles)[0] || ""),
       _useState82 = _slicedToArray(_useState81, 2),
-      newRow = _useState82[0],
-      setNewRow = _useState82[1];
+      selStaff = _useState82[0],
+      setSelStaff = _useState82[1];
+    var _useState83 = useState(null),
+      _useState84 = _slicedToArray(_useState83, 2),
+      editSection = _useState84[0],
+      setEditSection = _useState84[1];
+    var _useState85 = useState({}),
+      _useState86 = _slicedToArray(_useState85, 2),
+      newRow = _useState86[0],
+      setNewRow = _useState86[1];
     var today = new Date().toLocaleDateString("ko-KR");
     var targetName = role === "staff" ? user.name : selStaff;
     var profile = staffProfiles[targetName] || {};
@@ -4722,24 +4823,910 @@ function App() {
     }, "+ \uC11C\uB958 \uCD94\uAC00")));
   }
 
-  // ── 사용자 관리 (센터장 전용) ────────────────────────────
+  // ── 자격증 관리 ───────────────────────────────────────────
+  function Cert() {
+    var _useState87 = useState("exams"),
+      _useState88 = _slicedToArray(_useState87, 2),
+      tab = _useState88[0],
+      setTab = _useState88[1];
+    var _useState89 = useState(null),
+      _useState90 = _slicedToArray(_useState89, 2),
+      selExam = _useState90[0],
+      setSelExam = _useState90[1];
+    var _useState91 = useState(false),
+      _useState92 = _slicedToArray(_useState91, 2),
+      showExamForm = _useState92[0],
+      setShowExamForm = _useState92[1];
+    var _useState93 = useState(false),
+      _useState94 = _slicedToArray(_useState93, 2),
+      showAppForm = _useState94[0],
+      setShowAppForm = _useState94[1];
+    var _useState95 = useState({
+        round: "",
+        grade: "3급",
+        date: "",
+        written_date: "",
+        practical_date: ""
+      }),
+      _useState96 = _slicedToArray(_useState95, 2),
+      ef = _useState96[0],
+      setEf = _useState96[1];
+    var _useState97 = useState({
+        name: "",
+        phone: "",
+        inst: "",
+        grade: "3급"
+      }),
+      _useState98 = _slicedToArray(_useState97, 2),
+      af = _useState98[0],
+      setAf = _useState98[1];
+    var grades = ["3급", "2급", "1급", "슈퍼바이저"];
+    function sendBulkSMS(_x12, _x13) {
+      return _sendBulkSMS.apply(this, arguments);
+    }
+    function _sendBulkSMS() {
+      _sendBulkSMS = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(applicants, type) {
+        var ok, fail, _iterator, _step, _loop, _t6;
+        return _regenerator().w(function (_context7) {
+          while (1) switch (_context7.p = _context7.n) {
+            case 0:
+              showToast("📱 SMS 발송 중...");
+              ok = 0, fail = 0;
+              _iterator = _createForOfIteratorHelper(applicants);
+              _context7.p = 1;
+              _loop = /*#__PURE__*/_regenerator().m(function _loop() {
+                var _certExams$find;
+                var ap, round, text, res, r, _t5;
+                return _regenerator().w(function (_context6) {
+                  while (1) switch (_context6.p = _context6.n) {
+                    case 0:
+                      ap = _step.value;
+                      if (ap.phone) {
+                        _context6.n = 1;
+                        break;
+                      }
+                      fail++;
+                      return _context6.a(2, 1);
+                    case 1:
+                      round = ((_certExams$find = certExams.find(function (e) {
+                        return e.id === ap.exam_id;
+                      })) === null || _certExams$find === void 0 ? void 0 : _certExams$find.round) || "";
+                      text = type === "written" ? "[\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130]\n".concat(ap.name, "\uB2D8, ").concat(round, " ").concat(ap.grade, " \uD544\uAE30\uD569\uACA9\uC744 \uCD95\uD558\uB4DC\uB9BD\uB2C8\uB2E4!\n\uC2E4\uAE30 \uC77C\uC815\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.\n\uBB38\uC758: 010-3491-0013") : "[\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130]\n".concat(ap.name, "\uB2D8, ").concat(round, " ").concat(ap.grade, " \uCD5C\uC885\uD569\uACA9\uC744 \uCD95\uD558\uB4DC\uB9BD\uB2C8\uB2E4!\n\uC790\uACA9\uC99D \uBC1C\uAE09 \uC808\uCC28\uB97C \uC548\uB0B4\uD574 \uB4DC\uB9AC\uACA0\uC2B5\uB2C8\uB2E4.\n\uBB38\uC758: 010-3491-0013");
+                      _context6.p = 2;
+                      _context6.n = 3;
+                      return fetch("https://jinwoo92.cafe24.com/sms.php", {
+                        method: "POST",
+                        headers: {
+                          "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                          to: ap.phone,
+                          text: text
+                        })
+                      });
+                    case 3:
+                      res = _context6.v;
+                      _context6.n = 4;
+                      return res.json();
+                    case 4:
+                      r = _context6.v;
+                      if (r.status === "ok") ok++;else fail++;
+                      _context6.n = 6;
+                      break;
+                    case 5:
+                      _context6.p = 5;
+                      _t5 = _context6.v;
+                      fail++;
+                    case 6:
+                      return _context6.a(2);
+                  }
+                }, _loop, null, [[2, 5]]);
+              });
+              _iterator.s();
+            case 2:
+              if ((_step = _iterator.n()).done) {
+                _context7.n = 5;
+                break;
+              }
+              return _context7.d(_regeneratorValues(_loop()), 3);
+            case 3:
+              if (!_context7.v) {
+                _context7.n = 4;
+                break;
+              }
+              return _context7.a(3, 4);
+            case 4:
+              _context7.n = 2;
+              break;
+            case 5:
+              _context7.n = 7;
+              break;
+            case 6:
+              _context7.p = 6;
+              _t6 = _context7.v;
+              _iterator.e(_t6);
+            case 7:
+              _context7.p = 7;
+              _iterator.f();
+              return _context7.f(7);
+            case 8:
+              showToast("\u2705 SMS \uBC1C\uC1A1 \uC644\uB8CC (\uC131\uACF5 ".concat(ok, "\uAC74, \uC2E4\uD328 ").concat(fail, "\uAC74)"));
+            case 9:
+              return _context7.a(2);
+          }
+        }, _callee6, null, [[1, 6, 7, 8]]);
+      }));
+      return _sendBulkSMS.apply(this, arguments);
+    }
+    function makeGongmun(exam, appList, type) {
+      var today = new Date().toLocaleDateString('ko-KR');
+      var typeLabel = type === "written" ? "필기합격자" : "최종합격자";
+      var instGroups = {};
+      appList.forEach(function (ap) {
+        if (!instGroups[ap.inst]) instGroups[ap.inst] = [];
+        instGroups[ap.inst].push(ap);
+      });
+      var count = 0;
+      Object.entries(instGroups).forEach(function (_ref40) {
+        var _ref41 = _slicedToArray(_ref40, 2),
+          instName = _ref41[0],
+          aps = _ref41[1];
+        var id = "HTC-CERT-" + Date.now() + "-" + count++;
+        var nameList = aps.map(function (ap, i) {
+          return "".concat(i + 1, ". ").concat(ap.name, " (").concat(ap.grade, ")");
+        }).join("\n");
+        var content = "\uADC0 \uAE30\uAD00 \uC18C\uC18D \uC6D0\uC608\uC784\uC0C1\uC804\uBB38\uAC00 \uC790\uACA9\uC2DC\uD5D8 ".concat(typeLabel, "\uC744 \uC544\uB798\uC640 \uAC19\uC774 \uC54C\uB824\uB4DC\uB9BD\uB2C8\uB2E4.\n\n[").concat(typeLabel, " \uBA85\uB2E8]\n").concat(nameList, "\n\n\uC704 \uD569\uACA9\uC790\uB4E4\uC5D0\uAC8C \uC548\uB0B4\uD558\uC5EC \uC8FC\uC2DC\uAE30 \uBC14\uB78D\uB2C8\uB2E4.");
+        var nd = [{
+          id: id,
+          type: "gongmun",
+          title: "\uC6D0\uC608\uC784\uC0C1\uC804\uBB38\uAC00 ".concat(exam.round, " ").concat(typeLabel, " \uC548\uB0B4"),
+          inst: instName,
+          content: content,
+          writer: user.name,
+          date: today,
+          status: "완료",
+          comment: "",
+          attachIds: []
+        }].concat(_toConsumableArray(docs));
+        saveDocs(nd);
+      });
+      showToast("\u2705 ".concat(typeLabel, " \uACF5\uBB38\uC774 \uBC1C\uC1A1 \uACF5\uBB38\uD568\uC5D0 \uCD94\uAC00\uB410\uC2B5\uB2C8\uB2E4! (").concat(Object.keys(instGroups).length, "\uAC1C \uAE30\uAD00)"));
+    }
+    var examApplicants = selExam ? certApplicants.filter(function (a) {
+      return a.exam_id === selExam.id;
+    }) : [];
+    var writtenPassList = examApplicants.filter(function (a) {
+      return a.written_pass;
+    });
+    var finalPassList = examApplicants.filter(function (a) {
+      return a.final_pass;
+    });
+    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 6,
+        marginBottom: 14
+      }
+    }, [["exams", "📅 시험 회차"], ["applicants", "👥 응시자 관리"]].map(function (_ref42) {
+      var _ref43 = _slicedToArray(_ref42, 2),
+        t = _ref43[0],
+        l = _ref43[1];
+      return /*#__PURE__*/React.createElement("button", {
+        key: t,
+        onClick: function onClick() {
+          return setTab(t);
+        },
+        style: {
+          flex: 1,
+          padding: "9px 0",
+          borderRadius: 8,
+          border: "1.5px solid ".concat(tab === t ? G[700] : "#E5E7EB"),
+          background: tab === t ? G[25] : "#fff",
+          color: tab === t ? G[700] : G.gray4,
+          fontWeight: 700,
+          fontSize: 13,
+          cursor: "pointer"
+        }
+      }, l);
+    })), tab === "exams" && /*#__PURE__*/React.createElement("div", null, certExams.length === 0 && /*#__PURE__*/React.createElement("div", {
+      style: {
+        textAlign: "center",
+        padding: 32,
+        color: G.gray4
+      }
+    }, "\uB4F1\uB85D\uB41C \uC2DC\uD5D8 \uD68C\uCC28\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4"), certExams.map(function (exam) {
+      return /*#__PURE__*/React.createElement("div", {
+        key: exam.id,
+        onClick: function onClick() {
+          setSelExam(exam);
+          setTab("applicants");
+        },
+        style: {
+          background: "#fff",
+          border: "1.5px solid ".concat(G[200]),
+          borderRadius: 10,
+          padding: 14,
+          marginBottom: 8,
+          cursor: "pointer"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center"
+        }
+      }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 14,
+          fontWeight: 700,
+          color: G[900]
+        }
+      }, exam.round), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 12,
+          color: G.gray4,
+          marginTop: 4
+        }
+      }, exam.grade, " \xB7 \uD544\uAE30: ", exam.written_date || "미정", " \xB7 \uC2E4\uAE30: ", exam.practical_date || "미정")), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 12,
+          color: G[700],
+          fontWeight: 700
+        }
+      }, certApplicants.filter(function (a) {
+        return a.exam_id === exam.id;
+      }).length, "\uBA85 \u2192")));
+    }), showExamForm ? /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: G[25],
+        border: "1.5px solid ".concat(G[200]),
+        borderRadius: 10,
+        padding: 14
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 14,
+        fontWeight: 700,
+        color: G[900],
+        marginBottom: 12
+      }
+    }, "\uC0C8 \uC2DC\uD5D8 \uD68C\uCC28 \uCD94\uAC00"), [["회차명 (예: 2026년 1회차)", "round"], ["필기시험일", "written_date"], ["실기시험일", "practical_date"]].map(function (_ref44) {
+      var _ref45 = _slicedToArray(_ref44, 2),
+        l = _ref45[0],
+        k = _ref45[1];
+      return /*#__PURE__*/React.createElement("div", {
+        key: k,
+        style: {
+          marginBottom: 8
+        }
+      }, /*#__PURE__*/React.createElement("label", {
+        style: {
+          fontSize: 12,
+          color: G.gray6,
+          display: "block",
+          marginBottom: 4
+        }
+      }, l), /*#__PURE__*/React.createElement("input", {
+        value: ef[k] || "",
+        onChange: function onChange(e) {
+          return setEf(function (p) {
+            return _objectSpread(_objectSpread({}, p), {}, _defineProperty({}, k, e.target.value));
+          });
+        },
+        style: {
+          width: "100%",
+          padding: "8px 12px",
+          borderRadius: 8,
+          border: "1.5px solid #D1D5DB",
+          fontSize: 13
+        },
+        placeholder: l
+      }));
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 12
+      }
+    }, /*#__PURE__*/React.createElement("label", {
+      style: {
+        fontSize: 12,
+        color: G.gray6,
+        display: "block",
+        marginBottom: 4
+      }
+    }, "\uB4F1\uAE09"), /*#__PURE__*/React.createElement("select", {
+      value: ef.grade,
+      onChange: function onChange(e) {
+        return setEf(function (p) {
+          return _objectSpread(_objectSpread({}, p), {}, {
+            grade: e.target.value
+          });
+        });
+      },
+      style: {
+        width: "100%",
+        padding: "8px 12px",
+        borderRadius: 8,
+        border: "1.5px solid #D1D5DB",
+        fontSize: 13
+      }
+    }, grades.map(function (g) {
+      return /*#__PURE__*/React.createElement("option", {
+        key: g
+      }, g);
+    }))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: 8
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return setShowExamForm(false);
+      },
+      style: {
+        padding: "9px 0",
+        borderRadius: 8,
+        border: "1.5px solid #D1D5DB",
+        background: "#fff",
+        fontWeight: 700,
+        fontSize: 13,
+        cursor: "pointer"
+      }
+    }, "\uCDE8\uC18C"), /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        if (!ef.round) {
+          showToast("회차명을 입력하세요!");
+          return;
+        }
+        saveCertExams([].concat(_toConsumableArray(certExams), [_objectSpread({
+          id: "EX-" + Date.now()
+        }, ef)]));
+        setShowExamForm(false);
+        setEf({
+          round: "",
+          grade: "3급",
+          date: "",
+          written_date: "",
+          practical_date: ""
+        });
+        showToast("✅ 시험 회차 추가됐습니다!");
+      },
+      style: {
+        padding: "9px 0",
+        borderRadius: 8,
+        background: G[700],
+        color: "#fff",
+        border: "none",
+        fontWeight: 700,
+        fontSize: 13,
+        cursor: "pointer"
+      }
+    }, "\uCD94\uAC00"))) : /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return setShowExamForm(true);
+      },
+      style: {
+        width: "100%",
+        padding: "10px 0",
+        borderRadius: 8,
+        background: G[700],
+        color: "#fff",
+        border: "none",
+        fontWeight: 700,
+        fontSize: 13,
+        cursor: "pointer",
+        marginTop: 4
+      }
+    }, "+ \uC2DC\uD5D8 \uD68C\uCC28 \uCD94\uAC00")), tab === "applicants" && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 12
+      }
+    }, /*#__PURE__*/React.createElement("label", {
+      style: {
+        fontSize: 12,
+        color: G.gray6,
+        display: "block",
+        marginBottom: 4
+      }
+    }, "\uC2DC\uD5D8 \uD68C\uCC28 \uC120\uD0DD"), /*#__PURE__*/React.createElement("select", {
+      value: (selExam === null || selExam === void 0 ? void 0 : selExam.id) || "",
+      onChange: function onChange(e) {
+        return setSelExam(certExams.find(function (x) {
+          return x.id === e.target.value;
+        }) || null);
+      },
+      style: {
+        width: "100%",
+        padding: "8px 12px",
+        borderRadius: 8,
+        border: "1.5px solid #D1D5DB",
+        fontSize: 13
+      }
+    }, /*#__PURE__*/React.createElement("option", {
+      value: ""
+    }, "\uD68C\uCC28\uB97C \uC120\uD0DD\uD558\uC138\uC694"), certExams.map(function (ex) {
+      return /*#__PURE__*/React.createElement("option", {
+        key: ex.id,
+        value: ex.id
+      }, ex.round, " (", ex.grade, ")");
+    }))), selExam && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr 1fr",
+        gap: 8,
+        marginBottom: 14
+      }
+    }, [["전체", examApplicants.length, G[700]], ["필기합격", writtenPassList.length, "#0284C7"], ["최종합격", finalPassList.length, "#059669"]].map(function (_ref46) {
+      var _ref47 = _slicedToArray(_ref46, 3),
+        l = _ref47[0],
+        n = _ref47[1],
+        c = _ref47[2];
+      return /*#__PURE__*/React.createElement("div", {
+        key: l,
+        style: {
+          background: "#fff",
+          border: "1.5px solid ".concat(G[200]),
+          borderRadius: 10,
+          padding: 10,
+          textAlign: "center"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 18,
+          fontWeight: 800,
+          color: c
+        }
+      }, n, "\uBA85"), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          color: G.gray4
+        }
+      }, l));
+    })), writtenPassList.length > 0 && /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: 8,
+        marginBottom: 8
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return sendBulkSMS(writtenPassList, "written");
+      },
+      style: {
+        padding: "9px 0",
+        borderRadius: 8,
+        background: "#0284C7",
+        color: "#fff",
+        border: "none",
+        fontWeight: 700,
+        fontSize: 12,
+        cursor: "pointer"
+      }
+    }, "\uD83D\uDCF1 \uD544\uAE30\uD569\uACA9 SMS"), /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return makeGongmun(selExam, writtenPassList, "written");
+      },
+      style: {
+        padding: "9px 0",
+        borderRadius: 8,
+        background: "#0369A1",
+        color: "#fff",
+        border: "none",
+        fontWeight: 700,
+        fontSize: 12,
+        cursor: "pointer"
+      }
+    }, "\uD83D\uDCC4 \uD544\uAE30\uD569\uACA9 \uACF5\uBB38")), finalPassList.length > 0 && /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: 8,
+        marginBottom: 14
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return sendBulkSMS(finalPassList, "final");
+      },
+      style: {
+        padding: "9px 0",
+        borderRadius: 8,
+        background: "#059669",
+        color: "#fff",
+        border: "none",
+        fontWeight: 700,
+        fontSize: 12,
+        cursor: "pointer"
+      }
+    }, "\uD83D\uDCF1 \uCD5C\uC885\uD569\uACA9 SMS"), /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return makeGongmun(selExam, finalPassList, "final");
+      },
+      style: {
+        padding: "9px 0",
+        borderRadius: 8,
+        background: "#047857",
+        color: "#fff",
+        border: "none",
+        fontWeight: 700,
+        fontSize: 12,
+        cursor: "pointer"
+      }
+    }, "\uD83D\uDCC4 \uCD5C\uC885\uD569\uACA9 \uACF5\uBB38")), examApplicants.map(function (ap) {
+      return /*#__PURE__*/React.createElement("div", {
+        key: ap.id,
+        style: {
+          background: "#fff",
+          border: "1.5px solid ".concat(G[200]),
+          borderRadius: 10,
+          padding: 12,
+          marginBottom: 8
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: 8
+        }
+      }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 14,
+          fontWeight: 700,
+          color: G[900]
+        }
+      }, ap.name), /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 12,
+          color: G.gray4,
+          marginLeft: 8
+        }
+      }, ap.inst, " \xB7 ", ap.grade)), /*#__PURE__*/React.createElement("button", {
+        onClick: function onClick() {
+          if (!confirm("".concat(ap.name, " \uC0AD\uC81C?"))) return;
+          saveCertApplicants(certApplicants.filter(function (x) {
+            return x.id !== ap.id;
+          }));
+        },
+        style: {
+          background: "none",
+          border: "none",
+          color: G.gray4,
+          fontSize: 16,
+          cursor: "pointer"
+        }
+      }, "\u2715")), /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr 1fr 1fr",
+          gap: 6,
+          alignItems: "end"
+        }
+      }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
+        style: {
+          fontSize: 11,
+          color: G.gray4,
+          display: "block",
+          marginBottom: 2
+        }
+      }, "\uD544\uAE30\uC810\uC218"), /*#__PURE__*/React.createElement("input", {
+        type: "number",
+        defaultValue: ap.written_score,
+        onBlur: function onBlur(e) {
+          return saveCertApplicants(certApplicants.map(function (x) {
+            return x.id === ap.id ? _objectSpread(_objectSpread({}, x), {}, {
+              written_score: e.target.value
+            }) : x;
+          }));
+        },
+        style: {
+          width: "100%",
+          padding: "5px 8px",
+          borderRadius: 6,
+          border: "1.5px solid #D1D5DB",
+          fontSize: 12
+        }
+      })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
+        style: {
+          fontSize: 11,
+          color: G.gray4,
+          display: "block",
+          marginBottom: 2
+        }
+      }, "\uC2E4\uAE30\uC810\uC218"), /*#__PURE__*/React.createElement("input", {
+        type: "number",
+        defaultValue: ap.practical_score,
+        onBlur: function onBlur(e) {
+          return saveCertApplicants(certApplicants.map(function (x) {
+            return x.id === ap.id ? _objectSpread(_objectSpread({}, x), {}, {
+              practical_score: e.target.value
+            }) : x;
+          }));
+        },
+        style: {
+          width: "100%",
+          padding: "5px 8px",
+          borderRadius: 6,
+          border: "1.5px solid #D1D5DB",
+          fontSize: 12
+        }
+      })), /*#__PURE__*/React.createElement("div", {
+        style: {
+          textAlign: "center"
+        }
+      }, /*#__PURE__*/React.createElement("label", {
+        style: {
+          fontSize: 11,
+          color: G.gray4,
+          display: "block",
+          marginBottom: 4
+        }
+      }, "\uD544\uAE30\uD569\uACA9"), /*#__PURE__*/React.createElement("div", {
+        onClick: function onClick() {
+          return saveCertApplicants(certApplicants.map(function (x) {
+            return x.id === ap.id ? _objectSpread(_objectSpread({}, x), {}, {
+              written_pass: !x.written_pass
+            }) : x;
+          }));
+        },
+        style: {
+          width: 28,
+          height: 28,
+          borderRadius: 6,
+          border: "2px solid ".concat(ap.written_pass ? "#0284C7" : "#D1D5DB"),
+          background: ap.written_pass ? "#0284C7" : "#fff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          cursor: "pointer",
+          color: "#fff",
+          fontWeight: 700,
+          margin: "0 auto"
+        }
+      }, ap.written_pass ? "✓" : "")), /*#__PURE__*/React.createElement("div", {
+        style: {
+          textAlign: "center"
+        }
+      }, /*#__PURE__*/React.createElement("label", {
+        style: {
+          fontSize: 11,
+          color: G.gray4,
+          display: "block",
+          marginBottom: 4
+        }
+      }, "\uCD5C\uC885\uD569\uACA9"), /*#__PURE__*/React.createElement("div", {
+        onClick: function onClick() {
+          return saveCertApplicants(certApplicants.map(function (x) {
+            return x.id === ap.id ? _objectSpread(_objectSpread({}, x), {}, {
+              final_pass: !x.final_pass
+            }) : x;
+          }));
+        },
+        style: {
+          width: 28,
+          height: 28,
+          borderRadius: 6,
+          border: "2px solid ".concat(ap.final_pass ? "#059669" : "#D1D5DB"),
+          background: ap.final_pass ? "#059669" : "#fff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          cursor: "pointer",
+          color: "#fff",
+          fontWeight: 700,
+          margin: "0 auto"
+        }
+      }, ap.final_pass ? "✓" : ""))), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          color: G.gray4,
+          marginTop: 6
+        }
+      }, "\uD83D\uDCF1 ", ap.phone || "연락처 없음"));
+    }), showAppForm ? /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: G[25],
+        border: "1.5px solid ".concat(G[200]),
+        borderRadius: 10,
+        padding: 14,
+        marginTop: 8
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 14,
+        fontWeight: 700,
+        color: G[900],
+        marginBottom: 12
+      }
+    }, "\uC751\uC2DC\uC790 \uCD94\uAC00"), [["이름", "name"], ["연락처", "phone"]].map(function (_ref48) {
+      var _ref49 = _slicedToArray(_ref48, 2),
+        l = _ref49[0],
+        k = _ref49[1];
+      return /*#__PURE__*/React.createElement("div", {
+        key: k,
+        style: {
+          marginBottom: 8
+        }
+      }, /*#__PURE__*/React.createElement("label", {
+        style: {
+          fontSize: 12,
+          color: G.gray6,
+          display: "block",
+          marginBottom: 4
+        }
+      }, l), /*#__PURE__*/React.createElement("input", {
+        value: af[k] || "",
+        onChange: function onChange(e) {
+          return setAf(function (p) {
+            return _objectSpread(_objectSpread({}, p), {}, _defineProperty({}, k, e.target.value));
+          });
+        },
+        style: {
+          width: "100%",
+          padding: "8px 12px",
+          borderRadius: 8,
+          border: "1.5px solid #D1D5DB",
+          fontSize: 13
+        },
+        placeholder: l
+      }));
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 8
+      }
+    }, /*#__PURE__*/React.createElement("label", {
+      style: {
+        fontSize: 12,
+        color: G.gray6,
+        display: "block",
+        marginBottom: 4
+      }
+    }, "\uC18C\uC18D \uAE30\uAD00"), /*#__PURE__*/React.createElement("select", {
+      value: af.inst || "",
+      onChange: function onChange(e) {
+        return setAf(function (p) {
+          return _objectSpread(_objectSpread({}, p), {}, {
+            inst: e.target.value
+          });
+        });
+      },
+      style: {
+        width: "100%",
+        padding: "8px 12px",
+        borderRadius: 8,
+        border: "1.5px solid #D1D5DB",
+        fontSize: 13
+      }
+    }, /*#__PURE__*/React.createElement("option", {
+      value: ""
+    }, "\uAE30\uAD00 \uC120\uD0DD"), insts.map(function (x) {
+      return /*#__PURE__*/React.createElement("option", {
+        key: x.id
+      }, x.name);
+    }))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 12
+      }
+    }, /*#__PURE__*/React.createElement("label", {
+      style: {
+        fontSize: 12,
+        color: G.gray6,
+        display: "block",
+        marginBottom: 4
+      }
+    }, "\uC751\uC2DC \uB4F1\uAE09"), /*#__PURE__*/React.createElement("select", {
+      value: af.grade || "3급",
+      onChange: function onChange(e) {
+        return setAf(function (p) {
+          return _objectSpread(_objectSpread({}, p), {}, {
+            grade: e.target.value
+          });
+        });
+      },
+      style: {
+        width: "100%",
+        padding: "8px 12px",
+        borderRadius: 8,
+        border: "1.5px solid #D1D5DB",
+        fontSize: 13
+      }
+    }, grades.map(function (g) {
+      return /*#__PURE__*/React.createElement("option", {
+        key: g
+      }, g);
+    }))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: 8
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return setShowAppForm(false);
+      },
+      style: {
+        padding: "9px 0",
+        borderRadius: 8,
+        border: "1.5px solid #D1D5DB",
+        background: "#fff",
+        fontWeight: 700,
+        fontSize: 13,
+        cursor: "pointer"
+      }
+    }, "\uCDE8\uC18C"), /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        if (!af.name) {
+          showToast("이름을 입력하세요!");
+          return;
+        }
+        saveCertApplicants([].concat(_toConsumableArray(certApplicants), [{
+          id: "AP-" + Date.now(),
+          exam_id: selExam.id,
+          name: af.name,
+          phone: af.phone || "",
+          inst: af.inst || "",
+          grade: af.grade || "3급",
+          written_score: "",
+          practical_score: "",
+          written_pass: false,
+          final_pass: false
+        }]));
+        setShowAppForm(false);
+        setAf({
+          name: "",
+          phone: "",
+          inst: "",
+          grade: "3급"
+        });
+        showToast("✅ 응시자 추가됐습니다!");
+      },
+      style: {
+        padding: "9px 0",
+        borderRadius: 8,
+        background: G[700],
+        color: "#fff",
+        border: "none",
+        fontWeight: 700,
+        fontSize: 13,
+        cursor: "pointer"
+      }
+    }, "\uCD94\uAC00"))) : /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return setShowAppForm(true);
+      },
+      style: {
+        width: "100%",
+        padding: "10px 0",
+        borderRadius: 8,
+        background: G[700],
+        color: "#fff",
+        border: "none",
+        fontWeight: 700,
+        fontSize: 13,
+        cursor: "pointer",
+        marginTop: 4
+      }
+    }, "+ \uC751\uC2DC\uC790 \uCD94\uAC00"))));
+  }
+
+  // ── 사용자 관리 (센터장 전용) ─────────────────────────────
   function Users() {
-    var _useState83 = useState(false),
-      _useState84 = _slicedToArray(_useState83, 2),
-      showForm = _useState84[0],
-      setShowForm = _useState84[1];
-    var _useState85 = useState(null),
-      _useState86 = _slicedToArray(_useState85, 2),
-      editId = _useState86[0],
-      setEditId = _useState86[1];
-    var _useState87 = useState({
+    var _useState99 = useState(false),
+      _useState100 = _slicedToArray(_useState99, 2),
+      showForm = _useState100[0],
+      setShowForm = _useState100[1];
+    var _useState101 = useState(null),
+      _useState102 = _slicedToArray(_useState101, 2),
+      editId = _useState102[0],
+      setEditId = _useState102[1];
+    var _useState103 = useState({
         name: "",
         role: "staff",
         pw: ""
       }),
-      _useState88 = _slicedToArray(_useState87, 2),
-      nf = _useState88[0],
-      setNf = _useState88[1];
+      _useState104 = _slicedToArray(_useState103, 2),
+      nf = _useState104[0],
+      setNf = _useState104[1];
     var roleLabels = {
       staff: "치료사",
       branch: "지부장",
@@ -4845,10 +5832,10 @@ function App() {
           display: "flex",
           gap: 6
         }
-      }, [["staff", "치료사"], ["branch", "지부장"], ["director", "센터장"]].map(function (_ref40) {
-        var _ref41 = _slicedToArray(_ref40, 2),
-          r = _ref41[0],
-          l = _ref41[1];
+      }, [["staff", "치료사"], ["branch", "지부장"], ["director", "센터장"]].map(function (_ref50) {
+        var _ref51 = _slicedToArray(_ref50, 2),
+          r = _ref51[0],
+          l = _ref51[1];
         return /*#__PURE__*/React.createElement("button", {
           key: r,
           onClick: function onClick() {
@@ -5156,6 +6143,7 @@ function App() {
     est: /*#__PURE__*/React.createElement(Est, null),
     pdf: /*#__PURE__*/React.createElement(Pdf, null),
     docs_reg: /*#__PURE__*/React.createElement(DocsReg, null),
+    cert: /*#__PURE__*/React.createElement(Cert, null),
     users: /*#__PURE__*/React.createElement(Users, null)
   };
   return /*#__PURE__*/React.createElement("div", {
