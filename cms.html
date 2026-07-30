@@ -3413,7 +3413,8 @@ function App() {
         spec: "60분/회기",
         qty: "12",
         unit: "60000",
-        note: ""
+        note: "",
+        estDate: new Date().toISOString().slice(0, 10)
       }),
       _useState78 = _slicedToArray(_useState77, 2),
       ef = _useState78[0],
@@ -3425,7 +3426,7 @@ function App() {
         spec: "60분/회기",
         qty: "12",
         unit: "60000",
-        date: "",
+        tmsDate: new Date().toISOString().slice(0, 10),
         note: ""
       }),
       _useState80 = _slicedToArray(_useState79, 2),
@@ -3447,9 +3448,7 @@ function App() {
       var supply = parseInt(doc.qty || 0) * parseInt(doc.unit || 0);
       return "<!DOCTYPE html><html lang=\"ko\"><head><meta charset=\"UTF-8\">\n<style>\n@media print { @page { size:A4; margin:15mm; } .no-print{display:none;} }\nbody{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;padding:30px;max-width:750px;margin:0 auto;}\nh1{text-align:center;font-size:24px;letter-spacing:6px;margin-bottom:4px;}\n.sub{text-align:center;font-size:12px;color:#666;margin-bottom:20px;}\ntable{width:100%;border-collapse:collapse;margin-bottom:14px;font-size:13px;}\ntd,th{border:1px solid #333;padding:8px 12px;}\nth{background:#f5f5f5;font-weight:bold;}\n.total-box{background:#F1F8E9;border:2px solid #2E7D32;border-radius:6px;padding:14px 20px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;}\n.total-val{font-size:22px;font-weight:bold;color:#2E7D32;}\n.thead-green th{background:#2E7D32;color:#fff;border-color:#2E7D32;}\n.sum-row td{background:#F1F8E9;font-weight:bold;}\n.sig{text-align:center;font-size:20px;font-weight:bold;margin:60px 0 40px;}\nhr{border:1px solid #333;margin-bottom:12px;}\n.footer{font-size:11px;color:#555;line-height:2;}\n</style></head><body>\n<button class=\"no-print\" onclick=\"window.print()\" style=\"display:block;margin:0 auto 20px;padding:10px 30px;background:#2E7D32;color:#fff;border:none;border-radius:6px;font-size:14px;cursor:pointer;\">\uD83D\uDDA8\uFE0F PDF\uB85C \uC800\uC7A5</button>\n<h1>\uAC70 \uB798 \uBA85 \uC138 \uC11C</h1>\n<p class=\"sub\">(\uBD80\uAC00\uAC00\uCE58\uC138 \uBA74\uC138\uC0AC\uC5C5\uC790)</p>\n<table>\n  <tr><th style=\"width:90px;\">\uC218 \uC2E0</th><td>".concat(doc.inst, "</td><th style=\"width:90px;\">\uBB38\uC11C\uBC88\uD638</th><td>").concat(doc.id, "</td></tr>\n  <tr><th>\uAC70\uB798\uC77C\uC790</th><td>").concat(doc.tmsDate || doc.date, "</td><th>\uC791\uC131\uC77C</th><td>").concat(doc.date, "</td></tr>\n</table>\n<div class=\"total-box\">\n  <span style=\"font-size:14px;font-weight:bold;color:#1B5E20;\">\uACF5\uAE09\uAC00\uC561 \uD569\uACC4</span>\n  <span class=\"total-val\">").concat(supply.toLocaleString(), " \uC6D0</span>\n</div>\n<p style=\"font-size:11px;color:#888;text-align:center;margin-bottom:16px;\">\u203B \uBA74\uC138\uC0AC\uC5C5\uC790 \u2014 \uBD80\uAC00\uC138 \uD574\uB2F9 \uC5C6\uC74C</p>\n<table>\n  <thead class=\"thead-green\">\n    <tr><th>\uD488\uBAA9\uBA85</th><th style=\"width:100px;\">\uADDC\uACA9</th><th style=\"width:60px;\">\uC218\uB7C9</th><th style=\"width:110px;text-align:right;\">\uB2E8\uAC00(\uC6D0)</th><th style=\"width:120px;text-align:right;\">\uACF5\uAE09\uAC00\uC561(\uC6D0)</th></tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>").concat(doc.name || '원예치료 프로그램', "</td>\n      <td style=\"text-align:center;\">").concat(doc.spec, "</td>\n      <td style=\"text-align:center;\">").concat(doc.qty, "</td>\n      <td style=\"text-align:right;\">").concat(parseInt(doc.unit || 0).toLocaleString(), "</td>\n      <td style=\"text-align:right;\">").concat(supply.toLocaleString(), "</td>\n    </tr>\n    <tr class=\"sum-row\"><td colspan=\"4\" style=\"text-align:center;\">\uD569 \uACC4</td><td style=\"text-align:right;\">").concat(supply.toLocaleString(), " \uC6D0</td></tr>\n  </tbody>\n</table>\n").concat(doc.note ? "<p style=\"font-size:12px;color:#555;margin-bottom:60px;\">\u203B ".concat(doc.note, "</p>") : "<p style=\"font-size:11px;color:#666;margin-bottom:60px;\">\u203B \uBA74\uC138\uC0AC\uC5C5\uC790\uB85C \uBD80\uAC00\uC138 \uC5C6\uC74C</p>", "\n<p class=\"sig\">\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130\uC7A5</p>\n<hr>\n<div class=\"footer\">\n  \uC0C1\uD638: \uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130 | \uB300\uD45C: \uBC15\uC9C4\uC6B0 | \uC0AC\uC5C5\uC790\uB4F1\uB85D\uBC88\uD638: 612-96-07060<br>\n  \uC8FC\uC18C: \uC6B8\uC0B0\uAD11\uC5ED\uC2DC \uC6B8\uC8FC\uAD70 \uC0BC\uB0A8\uC74D \uC2E0\uBCF51\uAE38 26<br>\n  \uC804\uD654: 010-3491-0013 | \uC774\uBA54\uC77C: info@parkjinwoohtc.com | \uD648\uD398\uC774\uC9C0: parkjinwoohtc.com\n</div>\n</body></html>");
     }
-
-    // 목록 화면
-    if (sub === "list") return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", null, sub === "list" && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
       style: {
         display: "flex",
         gap: 6,
@@ -3515,7 +3514,7 @@ function App() {
           color: G.gray4,
           marginTop: 4
         }
-      }, doc.inst, " \xB7 ", doc.date, " \xB7 ", parseInt(doc.qty || 0) * parseInt(doc.unit || 0) ? (parseInt(doc.qty || 0) * parseInt(doc.unit || 0)).toLocaleString() + "원" : "")), /*#__PURE__*/React.createElement("span", {
+      }, doc.inst, " \xB7 ", doc.date, " \xB7 ", (parseInt(doc.qty || 0) * parseInt(doc.unit || 0)).toLocaleString(), "\uC6D0")), /*#__PURE__*/React.createElement("span", {
         style: {
           fontSize: 12,
           fontWeight: 700,
@@ -3524,7 +3523,7 @@ function App() {
       }, statusLabel(doc.status))));
     }), /*#__PURE__*/React.createElement("button", {
       onClick: function onClick() {
-        setSub("write");
+        return setSub("write");
       },
       style: {
         width: "100%",
@@ -3538,10 +3537,7 @@ function App() {
         cursor: "pointer",
         marginTop: 4
       }
-    }, "+ ", tab === "est" ? "견적서" : "거래명세서", " \uC791\uC131"));
-
-    // 작성 화면
-    if (sub === "write") return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+    }, "+ ", tab === "est" ? "견적서" : "거래명세서", " \uC791\uC131")), sub === "write" && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
       onClick: function onClick() {
         return setSub("list");
       },
@@ -3640,6 +3636,23 @@ function App() {
       style: inputStyle
     }))), /*#__PURE__*/React.createElement("div", {
       style: {
+        marginBottom: 10
+      }
+    }, /*#__PURE__*/React.createElement("label", {
+      style: labelStyle
+    }, "\uACAC\uC801 \uB0A0\uC9DC"), /*#__PURE__*/React.createElement("input", {
+      type: "date",
+      value: ef.estDate,
+      onChange: function onChange(e) {
+        return setEf(function (p) {
+          return _objectSpread(_objectSpread({}, p), {}, {
+            estDate: e.target.value
+          });
+        });
+      },
+      style: inputStyle
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
         marginBottom: 12
       }
     }, /*#__PURE__*/React.createElement("label", {
@@ -3703,16 +3716,12 @@ function App() {
           unit: ef.unit,
           note: ef.note,
           writer: user.name,
-          date: new Date().toLocaleDateString("ko-KR"),
+          date: ef.estDate ? new Date(ef.estDate).toLocaleDateString("ko-KR") : new Date().toLocaleDateString("ko-KR"),
           status: isDir ? "완료" : "센터장대기",
           comment: ""
         }].concat(_toConsumableArray(docs));
         saveDocs(nd);
-        if (isDir) {
-          showToast("✅ 견적서가 저장됐습니다!");
-        } else {
-          showToast("✅ 결재 상신됐습니다! 센터장 승인 후 확정돼요.");
-        }
+        showToast(isDir ? "✅ 견적서가 저장됐습니다!" : "✅ 결재 상신됐습니다!");
         setSub("list");
       },
       style: btnG
@@ -3722,7 +3731,8 @@ function App() {
           showToast("기관을 선택하세요!");
           return;
         }
-        var tmpDoc = {
+        var w = window.open('', '_blank', 'width=900,height=700');
+        w.document.write(makeEstHtml({
           id: "PREVIEW",
           inst: ef.inst,
           name: ef.name,
@@ -3730,10 +3740,8 @@ function App() {
           qty: ef.qty,
           unit: ef.unit,
           note: ef.note,
-          date: new Date().toLocaleDateString("ko-KR")
-        };
-        var w = window.open('', '_blank', 'width=900,height=700');
-        w.document.write(makeEstHtml(tmpDoc));
+          date: ef.estDate ? new Date(ef.estDate).toLocaleDateString("ko-KR") : new Date().toLocaleDateString("ko-KR")
+        }));
         w.document.close();
       },
       style: _objectSpread(_objectSpread({}, btnG), {}, {
@@ -3907,7 +3915,7 @@ function App() {
           spec: tf.spec,
           qty: tf.qty,
           unit: tf.unit,
-          tmsDate: tf.tmsDate,
+          tmsDate: tf.tmsDate ? new Date(tf.tmsDate).toLocaleDateString("ko-KR") : new Date().toLocaleDateString("ko-KR"),
           note: tf.note,
           writer: user.name,
           date: new Date().toLocaleDateString("ko-KR"),
@@ -3915,11 +3923,7 @@ function App() {
           comment: ""
         }].concat(_toConsumableArray(docs));
         saveDocs(nd);
-        if (isDir) {
-          showToast("✅ 거래명세서가 저장됐습니다!");
-        } else {
-          showToast("✅ 결재 상신됐습니다! 센터장 승인 후 확정돼요.");
-        }
+        showToast(isDir ? "✅ 거래명세서가 저장됐습니다!" : "✅ 결재 상신됐습니다!");
         setSub("list");
       },
       style: btnG
@@ -3929,28 +3933,24 @@ function App() {
           showToast("기관을 선택하세요!");
           return;
         }
-        var tmpDoc = {
+        var w = window.open('', '_blank', 'width=900,height=700');
+        w.document.write(makeTmsHtml({
           id: "PREVIEW",
           inst: tf.inst,
           name: tf.name,
           spec: tf.spec,
           qty: tf.qty,
           unit: tf.unit,
-          tmsDate: tf.tmsDate,
+          tmsDate: tf.tmsDate ? new Date(tf.tmsDate).toLocaleDateString("ko-KR") : "",
           note: tf.note,
           date: new Date().toLocaleDateString("ko-KR")
-        };
-        var w = window.open('', '_blank', 'width=900,height=700');
-        w.document.write(makeTmsHtml(tmpDoc));
+        }));
         w.document.close();
       },
       style: _objectSpread(_objectSpread({}, btnG), {}, {
         background: G.blue
       })
-    }, "\uD83D\uDC41 \uBBF8\uB9AC\uBCF4\uAE30")))));
-
-    // 상세 보기
-    if (sub === "view" && selDoc) return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+    }, "\uD83D\uDC41 \uBBF8\uB9AC\uBCF4\uAE30"))))), sub === "view" && selDoc && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
       onClick: function onClick() {
         return setSub("list");
       },
@@ -3983,7 +3983,7 @@ function App() {
         fontSize: 13,
         marginBottom: 12
       }
-    }, /*#__PURE__*/React.createElement("tbody", null, [["수신기관", selDoc.inst], ["품목명", selDoc.name], ["규격", selDoc.spec], ["수량", selDoc.qty + "회"], ["단가", parseInt(selDoc.unit || 0).toLocaleString() + "원"], ["공급가액", (parseInt(selDoc.qty || 0) * parseInt(selDoc.unit || 0)).toLocaleString() + "원"], ["작성일", selDoc.date], ["작성자", selDoc.writer]].map(function (_ref27) {
+    }, /*#__PURE__*/React.createElement("tbody", null, [["수신기관", selDoc.inst], ["품목명", selDoc.name], ["규격", selDoc.spec], ["수량", (selDoc.qty || 0) + "회"], ["단가", parseInt(selDoc.unit || 0).toLocaleString() + "원"], ["공급가액", (parseInt(selDoc.qty || 0) * parseInt(selDoc.unit || 0)).toLocaleString() + "원"], ["작성일", selDoc.date], ["작성자", selDoc.writer]].map(function (_ref27) {
       var _ref28 = _slicedToArray(_ref27, 2),
         l = _ref28[0],
         v = _ref28[1];
@@ -4024,7 +4024,7 @@ function App() {
         setSelDoc(_objectSpread(_objectSpread({}, selDoc), {}, {
           status: "반려"
         }));
-        showToast("❌ 반려 처리됐습니다.");
+        showToast("❌ 반려됐습니다.");
       },
       style: {
         padding: "10px 0",
@@ -4088,8 +4088,7 @@ function App() {
         fontSize: 13,
         cursor: "pointer"
       }
-    }, "\uD83D\uDDD1 \uC0AD\uC81C")));
-    return null;
+    }, "\uD83D\uDDD1 \uC0AD\uC81C"))));
   }
 
   // ── 통합 PDF ─────────────────────────────────────────────
