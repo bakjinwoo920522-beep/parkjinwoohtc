@@ -523,41 +523,15 @@ function App() {
     return _saveUsers.apply(this, arguments);
   }
   function _saveUsers() {
-    _saveUsers = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(data) {
-      var _t7;
-      return _regenerator().w(function (_context7) {
-        while (1) switch (_context7.p = _context7.n) {
-          case 0:
-            setUsers(data);
-            _context7.p = 1;
-            _context7.n = 2;
-            return storage.set("htc-users", JSON.stringify(data));
-          case 2:
-            _context7.n = 4;
-            break;
-          case 3:
-            _context7.p = 3;
-            _t7 = _context7.v;
-          case 4:
-            return _context7.a(2);
-        }
-      }, _callee6, null, [[1, 3]]);
-    }));
-    return _saveUsers.apply(this, arguments);
-  }
-  function saveClients(_x5) {
-    return _saveClients.apply(this, arguments);
-  }
-  function _saveClients() {
-    _saveClients = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7(data) {
+    _saveUsers = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7(data) {
       var _t8;
       return _regenerator().w(function (_context8) {
         while (1) switch (_context8.p = _context8.n) {
           case 0:
-            setClients(data);
+            setUsers(data);
             _context8.p = 1;
             _context8.n = 2;
-            return storage.set("htc-clients", JSON.stringify(data));
+            return storage.set("htc-users", JSON.stringify(data));
           case 2:
             _context8.n = 4;
             break;
@@ -569,21 +543,21 @@ function App() {
         }
       }, _callee7, null, [[1, 3]]);
     }));
+    return _saveUsers.apply(this, arguments);
+  }
+  function saveClients(_x5) {
     return _saveClients.apply(this, arguments);
   }
-  function saveInsts(_x6) {
-    return _saveInsts.apply(this, arguments);
-  }
-  function _saveInsts() {
-    _saveInsts = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8(data) {
+  function _saveClients() {
+    _saveClients = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8(data) {
       var _t9;
       return _regenerator().w(function (_context9) {
         while (1) switch (_context9.p = _context9.n) {
           case 0:
-            setInsts(data);
+            setClients(data);
             _context9.p = 1;
             _context9.n = 2;
-            return storage.set("htc-insts", JSON.stringify(data));
+            return storage.set("htc-clients", JSON.stringify(data));
           case 2:
             _context9.n = 4;
             break;
@@ -595,21 +569,21 @@ function App() {
         }
       }, _callee8, null, [[1, 3]]);
     }));
+    return _saveClients.apply(this, arguments);
+  }
+  function saveInsts(_x6) {
     return _saveInsts.apply(this, arguments);
   }
-  function saveCenterDocs(_x7) {
-    return _saveCenterDocs.apply(this, arguments);
-  }
-  function _saveCenterDocs() {
-    _saveCenterDocs = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9(data) {
+  function _saveInsts() {
+    _saveInsts = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9(data) {
       var _t0;
       return _regenerator().w(function (_context0) {
         while (1) switch (_context0.p = _context0.n) {
           case 0:
-            setCenterDocs(data);
+            setInsts(data);
             _context0.p = 1;
             _context0.n = 2;
-            return storage.set("htc-center-docs", JSON.stringify(data));
+            return storage.set("htc-insts", JSON.stringify(data));
           case 2:
             _context0.n = 4;
             break;
@@ -621,21 +595,21 @@ function App() {
         }
       }, _callee9, null, [[1, 3]]);
     }));
+    return _saveInsts.apply(this, arguments);
+  }
+  function saveCenterDocs(_x7) {
     return _saveCenterDocs.apply(this, arguments);
   }
-  function saveStaffDocs(_x8) {
-    return _saveStaffDocs.apply(this, arguments);
-  }
-  function _saveStaffDocs() {
-    _saveStaffDocs = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0(data) {
+  function _saveCenterDocs() {
+    _saveCenterDocs = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0(data) {
       var _t1;
       return _regenerator().w(function (_context1) {
         while (1) switch (_context1.p = _context1.n) {
           case 0:
-            setStaffDocs(data);
+            setCenterDocs(data);
             _context1.p = 1;
             _context1.n = 2;
-            return storage.set("htc-staff-docs", JSON.stringify(data));
+            return storage.set("htc-center-docs", JSON.stringify(data));
           case 2:
             _context1.n = 4;
             break;
@@ -647,21 +621,21 @@ function App() {
         }
       }, _callee0, null, [[1, 3]]);
     }));
+    return _saveCenterDocs.apply(this, arguments);
+  }
+  function saveStaffDocs(_x8) {
     return _saveStaffDocs.apply(this, arguments);
   }
-  function saveStaffProfiles(_x9) {
-    return _saveStaffProfiles.apply(this, arguments);
-  }
-  function _saveStaffProfiles() {
-    _saveStaffProfiles = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee1(data) {
+  function _saveStaffDocs() {
+    _saveStaffDocs = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee1(data) {
       var _t10;
       return _regenerator().w(function (_context10) {
         while (1) switch (_context10.p = _context10.n) {
           case 0:
-            setStaffProfiles(data);
+            setStaffDocs(data);
             _context10.p = 1;
             _context10.n = 2;
-            return storage.set("htc-staff-profiles", JSON.stringify(data));
+            return storage.set("htc-staff-docs", JSON.stringify(data));
           case 2:
             _context10.n = 4;
             break;
@@ -673,21 +647,21 @@ function App() {
         }
       }, _callee1, null, [[1, 3]]);
     }));
+    return _saveStaffDocs.apply(this, arguments);
+  }
+  function saveStaffProfiles(_x9) {
     return _saveStaffProfiles.apply(this, arguments);
   }
-  function saveDocs(_x0) {
-    return _saveDocs.apply(this, arguments);
-  }
-  function _saveDocs() {
-    _saveDocs = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee10(data) {
+  function _saveStaffProfiles() {
+    _saveStaffProfiles = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee10(data) {
       var _t11;
       return _regenerator().w(function (_context11) {
         while (1) switch (_context11.p = _context11.n) {
           case 0:
-            setDocs(data);
+            setStaffProfiles(data);
             _context11.p = 1;
             _context11.n = 2;
-            return storage.set("htc-docs", JSON.stringify(data));
+            return storage.set("htc-staff-profiles", JSON.stringify(data));
           case 2:
             _context11.n = 4;
             break;
@@ -699,21 +673,21 @@ function App() {
         }
       }, _callee10, null, [[1, 3]]);
     }));
+    return _saveStaffProfiles.apply(this, arguments);
+  }
+  function saveDocs(_x0) {
     return _saveDocs.apply(this, arguments);
   }
-  function saveRecv(_x1) {
-    return _saveRecv.apply(this, arguments);
-  }
-  function _saveRecv() {
-    _saveRecv = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee11(data) {
+  function _saveDocs() {
+    _saveDocs = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee11(data) {
       var _t12;
       return _regenerator().w(function (_context12) {
         while (1) switch (_context12.p = _context12.n) {
           case 0:
-            setRecv(data);
+            setDocs(data);
             _context12.p = 1;
             _context12.n = 2;
-            return storage.set("htc-recv", JSON.stringify(data));
+            return storage.set("htc-docs", JSON.stringify(data));
           case 2:
             _context12.n = 4;
             break;
@@ -725,21 +699,21 @@ function App() {
         }
       }, _callee11, null, [[1, 3]]);
     }));
+    return _saveDocs.apply(this, arguments);
+  }
+  function saveRecv(_x1) {
     return _saveRecv.apply(this, arguments);
   }
-  function saveCertExams(_x10) {
-    return _saveCertExams.apply(this, arguments);
-  }
-  function _saveCertExams() {
-    _saveCertExams = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee12(data) {
+  function _saveRecv() {
+    _saveRecv = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee12(data) {
       var _t13;
       return _regenerator().w(function (_context13) {
         while (1) switch (_context13.p = _context13.n) {
           case 0:
-            setCertExams(data);
+            setRecv(data);
             _context13.p = 1;
             _context13.n = 2;
-            return storage.set("htc-cert-exams", JSON.stringify(data));
+            return storage.set("htc-recv", JSON.stringify(data));
           case 2:
             _context13.n = 4;
             break;
@@ -751,21 +725,21 @@ function App() {
         }
       }, _callee12, null, [[1, 3]]);
     }));
+    return _saveRecv.apply(this, arguments);
+  }
+  function saveCertExams(_x10) {
     return _saveCertExams.apply(this, arguments);
   }
-  function saveCertApplicants(_x11) {
-    return _saveCertApplicants.apply(this, arguments);
-  }
-  function _saveCertApplicants() {
-    _saveCertApplicants = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee13(data) {
+  function _saveCertExams() {
+    _saveCertExams = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee13(data) {
       var _t14;
       return _regenerator().w(function (_context14) {
         while (1) switch (_context14.p = _context14.n) {
           case 0:
-            setCertApplicants(data);
+            setCertExams(data);
             _context14.p = 1;
             _context14.n = 2;
-            return storage.set("htc-cert-applicants", JSON.stringify(data));
+            return storage.set("htc-cert-exams", JSON.stringify(data));
           case 2:
             _context14.n = 4;
             break;
@@ -776,6 +750,32 @@ function App() {
             return _context14.a(2);
         }
       }, _callee13, null, [[1, 3]]);
+    }));
+    return _saveCertExams.apply(this, arguments);
+  }
+  function saveCertApplicants(_x11) {
+    return _saveCertApplicants.apply(this, arguments);
+  }
+  function _saveCertApplicants() {
+    _saveCertApplicants = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee14(data) {
+      var _t15;
+      return _regenerator().w(function (_context15) {
+        while (1) switch (_context15.p = _context15.n) {
+          case 0:
+            setCertApplicants(data);
+            _context15.p = 1;
+            _context15.n = 2;
+            return storage.set("htc-cert-applicants", JSON.stringify(data));
+          case 2:
+            _context15.n = 4;
+            break;
+          case 3:
+            _context15.p = 3;
+            _t15 = _context15.v;
+          case 4:
+            return _context15.a(2);
+        }
+      }, _callee14, null, [[1, 3]]);
     }));
     return _saveCertApplicants.apply(this, arguments);
   }
@@ -3409,17 +3409,18 @@ function App() {
     // 견적서 폼
     var _useState77 = useState({
         inst: "",
-        name: "",
-        spec: "60분/회기",
-        qty: "12",
-        unit: "60000",
+        items: [{
+          name: "",
+          spec: "60분/회기",
+          qty: "12",
+          unit: "60000"
+        }],
         note: "",
         estDate: new Date().toISOString().slice(0, 10)
       }),
       _useState78 = _slicedToArray(_useState77, 2),
       ef = _useState78[0],
       setEf = _useState78[1];
-    // 거래명세서 폼
     var _useState79 = useState({
         inst: "",
         name: "",
@@ -3432,7 +3433,9 @@ function App() {
       _useState80 = _slicedToArray(_useState79, 2),
       tf = _useState80[0],
       setTf = _useState80[1];
-    var estSupply = parseInt(ef.qty || 0) * parseInt(ef.unit || 0);
+    var estSupply = ef.items.reduce(function (sum, x) {
+      return sum + parseInt(x.qty || 0) * parseInt(x.unit || 0);
+    }, 0);
     var tmsSupply = parseInt(tf.qty || 0) * parseInt(tf.unit || 0);
     var statusColor = function statusColor(s) {
       return s === "완료" ? "#059669" : s === "반려" ? "#DC2626" : s === "센터장대기" ? "#D97706" : "#6B7280";
@@ -3441,8 +3444,19 @@ function App() {
       return s === "완료" ? "✅ 확정" : s === "반려" ? "❌ 반려" : s === "센터장대기" ? "⏳ 결재 대기" : "대기중";
     };
     function makeEstHtml(doc) {
-      var supply = parseInt(doc.qty || 0) * parseInt(doc.unit || 0);
-      return "<!DOCTYPE html><html lang=\"ko\"><head><meta charset=\"UTF-8\">\n<style>\n@media print { @page { size:A4; margin:15mm; } .no-print{display:none;} }\nbody{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;padding:30px;max-width:750px;margin:0 auto;}\nh1{text-align:center;font-size:24px;letter-spacing:8px;margin-bottom:4px;}\n.sub{text-align:center;font-size:12px;color:#666;margin-bottom:20px;}\ntable{width:100%;border-collapse:collapse;margin-bottom:14px;font-size:13px;}\ntd,th{border:1px solid #333;padding:8px 12px;}\nth{background:#f5f5f5;font-weight:bold;}\n.total-box{background:#F1F8E9;border:2px solid #2E7D32;border-radius:6px;padding:14px 20px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;}\n.total-val{font-size:22px;font-weight:bold;color:#2E7D32;}\n.thead-green th{background:#2E7D32;color:#fff;border-color:#2E7D32;}\n.sum-row td{background:#F1F8E9;font-weight:bold;}\n.sig{text-align:center;font-size:20px;font-weight:bold;margin:60px 0 40px;}\nhr{border:1px solid #333;margin-bottom:12px;}\n.footer{font-size:11px;color:#555;line-height:2;}\n</style></head><body>\n<button class=\"no-print\" onclick=\"window.print()\" style=\"display:block;margin:0 auto 20px;padding:10px 30px;background:#2E7D32;color:#fff;border:none;border-radius:6px;font-size:14px;cursor:pointer;\">\uD83D\uDDA8\uFE0F PDF\uB85C \uC800\uC7A5</button>\n<h1>\uACAC  \uC801  \uC11C</h1>\n<p class=\"sub\">(\uBD80\uAC00\uAC00\uCE58\uC138 \uBA74\uC138\uC0AC\uC5C5\uC790)</p>\n<table>\n  <tr><th style=\"width:90px;\">\uC218 \uC2E0</th><td>".concat(doc.inst, "</td><th style=\"width:90px;\">\uACAC\uC801\uBC88\uD638</th><td>").concat(doc.id, "</td></tr>\n  <tr><th>\uC791\uC131\uC77C</th><td>").concat(doc.date, "</td><th>\uC720\uD6A8\uAE30\uAC04</th><td>30\uC77C</td></tr>\n</table>\n<div class=\"total-box\">\n  <span style=\"font-size:14px;font-weight:bold;color:#1B5E20;\">\uACF5\uAE09\uAC00\uC561 \uD569\uACC4</span>\n  <span class=\"total-val\">").concat(supply.toLocaleString(), " \uC6D0</span>\n</div>\n<p style=\"font-size:11px;color:#888;text-align:center;margin-bottom:16px;\">\u203B \uBA74\uC138\uC0AC\uC5C5\uC790 \u2014 \uBD80\uAC00\uC138 \uD574\uB2F9 \uC5C6\uC74C</p>\n<table>\n  <thead class=\"thead-green\">\n    <tr><th>\uD488\uBAA9\uBA85</th><th style=\"width:100px;\">\uADDC\uACA9</th><th style=\"width:60px;\">\uC218\uB7C9</th><th style=\"width:110px;text-align:right;\">\uB2E8\uAC00(\uC6D0)</th><th style=\"width:120px;text-align:right;\">\uACF5\uAE09\uAC00\uC561(\uC6D0)</th></tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>").concat(doc.name || '원예치료 프로그램', "</td>\n      <td style=\"text-align:center;\">").concat(doc.spec, "</td>\n      <td style=\"text-align:center;\">").concat(doc.qty, "</td>\n      <td style=\"text-align:right;\">").concat(parseInt(doc.unit || 0).toLocaleString(), "</td>\n      <td style=\"text-align:right;\">").concat(supply.toLocaleString(), "</td>\n    </tr>\n    <tr class=\"sum-row\"><td colspan=\"4\" style=\"text-align:center;\">\uD569 \uACC4</td><td style=\"text-align:right;\">").concat(supply.toLocaleString(), " \uC6D0</td></tr>\n  </tbody>\n</table>\n").concat(doc.note ? "<p style=\"font-size:12px;color:#555;margin-bottom:60px;\">\u203B ".concat(doc.note, "</p>") : "<p style=\"font-size:11px;color:#666;margin-bottom:60px;\">\u203B \uC7AC\uB8CC\uBE44 \uD3EC\uD568 \xB7 \uC720\uD6A8\uAE30\uAC04 30\uC77C \xB7 \uBA74\uC138\uC0AC\uC5C5\uC790\uB85C \uBD80\uAC00\uC138 \uC5C6\uC74C</p>", "\n<p class=\"sig\">\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130\uC7A5</p>\n<hr>\n<div class=\"footer\">\n  \uC0C1\uD638: \uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130 | \uB300\uD45C: \uBC15\uC9C4\uC6B0 | \uC0AC\uC5C5\uC790\uB4F1\uB85D\uBC88\uD638: 612-96-07060<br>\n  \uC8FC\uC18C: \uC6B8\uC0B0\uAD11\uC5ED\uC2DC \uC6B8\uC8FC\uAD70 \uC0BC\uB0A8\uC74D \uC2E0\uBCF51\uAE38 26<br>\n  \uC804\uD654: 010-3491-0013 | \uC774\uBA54\uC77C: info@parkjinwoohtc.com | \uD648\uD398\uC774\uC9C0: parkjinwoohtc.com\n</div>\n</body></html>");
+      var items = doc.items || [{
+        name: doc.name,
+        spec: doc.spec,
+        qty: doc.qty,
+        unit: doc.unit
+      }];
+      var total = items.reduce(function (sum, x) {
+        return sum + parseInt(x.qty || 0) * parseInt(x.unit || 0);
+      }, 0);
+      var itemRows = items.map(function (x) {
+        return "\n    <tr>\n      <td>".concat(x.name || '원예치료 프로그램', "</td>\n      <td style=\"text-align:center;\">").concat(x.spec || '', "</td>\n      <td style=\"text-align:center;\">").concat(x.qty || 0, "</td>\n      <td style=\"text-align:right;\">").concat(parseInt(x.unit || 0).toLocaleString(), "</td>\n      <td style=\"text-align:right;\">").concat((parseInt(x.qty || 0) * parseInt(x.unit || 0)).toLocaleString(), "</td>\n    </tr>");
+      }).join('');
+      return "<!DOCTYPE html><html lang=\"ko\"><head><meta charset=\"UTF-8\">\n<style>\n@media print { @page { size:A4; margin:15mm; } .no-print{display:none;} }\nbody{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;padding:30px;max-width:750px;margin:0 auto;}\nh1{text-align:center;font-size:24px;letter-spacing:8px;margin-bottom:4px;}\n.sub{text-align:center;font-size:12px;color:#666;margin-bottom:20px;}\ntable{width:100%;border-collapse:collapse;margin-bottom:14px;font-size:13px;}\ntd,th{border:1px solid #333;padding:8px 12px;}\nth{background:#f5f5f5;font-weight:bold;}\n.total-box{background:#F1F8E9;border:2px solid #2E7D32;border-radius:6px;padding:14px 20px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;}\n.total-val{font-size:22px;font-weight:bold;color:#2E7D32;}\n.thead-green th{background:#2E7D32;color:#fff;border-color:#2E7D32;}\n.sum-row td{background:#F1F8E9;font-weight:bold;}\n.sig{text-align:center;font-size:20px;font-weight:bold;margin:60px 0 40px;}\nhr{border:1px solid #333;margin-bottom:12px;}\n.footer{font-size:11px;color:#555;line-height:2;}\n</style></head><body>\n<button class=\"no-print\" onclick=\"window.print()\" style=\"display:block;margin:0 auto 20px;padding:10px 30px;background:#2E7D32;color:#fff;border:none;border-radius:6px;font-size:14px;cursor:pointer;\">\uD83D\uDDA8\uFE0F PDF\uB85C \uC800\uC7A5</button>\n<h1>\uACAC  \uC801  \uC11C</h1>\n<p class=\"sub\">(\uBD80\uAC00\uAC00\uCE58\uC138 \uBA74\uC138\uC0AC\uC5C5\uC790)</p>\n<table>\n  <tr><th style=\"width:90px;\">\uC218 \uC2E0</th><td>".concat(doc.inst, "</td><th style=\"width:90px;\">\uACAC\uC801\uBC88\uD638</th><td>").concat(doc.id, "</td></tr>\n  <tr><th>\uC791\uC131\uC77C</th><td>").concat(doc.date, "</td><th>\uC720\uD6A8\uAE30\uAC04</th><td>30\uC77C</td></tr>\n</table>\n<div class=\"total-box\">\n  <span style=\"font-size:14px;font-weight:bold;color:#1B5E20;\">\uACF5\uAE09\uAC00\uC561 \uD569\uACC4</span>\n  <span class=\"total-val\">").concat(total.toLocaleString(), " \uC6D0</span>\n</div>\n<p style=\"font-size:11px;color:#888;text-align:center;margin-bottom:16px;\">\u203B \uBA74\uC138\uC0AC\uC5C5\uC790 \u2014 \uBD80\uAC00\uC138 \uD574\uB2F9 \uC5C6\uC74C</p>\n<table>\n  <thead class=\"thead-green\">\n    <tr><th>\uD488\uBAA9\uBA85</th><th style=\"width:100px;\">\uADDC\uACA9</th><th style=\"width:60px;\">\uC218\uB7C9</th><th style=\"width:110px;text-align:right;\">\uB2E8\uAC00(\uC6D0)</th><th style=\"width:120px;text-align:right;\">\uACF5\uAE09\uAC00\uC561(\uC6D0)</th></tr>\n  </thead>\n  <tbody>\n    ").concat(itemRows, "\n    <tr class=\"sum-row\"><td colspan=\"4\" style=\"text-align:center;\">\uD569 \uACC4</td><td style=\"text-align:right;\">").concat(total.toLocaleString(), " \uC6D0</td></tr>\n  </tbody>\n</table>\n").concat(doc.note ? "<p style=\"font-size:12px;color:#555;margin-bottom:60px;\">\u203B ".concat(doc.note, "</p>") : "<p style=\"font-size:11px;color:#666;margin-bottom:60px;\">\u203B \uC7AC\uB8CC\uBE44 \uD3EC\uD568 \xB7 \uC720\uD6A8\uAE30\uAC04 30\uC77C \xB7 \uBA74\uC138\uC0AC\uC5C5\uC790\uB85C \uBD80\uAC00\uC138 \uC5C6\uC74C</p>", "\n<p class=\"sig\">\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130\uC7A5</p>\n<hr>\n<div class=\"footer\">\n  \uC0C1\uD638: \uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130 | \uB300\uD45C: \uBC15\uC9C4\uC6B0 | \uC0AC\uC5C5\uC790\uB4F1\uB85D\uBC88\uD638: 612-96-07060<br>\n  \uC8FC\uC18C: \uC6B8\uC0B0\uAD11\uC5ED\uC2DC \uC6B8\uC8FC\uAD70 \uC0BC\uB0A8\uC74D \uC2E0\uBCF51\uAE38 26<br>\n  \uC804\uD654: 010-3491-0013 | \uC774\uBA54\uC77C: info@parkjinwoohtc.com | \uD648\uD398\uC774\uC9C0: parkjinwoohtc.com\n</div>\n</body></html>");
     }
     function makeTmsHtml(doc) {
       var supply = parseInt(doc.qty || 0) * parseInt(doc.unit || 0);
@@ -3574,72 +3588,6 @@ function App() {
       }
     }, /*#__PURE__*/React.createElement("label", {
       style: labelStyle
-    }, "\uD488\uBAA9\uBA85"), /*#__PURE__*/React.createElement("input", {
-      value: ef.name,
-      onChange: function onChange(e) {
-        return setEf(function (p) {
-          return _objectSpread(_objectSpread({}, p), {}, {
-            name: e.target.value
-          });
-        });
-      },
-      style: inputStyle,
-      placeholder: "\uC608: \uB290\uB9B0\uD559\uC2B5\uC790 \uC6D0\uC608\uCE58\uB8CC \uD504\uB85C\uADF8\uB7A8"
-    })), /*#__PURE__*/React.createElement("div", {
-      style: {
-        marginBottom: 10
-      }
-    }, /*#__PURE__*/React.createElement("label", {
-      style: labelStyle
-    }, "\uADDC\uACA9"), /*#__PURE__*/React.createElement("input", {
-      value: ef.spec,
-      onChange: function onChange(e) {
-        return setEf(function (p) {
-          return _objectSpread(_objectSpread({}, p), {}, {
-            spec: e.target.value
-          });
-        });
-      },
-      style: inputStyle
-    })), /*#__PURE__*/React.createElement("div", {
-      style: {
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: 8,
-        marginBottom: 10
-      }
-    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
-      style: labelStyle
-    }, "\uC218\uB7C9"), /*#__PURE__*/React.createElement("input", {
-      type: "number",
-      value: ef.qty,
-      onChange: function onChange(e) {
-        return setEf(function (p) {
-          return _objectSpread(_objectSpread({}, p), {}, {
-            qty: e.target.value
-          });
-        });
-      },
-      style: inputStyle
-    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
-      style: labelStyle
-    }, "\uB2E8\uAC00(\uC6D0)"), /*#__PURE__*/React.createElement("input", {
-      type: "number",
-      value: ef.unit,
-      onChange: function onChange(e) {
-        return setEf(function (p) {
-          return _objectSpread(_objectSpread({}, p), {}, {
-            unit: e.target.value
-          });
-        });
-      },
-      style: inputStyle
-    }))), /*#__PURE__*/React.createElement("div", {
-      style: {
-        marginBottom: 10
-      }
-    }, /*#__PURE__*/React.createElement("label", {
-      style: labelStyle
     }, "\uACAC\uC801 \uB0A0\uC9DC"), /*#__PURE__*/React.createElement("input", {
       type: "date",
       value: ef.estDate,
@@ -3651,9 +3599,169 @@ function App() {
         });
       },
       style: inputStyle
-    })), /*#__PURE__*/React.createElement("div", {
+    })), /*#__PURE__*/React.createElement("label", {
+      style: labelStyle
+    }, "\uD83D\uDCCB \uACAC\uC801 \uD56D\uBAA9"), ef.items.map(function (item, i) {
+      return /*#__PURE__*/React.createElement("div", {
+        key: i,
+        style: {
+          background: "#F9FBF9",
+          border: "1.5px solid ".concat(G[200]),
+          borderRadius: 8,
+          padding: 10,
+          marginBottom: 8
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: 6
+        }
+      }, /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 12,
+          fontWeight: 700,
+          color: G[700]
+        }
+      }, "\uD56D\uBAA9 ", i + 1), ef.items.length > 1 && /*#__PURE__*/React.createElement("button", {
+        onClick: function onClick() {
+          return setEf(function (p) {
+            return _objectSpread(_objectSpread({}, p), {}, {
+              items: p.items.filter(function (_, j) {
+                return j !== i;
+              })
+            });
+          });
+        },
+        style: {
+          background: "none",
+          border: "none",
+          color: "#DC2626",
+          fontSize: 16,
+          cursor: "pointer"
+        }
+      }, "\u2715")), /*#__PURE__*/React.createElement("div", {
+        style: {
+          marginBottom: 6
+        }
+      }, /*#__PURE__*/React.createElement("input", {
+        value: item.name,
+        onChange: function onChange(e) {
+          return setEf(function (p) {
+            return _objectSpread(_objectSpread({}, p), {}, {
+              items: p.items.map(function (x, j) {
+                return j === i ? _objectSpread(_objectSpread({}, x), {}, {
+                  name: e.target.value
+                }) : x;
+              })
+            });
+          });
+        },
+        style: _objectSpread(_objectSpread({}, inputStyle), {}, {
+          marginBottom: 0
+        }),
+        placeholder: "\uD488\uBAA9\uBA85 (\uC608: \uB290\uB9B0\uD559\uC2B5\uC790 \uC6D0\uC608\uCE58\uB8CC \uD504\uB85C\uADF8\uB7A8)"
+      })), /*#__PURE__*/React.createElement("div", {
+        style: {
+          marginBottom: 6
+        }
+      }, /*#__PURE__*/React.createElement("input", {
+        value: item.spec,
+        onChange: function onChange(e) {
+          return setEf(function (p) {
+            return _objectSpread(_objectSpread({}, p), {}, {
+              items: p.items.map(function (x, j) {
+                return j === i ? _objectSpread(_objectSpread({}, x), {}, {
+                  spec: e.target.value
+                }) : x;
+              })
+            });
+          });
+        },
+        style: _objectSpread(_objectSpread({}, inputStyle), {}, {
+          marginBottom: 0
+        }),
+        placeholder: "\uADDC\uACA9 (\uC608: 60\uBD84/\uD68C\uAE30)"
+      })), /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 6
+        }
+      }, /*#__PURE__*/React.createElement("input", {
+        type: "number",
+        value: item.qty,
+        onChange: function onChange(e) {
+          return setEf(function (p) {
+            return _objectSpread(_objectSpread({}, p), {}, {
+              items: p.items.map(function (x, j) {
+                return j === i ? _objectSpread(_objectSpread({}, x), {}, {
+                  qty: e.target.value
+                }) : x;
+              })
+            });
+          });
+        },
+        style: _objectSpread(_objectSpread({}, inputStyle), {}, {
+          marginBottom: 0
+        }),
+        placeholder: "\uC218\uB7C9"
+      }), /*#__PURE__*/React.createElement("input", {
+        type: "number",
+        value: item.unit,
+        onChange: function onChange(e) {
+          return setEf(function (p) {
+            return _objectSpread(_objectSpread({}, p), {}, {
+              items: p.items.map(function (x, j) {
+                return j === i ? _objectSpread(_objectSpread({}, x), {}, {
+                  unit: e.target.value
+                }) : x;
+              })
+            });
+          });
+        },
+        style: _objectSpread(_objectSpread({}, inputStyle), {}, {
+          marginBottom: 0
+        }),
+        placeholder: "\uB2E8\uAC00(\uC6D0)"
+      })), /*#__PURE__*/React.createElement("div", {
+        style: {
+          textAlign: "right",
+          fontSize: 12,
+          color: G[700],
+          fontWeight: 700,
+          marginTop: 6
+        }
+      }, "\uC18C\uACC4: ", (parseInt(item.qty || 0) * parseInt(item.unit || 0)).toLocaleString(), "\uC6D0"));
+    }), /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return setEf(function (p) {
+          return _objectSpread(_objectSpread({}, p), {}, {
+            items: [].concat(_toConsumableArray(p.items), [{
+              name: "",
+              spec: "60분/회기",
+              qty: "12",
+              unit: "60000"
+            }])
+          });
+        });
+      },
       style: {
-        marginBottom: 12
+        width: "100%",
+        padding: "8px 0",
+        borderRadius: 8,
+        border: "1.5px dashed ".concat(G[400]),
+        background: "#fff",
+        color: G[700],
+        fontWeight: 700,
+        fontSize: 13,
+        cursor: "pointer",
+        marginBottom: 10
+      }
+    }, "+ \uD56D\uBAA9 \uCD94\uAC00"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 10
       }
     }, /*#__PURE__*/React.createElement("label", {
       style: labelStyle
@@ -3683,7 +3791,7 @@ function App() {
         fontWeight: 800,
         color: G[700]
       }
-    }, /*#__PURE__*/React.createElement("span", null, "\uACF5\uAE09\uAC00\uC561"), /*#__PURE__*/React.createElement("span", null, estSupply.toLocaleString(), "\uC6D0")), /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("span", null, "\uACF5\uAE09\uAC00\uC561 \uD569\uACC4"), /*#__PURE__*/React.createElement("span", null, estSupply.toLocaleString(), "\uC6D0")), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 11,
         color: G.gray4,
@@ -3710,10 +3818,7 @@ function App() {
           type: "est",
           title: "\uACAC\uC801\uC11C \xB7 ".concat(ef.inst),
           inst: ef.inst,
-          name: ef.name,
-          spec: ef.spec,
-          qty: ef.qty,
-          unit: ef.unit,
+          items: ef.items,
           note: ef.note,
           writer: user.name,
           date: ef.estDate ? new Date(ef.estDate).toLocaleDateString("ko-KR") : new Date().toLocaleDateString("ko-KR"),
@@ -3735,10 +3840,7 @@ function App() {
         w.document.write(makeEstHtml({
           id: "PREVIEW",
           inst: ef.inst,
-          name: ef.name,
-          spec: ef.spec,
-          qty: ef.qty,
-          unit: ef.unit,
+          items: ef.items,
           note: ef.note,
           date: ef.estDate ? new Date(ef.estDate).toLocaleDateString("ko-KR") : new Date().toLocaleDateString("ko-KR")
         }));
@@ -4059,7 +4161,7 @@ function App() {
         fontSize: 13,
         cursor: "pointer"
       }
-    }, "\u2705 \uC2B9\uC778")), selDoc.status === "완료" && /*#__PURE__*/React.createElement("button", {
+    }, "\u2705 \uC2B9\uC778")), selDoc.status === "완료" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
       onClick: function onClick() {
         var w = window.open('', '_blank', 'width=900,height=700');
         w.document.write(selDoc.type === "est" ? makeEstHtml(selDoc) : makeTmsHtml(selDoc));
@@ -4070,6 +4172,65 @@ function App() {
         marginBottom: 8
       })
     }, "\uD83D\uDDA8\uFE0F PDF \uCD9C\uB825"), /*#__PURE__*/React.createElement("button", {
+      onClick: /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
+        var inst, to, docHtml, typeLabel, res, r, _t5;
+        return _regenerator().w(function (_context5) {
+          while (1) switch (_context5.p = _context5.n) {
+            case 0:
+              inst = insts.find(function (x) {
+                return x.name === selDoc.inst;
+              });
+              to = (inst === null || inst === void 0 ? void 0 : inst.email) || "";
+              if (to) {
+                _context5.n = 1;
+                break;
+              }
+              showToast("❌ 수신기관 이메일이 없어요! 기관 관리에서 등록해주세요.");
+              return _context5.a(2);
+            case 1:
+              showToast("📨 이메일 발송 중...");
+              docHtml = selDoc.type === "est" ? makeEstHtml(selDoc) : makeTmsHtml(selDoc);
+              typeLabel = selDoc.type === "est" ? "견적서" : "거래명세서";
+              _context5.p = 2;
+              _context5.n = 3;
+              return fetch("https://jinwoo92.cafe24.com/send_mail.php", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                  to: to,
+                  subject: "[\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130] ".concat(selDoc.title),
+                  body: "<p>\uC548\uB155\uD558\uC138\uC694.</p><p>\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130\uC785\uB2C8\uB2E4.</p><p><b>".concat(selDoc.title, "</b>\uB97C \uCCA8\uBD80 \uD30C\uC77C\uB85C \uBCF4\uB0B4\uB4DC\uB9BD\uB2C8\uB2E4.</p><p>\uAC80\uD1A0\uD558\uC2DC\uACE0 \uD611\uC870\uD558\uC5EC \uC8FC\uC2DC\uAE30 \uBC14\uB78D\uB2C8\uB2E4.</p><br><p>\uAC10\uC0AC\uD569\uB2C8\uB2E4.</p><hr><p style=\"font-size:11px;color:#666;\">\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130 | 010-3491-0013 | info@parkjinwoohtc.com</p>"),
+                  html: docHtml,
+                  attach_htmls: [],
+                  attach_names: []
+                })
+              });
+            case 3:
+              res = _context5.v;
+              _context5.n = 4;
+              return res.json();
+            case 4:
+              r = _context5.v;
+              showToast(r.status === "ok" ? "\u2705 ".concat(typeLabel, " \uC774\uBA54\uC77C \uBC1C\uC1A1 \uC644\uB8CC!") : "❌ 발송 실패: " + r.message);
+              _context5.n = 6;
+              break;
+            case 5:
+              _context5.p = 5;
+              _t5 = _context5.v;
+              showToast("❌ 서버 연결 실패");
+            case 6:
+              return _context5.a(2);
+          }
+        }, _callee5, null, [[2, 5]]);
+      })),
+      style: _objectSpread(_objectSpread({}, btnG), {}, {
+        width: "100%",
+        marginBottom: 8,
+        background: "#059669"
+      })
+    }, "\uD83D\uDCE7 \uC774\uBA54\uC77C+PDF \uBC1C\uC1A1")), /*#__PURE__*/React.createElement("button", {
       onClick: function onClick() {
         if (!confirm("삭제할까요?")) return;
         saveDocs(docs.filter(function (x) {
@@ -4445,10 +4606,10 @@ function App() {
       "자격증사본": "📜",
       "강사료입금통장": "💳"
     };
-    function DocRow(_ref29) {
-      var doc = _ref29.doc,
-        onRegister = _ref29.onRegister,
-        isCenter = _ref29.isCenter;
+    function DocRow(_ref30) {
+      var doc = _ref30.doc,
+        onRegister = _ref30.onRegister,
+        isCenter = _ref30.isCenter;
       var canEdit = isCenter ? role === "director" : true;
       var canDownload = doc.registered;
       function handleFileSelect() {
@@ -4547,13 +4708,13 @@ function App() {
     }
 
     // 이력 섹션 컴포넌트
-    function ResumeSection(_ref30) {
-      var title = _ref30.title,
-        icon = _ref30.icon,
-        items = _ref30.items,
-        fields = _ref30.fields,
-        onAdd = _ref30.onAdd,
-        onDel = _ref30.onDel;
+    function ResumeSection(_ref31) {
+      var title = _ref31.title,
+        icon = _ref31.icon,
+        items = _ref31.items,
+        fields = _ref31.fields,
+        onAdd = _ref31.onAdd,
+        onDel = _ref31.onDel;
       var isEditing = editSection === title;
       return /*#__PURE__*/React.createElement("div", {
         style: {
@@ -4594,10 +4755,10 @@ function App() {
           marginBottom: 8,
           border: "1px solid ".concat(G[200])
         }
-      }, fields.map(function (_ref31) {
-        var _ref32 = _slicedToArray(_ref31, 2),
-          l = _ref32[0],
-          k = _ref32[1];
+      }, fields.map(function (_ref32) {
+        var _ref33 = _slicedToArray(_ref32, 2),
+          l = _ref33[0],
+          k = _ref33[1];
         return /*#__PURE__*/React.createElement("div", {
           key: k,
           style: {
@@ -4614,10 +4775,10 @@ function App() {
       }), /*#__PURE__*/React.createElement("button", {
         onClick: function onClick() {
           var row = {};
-          fields.forEach(function (_ref33) {
-            var _ref34 = _slicedToArray(_ref33, 2),
-              l = _ref34[0],
-              k = _ref34[1];
+          fields.forEach(function (_ref34) {
+            var _ref35 = _slicedToArray(_ref34, 2),
+              l = _ref35[0],
+              k = _ref35[1];
             var el = document.getElementById('resume-input-' + title + '-' + k);
             if (el) row[k] = el.value;
           });
@@ -4656,9 +4817,9 @@ function App() {
             color: G.gray9,
             flex: 1
           }
-        }, fields.map(function (_ref35) {
-          var _ref36 = _slicedToArray(_ref35, 2),
-            k = _ref36[1];
+        }, fields.map(function (_ref36) {
+          var _ref37 = _slicedToArray(_ref36, 2),
+            k = _ref37[1];
           return it[k];
         }).filter(Boolean).join(" · ")), /*#__PURE__*/React.createElement("button", {
           onClick: function onClick() {
@@ -4676,9 +4837,9 @@ function App() {
         }, "\u2715"));
       }));
     }
-    var TabBtn = function TabBtn(_ref37) {
-      var id = _ref37.id,
-        label = _ref37.label;
+    var TabBtn = function TabBtn(_ref38) {
+      var id = _ref38.id,
+        label = _ref38.label;
       return /*#__PURE__*/React.createElement("button", {
         onClick: function onClick() {
           return setDocTab(id);
@@ -4813,10 +4974,10 @@ function App() {
       style: cardStyle
     }, /*#__PURE__*/React.createElement("div", {
       style: cardTitleStyle
-    }, "\uAE30\uBCF8 \uC815\uBCF4"), [["이름", "name"], ["생년(년도)", "birth"], ["연락처", "phone"], ["이메일", "email"], ["주소", "address"]].map(function (_ref38) {
-      var _ref39 = _slicedToArray(_ref38, 2),
-        l = _ref39[0],
-        k = _ref39[1];
+    }, "\uAE30\uBCF8 \uC815\uBCF4"), [["이름", "name"], ["생년(년도)", "birth"], ["연락처", "phone"], ["이메일", "email"], ["주소", "address"]].map(function (_ref39) {
+      var _ref40 = _slicedToArray(_ref39, 2),
+        l = _ref40[0],
+        k = _ref40[1];
       return /*#__PURE__*/React.createElement("div", {
         key: k,
         style: {
@@ -4915,10 +5076,10 @@ function App() {
         gap: 8,
         marginBottom: 12
       }
-    }, [["담당 기관", autoInsts.length + "개"], ["내담자", autoClients.length + "명"], ["총 회기", autoTotalSess + "회"]].map(function (_ref40) {
-      var _ref41 = _slicedToArray(_ref40, 2),
-        l = _ref41[0],
-        v = _ref41[1];
+    }, [["담당 기관", autoInsts.length + "개"], ["내담자", autoClients.length + "명"], ["총 회기", autoTotalSess + "회"]].map(function (_ref41) {
+      var _ref42 = _slicedToArray(_ref41, 2),
+        l = _ref42[0],
+        v = _ref42[1];
       return /*#__PURE__*/React.createElement("div", {
         key: l,
         style: {
@@ -5060,10 +5221,10 @@ function App() {
         gap: 8,
         marginBottom: 16
       }
-    }, [["담당 기관", autoInsts.length + "개"], ["내담자", autoClients.length + "명"], ["총 회기", autoTotalSess + "회"]].map(function (_ref42) {
-      var _ref43 = _slicedToArray(_ref42, 2),
-        l = _ref43[0],
-        v = _ref43[1];
+    }, [["담당 기관", autoInsts.length + "개"], ["내담자", autoClients.length + "명"], ["총 회기", autoTotalSess + "회"]].map(function (_ref43) {
+      var _ref44 = _slicedToArray(_ref43, 2),
+        l = _ref44[0],
+        v = _ref44[1];
       return /*#__PURE__*/React.createElement("div", {
         key: l,
         style: {
@@ -5397,35 +5558,35 @@ function App() {
       return _sendBulkSMS.apply(this, arguments);
     }
     function _sendBulkSMS() {
-      _sendBulkSMS = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(applicants, type) {
-        var ok, fail, _iterator, _step, _loop, _t6;
-        return _regenerator().w(function (_context6) {
-          while (1) switch (_context6.p = _context6.n) {
+      _sendBulkSMS = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(applicants, type) {
+        var ok, fail, _iterator, _step, _loop, _t7;
+        return _regenerator().w(function (_context7) {
+          while (1) switch (_context7.p = _context7.n) {
             case 0:
               showToast("📱 SMS 발송 중...");
               ok = 0, fail = 0;
               _iterator = _createForOfIteratorHelper(applicants);
-              _context6.p = 1;
+              _context7.p = 1;
               _loop = /*#__PURE__*/_regenerator().m(function _loop() {
                 var _certExams$find;
-                var ap, round, text, res, r, _t5;
-                return _regenerator().w(function (_context5) {
-                  while (1) switch (_context5.p = _context5.n) {
+                var ap, round, text, res, r, _t6;
+                return _regenerator().w(function (_context6) {
+                  while (1) switch (_context6.p = _context6.n) {
                     case 0:
                       ap = _step.value;
                       if (ap.phone) {
-                        _context5.n = 1;
+                        _context6.n = 1;
                         break;
                       }
                       fail++;
-                      return _context5.a(2, 1);
+                      return _context6.a(2, 1);
                     case 1:
                       round = ((_certExams$find = certExams.find(function (e) {
                         return e.id === ap.exam_id;
                       })) === null || _certExams$find === void 0 ? void 0 : _certExams$find.round) || "";
                       text = type === "written" ? "[\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130]\n".concat(ap.name, "\uB2D8, ").concat(round, " ").concat(ap.grade, " \uD544\uAE30\uD569\uACA9\uC744 \uCD95\uD558\uB4DC\uB9BD\uB2C8\uB2E4!\n\uC2E4\uAE30 \uC77C\uC815\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.\n\uBB38\uC758: 010-3491-0013") : "[\uBC15\uC9C4\uC6B0\uC6D0\uC608\uCE58\uB8CC\uC13C\uD130]\n".concat(ap.name, "\uB2D8, ").concat(round, " ").concat(ap.grade, " \uCD5C\uC885\uD569\uACA9\uC744 \uCD95\uD558\uB4DC\uB9BD\uB2C8\uB2E4!\n\uC790\uACA9\uC99D \uBC1C\uAE09 \uC808\uCC28\uB97C \uC548\uB0B4\uD574 \uB4DC\uB9AC\uACA0\uC2B5\uB2C8\uB2E4.\n\uBB38\uC758: 010-3491-0013");
-                      _context5.p = 2;
-                      _context5.n = 3;
+                      _context6.p = 2;
+                      _context6.n = 3;
                       return fetch("https://jinwoo92.cafe24.com/sms.php", {
                         method: "POST",
                         headers: {
@@ -5437,56 +5598,56 @@ function App() {
                         })
                       });
                     case 3:
-                      res = _context5.v;
-                      _context5.n = 4;
+                      res = _context6.v;
+                      _context6.n = 4;
                       return res.json();
                     case 4:
-                      r = _context5.v;
+                      r = _context6.v;
                       if (r.status === "ok") ok++;else fail++;
-                      _context5.n = 6;
+                      _context6.n = 6;
                       break;
                     case 5:
-                      _context5.p = 5;
-                      _t5 = _context5.v;
+                      _context6.p = 5;
+                      _t6 = _context6.v;
                       fail++;
                     case 6:
-                      return _context5.a(2);
+                      return _context6.a(2);
                   }
                 }, _loop, null, [[2, 5]]);
               });
               _iterator.s();
             case 2:
               if ((_step = _iterator.n()).done) {
-                _context6.n = 5;
+                _context7.n = 5;
                 break;
               }
-              return _context6.d(_regeneratorValues(_loop()), 3);
+              return _context7.d(_regeneratorValues(_loop()), 3);
             case 3:
-              if (!_context6.v) {
-                _context6.n = 4;
+              if (!_context7.v) {
+                _context7.n = 4;
                 break;
               }
-              return _context6.a(3, 4);
+              return _context7.a(3, 4);
             case 4:
-              _context6.n = 2;
+              _context7.n = 2;
               break;
             case 5:
-              _context6.n = 7;
+              _context7.n = 7;
               break;
             case 6:
-              _context6.p = 6;
-              _t6 = _context6.v;
-              _iterator.e(_t6);
+              _context7.p = 6;
+              _t7 = _context7.v;
+              _iterator.e(_t7);
             case 7:
-              _context6.p = 7;
+              _context7.p = 7;
               _iterator.f();
-              return _context6.f(7);
+              return _context7.f(7);
             case 8:
               showToast("\u2705 SMS \uBC1C\uC1A1 \uC644\uB8CC (\uC131\uACF5 ".concat(ok, "\uAC74, \uC2E4\uD328 ").concat(fail, "\uAC74)"));
             case 9:
-              return _context6.a(2);
+              return _context7.a(2);
           }
-        }, _callee5, null, [[1, 6, 7, 8]]);
+        }, _callee6, null, [[1, 6, 7, 8]]);
       }));
       return _sendBulkSMS.apply(this, arguments);
     }
@@ -5499,10 +5660,10 @@ function App() {
         instGroups[ap.inst].push(ap);
       });
       var count = 0;
-      Object.entries(instGroups).forEach(function (_ref44) {
-        var _ref45 = _slicedToArray(_ref44, 2),
-          instName = _ref45[0],
-          aps = _ref45[1];
+      Object.entries(instGroups).forEach(function (_ref45) {
+        var _ref46 = _slicedToArray(_ref45, 2),
+          instName = _ref46[0],
+          aps = _ref46[1];
         var id = "HTC-CERT-" + Date.now() + "-" + count++;
         var nameList = aps.map(function (ap, i) {
           return "".concat(i + 1, ". ").concat(ap.name, " (").concat(ap.grade, ")");
@@ -5539,10 +5700,10 @@ function App() {
         gap: 6,
         marginBottom: 14
       }
-    }, [["exams", "📅 시험 회차"], ["applicants", "👥 응시자 관리"]].map(function (_ref46) {
-      var _ref47 = _slicedToArray(_ref46, 2),
-        t = _ref47[0],
-        l = _ref47[1];
+    }, [["exams", "📅 시험 회차"], ["applicants", "👥 응시자 관리"]].map(function (_ref47) {
+      var _ref48 = _slicedToArray(_ref47, 2),
+        t = _ref48[0],
+        l = _ref48[1];
       return /*#__PURE__*/React.createElement("button", {
         key: t,
         onClick: function onClick() {
@@ -5622,10 +5783,10 @@ function App() {
         color: G[900],
         marginBottom: 12
       }
-    }, "\uC0C8 \uC2DC\uD5D8 \uD68C\uCC28 \uCD94\uAC00"), [["회차명 (예: 2026년 1회차)", "round"], ["필기시험일", "written_date"], ["실기시험일", "practical_date"]].map(function (_ref48) {
-      var _ref49 = _slicedToArray(_ref48, 2),
-        l = _ref49[0],
-        k = _ref49[1];
+    }, "\uC0C8 \uC2DC\uD5D8 \uD68C\uCC28 \uCD94\uAC00"), [["회차명 (예: 2026년 1회차)", "round"], ["필기시험일", "written_date"], ["실기시험일", "practical_date"]].map(function (_ref49) {
+      var _ref50 = _slicedToArray(_ref49, 2),
+        l = _ref50[0],
+        k = _ref50[1];
       return /*#__PURE__*/React.createElement("div", {
         key: k,
         style: {
@@ -5788,11 +5949,11 @@ function App() {
         gap: 8,
         marginBottom: 14
       }
-    }, [["전체", examApplicants.length, G[700]], ["필기합격", writtenPassList.length, "#0284C7"], ["최종합격", finalPassList.length, "#059669"]].map(function (_ref50) {
-      var _ref51 = _slicedToArray(_ref50, 3),
-        l = _ref51[0],
-        n = _ref51[1],
-        c = _ref51[2];
+    }, [["전체", examApplicants.length, G[700]], ["필기합격", writtenPassList.length, "#0284C7"], ["최종합격", finalPassList.length, "#059669"]].map(function (_ref51) {
+      var _ref52 = _slicedToArray(_ref51, 3),
+        l = _ref52[0],
+        n = _ref52[1],
+        c = _ref52[2];
       return /*#__PURE__*/React.createElement("div", {
         key: l,
         style: {
@@ -6070,10 +6231,10 @@ function App() {
         color: G[900],
         marginBottom: 12
       }
-    }, "\uC751\uC2DC\uC790 \uCD94\uAC00"), [["이름", "name"], ["연락처", "phone"]].map(function (_ref52) {
-      var _ref53 = _slicedToArray(_ref52, 2),
-        l = _ref53[0],
-        k = _ref53[1];
+    }, "\uC751\uC2DC\uC790 \uCD94\uAC00"), [["이름", "name"], ["연락처", "phone"]].map(function (_ref53) {
+      var _ref54 = _slicedToArray(_ref53, 2),
+        l = _ref54[0],
+        k = _ref54[1];
       return /*#__PURE__*/React.createElement("div", {
         key: k,
         style: {
@@ -6364,10 +6525,10 @@ function App() {
           display: "flex",
           gap: 6
         }
-      }, [["staff", "치료사"], ["branch", "지부장"], ["director", "센터장"]].map(function (_ref54) {
-        var _ref55 = _slicedToArray(_ref54, 2),
-          r = _ref55[0],
-          l = _ref55[1];
+      }, [["staff", "치료사"], ["branch", "지부장"], ["director", "센터장"]].map(function (_ref55) {
+        var _ref56 = _slicedToArray(_ref55, 2),
+          r = _ref56[0],
+          l = _ref56[1];
         return /*#__PURE__*/React.createElement("button", {
           key: r,
           onClick: function onClick() {
