@@ -1376,8 +1376,8 @@
           </select>
         </div>
         <div class="form-group full">
-          <label>Firebase UID *</label>
-          <input type="text" id="acc-uid" placeholder="Firebase 콘솔에서 복사한 UID">
+          <label>임시 비밀번호 * <small style="font-weight:400;color:var(--gray-4)">(영문+숫자 8자 이상)</small></label>
+          <input type="text" id="acc-pw" placeholder="예: htc12345">
         </div>
         <div class="form-group full">
           <label>메모</label>
@@ -1925,8 +1925,12 @@ function openSessionModal(sessionId) {
   document.getElementById('sess-client').innerHTML = '<option value="">내담자 선택</option>' +
     clients.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
 
+  // 치료사 목록 + 관리자 본인도 포함
   const therapists = accounts.filter(a => a.role === 'therapist');
+  const isAdmin = currentUserProfile?.role === 'admin';
+  const adminOption = isAdmin ? `<option value="${currentUser?.uid}">${currentUserProfile?.name || '박진우'} (센터장)</option>` : '';
   document.getElementById('sess-therapist').innerHTML = '<option value="">치료사 선택</option>' +
+    adminOption +
     therapists.map(t => `<option value="${t.id}">${t.name}</option>`).join('');
 
   if (sessionId) {
@@ -2066,7 +2070,7 @@ async function saveAgency() {
 function openAccountModal() {
   document.getElementById('acc-agency').innerHTML = '<option value="">기관 선택</option>' +
     agencies.map(a => `<option value="${a.id}">${a.name}</option>`).join('');
-  ['acc-name','acc-email','acc-uid','acc-note'].forEach(id => document.getElementById(id).value = '');
+  ['acc-name','acc-email','acc-pw','acc-note'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('acc-role').selectedIndex = 0;
   document.getElementById('acc-agency-group').style.display = 'none';
   openModal('modal-account');
@@ -2078,33 +2082,46 @@ function toggleAgencyField() {
 }
 
 async function saveAccount() {
-  const name = document.getElementById('acc-name').value.trim();
+  const name  = document.getElementById('acc-name').value.trim();
   const email = document.getElementById('acc-email').value.trim();
-  const role = document.getElementById('acc-role').value;
-  const uid = document.getElementById('acc-uid').value.trim();
-  if (!name || !email || !role || !uid) {
+  const role  = document.getElementById('acc-role').value;
+  const pw    = document.getElementById('acc-pw').value.trim();
+  if (!name || !email || !role || !pw) {
     showToast('모든 필수 항목을 입력해 주세요.', true); return;
+  }
+  if (pw.length < 8) {
+    showToast('비밀번호는 8자 이상이어야 합니다.', true); return;
   }
   const agencyId = document.getElementById('acc-agency').value;
   const ag = agencies.find(a => a.id === agencyId);
-  const data = {
-    name, email, role,
-    agencyId: agencyId||'',
-    agencyName: ag?.name||'',
-    note: document.getElementById('acc-note').value,
-    status: '활성',
-    createdAt: window.__firebase.serverTimestamp(),
-    createdBy: currentUser?.uid,
-  };
   try {
+    // Firebase Auth에 계정 자동 생성
+    const { createUserWithEmailAndPassword } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js');
+    const cred = await createUserWithEmailAndPassword(window.__auth, email, pw);
+    const uid  = cred.user.uid;
+
+    // Firestore에 프로필 저장
     const { doc, setDoc } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');
-    await setDoc(doc(window.__db, 'cms_accounts', uid), data);
-    showToast('계정이 등록되었습니다.');
+    await setDoc(doc(window.__db, 'cms_accounts', uid), {
+      name, email, role,
+      agencyId:   agencyId||'',
+      agencyName: ag?.name||'',
+      note:       document.getElementById('acc-note').value,
+      status:     '활성',
+      createdAt:  window.__firebase.serverTimestamp(),
+      createdBy:  currentUser?.uid,
+    });
+
+    showToast(`✅ ${name}님 계정이 생성됐습니다! (이메일: ${email} / 임시PW: ${pw})`);
     closeModal('modal-account');
     await loadAccounts();
     renderAccountTable();
   } catch(e) {
-    showToast('저장 중 오류가 발생했습니다: ' + e.message, true);
+    const msg = e.code === 'auth/email-already-in-use' ? '이미 사용 중인 이메일입니다.' :
+                e.code === 'auth/invalid-email'        ? '이메일 형식이 올바르지 않습니다.' :
+                e.code === 'auth/weak-password'        ? '비밀번호가 너무 약합니다.' :
+                '오류: ' + e.message;
+    showToast(msg, true);
   }
 }
 
@@ -2284,11 +2301,46 @@ body{font-family:'Noto Sans KR',sans-serif;color:#1A1A18;background:#F4F4F2;font
   else showToast('문서가 열렸습니다. 인쇄 또는 PDF로 저장하세요.');
 }
 
-function viewSessionDetail(sessionId) {
+async function viewSessionDetail(sessionId) {
   const s = sessions.find(x => x.id === sessionId);
   if (!s) return;
   const cl = clients.find(c => c.id === s.clientId);
   const th = accounts.find(a => a.id === s.therapistId);
+
+  // 피드백 불러오기
+  let feedbacks = [];
+  try {
+    const { collection, getDocs, query, orderBy } = window.__firebase;
+    const snap = await getDocs(query(
+      collection(window.__db, 'cms_sessions', sessionId, 'feedbacks'),
+      orderBy('createdAt', 'asc')
+    ));
+    feedbacks = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  } catch(e) { feedbacks = []; }
+
+  const roleLabel = { admin:'관리자', agency:'기관담당자', therapist:'치료사' };
+  const roleColor = { admin:'#C8A84B', agency:'#2D6A3F', therapist:'#1A5A8A' };
+
+  const feedbackHTML = feedbacks.length ? feedbacks.map(f => `
+    <div style="display:flex;gap:10px;margin-bottom:14px;align-items:flex-start;">
+      <div style="width:34px;height:34px;border-radius:50%;background:${roleColor[f.role]||'#888'};
+        display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;
+        color:white;flex-shrink:0;">${(f.authorName||'?')[0]}</div>
+      <div style="flex:1;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+          <strong style="font-size:13px;color:var(--text)">${f.authorName||'알 수 없음'}</strong>
+          <span style="font-size:10px;padding:1px 7px;border-radius:10px;font-weight:600;
+            background:${roleColor[f.role]||'#888'}22;color:${roleColor[f.role]||'#888'}">
+            ${roleLabel[f.role]||f.role}</span>
+          <span style="font-size:11px;color:var(--gray-4)">${f.createdAt ? new Date(f.createdAt.seconds*1000).toLocaleDateString('ko-KR',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}) : ''}</span>
+          ${f.authorId === currentUser?.uid ? `<button onclick="deleteFeedback('${sessionId}','${f.id}')"
+            style="margin-left:auto;background:none;border:none;cursor:pointer;font-size:11px;color:var(--gray-4)">삭제</button>` : ''}
+        </div>
+        <div style="background:var(--gray-1);border-radius:0 10px 10px 10px;padding:10px 14px;
+          font-size:13px;line-height:1.6;color:var(--text);white-space:pre-wrap;">${f.content}</div>
+      </div>
+    </div>`).join('')
+  : '<div style="text-align:center;color:var(--gray-4);padding:16px;font-size:13px">아직 피드백이 없습니다</div>';
 
   document.getElementById('detail-modal-title').textContent = `📝 회기 기록 상세`;
   document.getElementById('detail-modal-body').innerHTML = `
@@ -2306,13 +2358,74 @@ function viewSessionDetail(sessionId) {
       <div class="detail-label">평가 및 소견</div><div class="detail-value" style="white-space:pre-wrap">${s.evaluation||'-'}</div>
       <div class="detail-label">특이사항</div><div class="detail-value" style="white-space:pre-wrap">${s.note||'-'}</div>
     </div>
+
+    <!-- 피드백 섹션 -->
+    <div style="margin-top:24px;border-top:2px solid var(--green-pale);padding-top:20px;">
+      <div style="font-size:14px;font-weight:700;color:var(--green-deep);margin-bottom:16px;display:flex;align-items:center;gap:6px;">
+        💬 피드백 <span style="font-size:12px;font-weight:400;color:var(--gray-4)">(${feedbacks.length}개)</span>
+      </div>
+
+      <!-- 피드백 목록 -->
+      <div id="feedback-list-${sessionId}" style="margin-bottom:16px;">
+        ${feedbackHTML}
+      </div>
+
+      <!-- 피드백 입력 -->
+      <div style="background:var(--green-pale);border-radius:10px;padding:14px;">
+        <textarea id="feedback-input-${sessionId}" placeholder="피드백을 입력하세요..."
+          style="width:100%;border:1.5px solid var(--gray-2);border-radius:8px;padding:10px 12px;
+          font-size:13px;font-family:'Noto Sans KR',sans-serif;resize:none;min-height:70px;outline:none;
+          background:white;"
+          onfocus="this.style.borderColor='var(--green-mid)'"
+          onblur="this.style.borderColor='var(--gray-2)'"></textarea>
+        <div style="display:flex;justify-content:flex-end;margin-top:8px;">
+          <button onclick="saveFeedback('${sessionId}')"
+            style="background:var(--green-deep);color:white;border:none;border-radius:8px;
+            padding:8px 20px;font-size:13px;font-weight:600;cursor:pointer;
+            font-family:'Noto Sans KR',sans-serif;">
+            💬 피드백 등록
+          </button>
+        </div>
+      </div>
+    </div>
   `;
+
   document.getElementById('detail-modal-footer').innerHTML = `
     <button class="btn btn-ghost" onclick="closeModal('modal-detail')">닫기</button>
     <button class="btn btn-outline" onclick="closeModal('modal-detail'); openSessionModal('${sessionId}')">수정</button>
     <button class="btn btn-danger" onclick="closeModal('modal-detail'); deleteSession('${sessionId}')">삭제</button>
   `;
   openModal('modal-detail');
+}
+
+async function saveFeedback(sessionId) {
+  const input = document.getElementById('feedback-input-' + sessionId);
+  const content = input?.value.trim();
+  if (!content) { showToast('피드백 내용을 입력해 주세요.', true); return; }
+
+  try {
+    const { collection, addDoc, serverTimestamp } = window.__firebase;
+    await addDoc(collection(window.__db, 'cms_sessions', sessionId, 'feedbacks'), {
+      content,
+      authorId:   currentUser?.uid,
+      authorName: currentUserProfile?.name || '알 수 없음',
+      role:       currentUserProfile?.role || 'admin',
+      createdAt:  serverTimestamp(),
+    });
+    showToast('피드백이 등록됐습니다. 🌿');
+    // 상세 페이지 새로고침
+    await viewSessionDetail(sessionId);
+  } catch(e) { showToast('등록 실패: ' + e.message, true); }
+}
+
+async function deleteFeedback(sessionId, feedbackId) {
+  if (!confirm('이 피드백을 삭제하시겠습니까?')) return;
+  try {
+    const { doc, deleteDoc } = window.__firebase;
+    await deleteDoc(doc(window.__db, 'cms_sessions', sessionId, 'feedbacks', feedbackId));
+    showToast('피드백이 삭제됐습니다.');
+    await viewSessionDetail(sessionId);
+  } catch(e) { showToast('삭제 실패: ' + e.message, true); }
 }
 
 // ─── DELETE ───────────────────────────────────
