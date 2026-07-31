@@ -1454,21 +1454,33 @@ async function handleAuthChange(user) {
 }
 
 async function loadUserProfile(uid) {
+  // 관리자 이메일이면 무조건 admin
+  if (currentUser.email === 'bakjinwoo92@daum.net') {
+    currentUserProfile = { id: uid, role: 'admin', name: '박진우', email: currentUser.email };
+    // cms_accounts에도 자동 등록
+    try {
+      const { doc, setDoc, getDoc } = window.__firebase;
+      const snap = await getDoc(doc(window.__db, 'cms_accounts', uid));
+      if (!snap.exists()) {
+        await setDoc(doc(window.__db, 'cms_accounts', uid), {
+          name: '박진우', email: currentUser.email,
+          role: 'admin', agencyId: '', status: '활성',
+          createdAt: window.__firebase.serverTimestamp(),
+        });
+      }
+    } catch(e) {}
+    return;
+  }
   try {
     const { doc, getDoc } = window.__firebase;
     const snap = await getDoc(doc(window.__db, 'cms_accounts', uid));
     if (snap.exists()) {
       currentUserProfile = { id: snap.id, ...snap.data() };
     } else {
-      // 최초 관리자: bakjinwoo92@daum.net
-      if (currentUser.email === 'bakjinwoo92@daum.net') {
-        currentUserProfile = { role: 'admin', name: '박진우', email: currentUser.email };
-      } else {
-        currentUserProfile = { role: 'therapist', name: currentUser.email, email: currentUser.email };
-      }
+      currentUserProfile = { role: 'therapist', name: currentUser.email, email: currentUser.email };
     }
   } catch(e) {
-    currentUserProfile = { role: 'admin', name: '박진우', email: currentUser?.email };
+    currentUserProfile = { role: 'therapist', name: currentUser?.email, email: currentUser?.email };
   }
 }
 
