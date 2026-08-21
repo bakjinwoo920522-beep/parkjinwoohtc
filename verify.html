@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>자격증 진위확인 | 박진우원예치료센터</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="박진우원예치료센터에서 발급한 자격증의 유효 여부를 확인합니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --dkgrn:#1C4A2A; --moss:#2D5A35; --gold:#C8A84B;
+    --cream:#F8F4EC; --text:#2C3E25; --muted:#6B7C61;
+    --border:#D5DFC8; --white:#fff;
+    --ok:#1E7A46; --warn:#B77A16; --bad:#C0392B; --gray:#6B7280;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,'Malgun Gothic',sans-serif;
+    background:var(--cream); color:var(--text);
+    min-height:100vh; padding:0 16px 48px;
+    -webkit-text-size-adjust:100%;
+  }
+
+  /* ── 헤더 ── */
+  .hd{
+    background:var(--dkgrn); margin:0 -16px 26px; padding:22px 20px;
+    text-align:center; color:#fff;
+  }
+  .hd .org{font-family:'Noto Serif KR',serif; font-size:17px; font-weight:600; letter-spacing:.02em}
+  .hd .en{font-size:10px; letter-spacing:.16em; color:#C8A84B; margin-top:5px}
+
+  .wrap{max-width:520px; margin:0 auto}
+
+  .eyebrow{
+    text-align:center; font-size:11px; letter-spacing:.18em; color:var(--gold);
+    font-weight:700; margin-bottom:8px;
+  }
+  h1{
+    font-family:'Noto Serif KR',serif; font-size:25px; font-weight:600;
+    text-align:center; color:var(--dkgrn); margin-bottom:8px;
+  }
+  .lede{text-align:center; font-size:13.5px; color:var(--muted); line-height:1.75; margin-bottom:24px}
+
+  /* ── 결과 카드 ── */
+  .card{
+    background:var(--white); border:1px solid var(--border); border-radius:14px;
+    padding:26px 22px; box-shadow:0 4px 24px rgba(28,74,42,.08);
+  }
+
+  .badge{
+    display:flex; align-items:center; gap:11px;
+    padding-bottom:16px; margin-bottom:16px; border-bottom:1px solid #EDF1E7;
+  }
+  .badge .dot{
+    width:40px; height:40px; border-radius:50%; flex:0 0 40px;
+    display:flex; align-items:center; justify-content:center; font-size:20px;
+  }
+  .badge .t{font-size:17px; font-weight:700; line-height:1.35}
+  .badge .s{font-size:12.5px; color:var(--muted); margin-top:3px; line-height:1.5}
+
+  .s-ok   .dot{background:#E6F4EC} .s-ok   .t{color:var(--ok)}
+  .s-warn .dot{background:#FBF1DE} .s-warn .t{color:var(--warn)}
+  .s-bad  .dot{background:#FBE9E7} .s-bad  .t{color:var(--bad)}
+  .s-gray .dot{background:#EFF1F3} .s-gray .t{color:var(--gray)}
+
+  dl{display:grid; grid-template-columns:88px 1fr; gap:11px 14px; font-size:14px}
+  dt{color:var(--muted); font-size:12.5px; padding-top:1px}
+  dd{font-weight:500; word-break:break-all}
+  dd.no{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13.5px; letter-spacing:.02em}
+
+  .note{
+    margin-top:18px; padding:13px 15px; border-radius:10px; font-size:13px; line-height:1.75;
+    background:#F6F8F2; border-left:3px solid var(--gold); color:#4A5A42;
+  }
+  .note b{color:var(--dkgrn)}
+
+  /* ── 직접 입력 ── */
+  .manual{margin-top:22px}
+  .manual label{display:block; font-size:12.5px; color:var(--muted); margin-bottom:8px}
+  .row{display:flex; gap:8px}
+  input{
+    flex:1; min-width:0; padding:13px 14px; font-size:15px; font-family:inherit;
+    border:1px solid var(--border); border-radius:10px; background:#fff; color:var(--text);
+  }
+  input:focus{outline:none; border-color:var(--moss); box-shadow:0 0 0 3px rgba(45,90,53,.12)}
+  button{
+    padding:13px 20px; font-size:14.5px; font-weight:700; font-family:inherit;
+    color:#fff; background:var(--dkgrn); border:0; border-radius:10px; cursor:pointer;
+    white-space:nowrap; transition:background .2s;
+  }
+  button:hover{background:var(--moss)}
+  button:disabled{opacity:.55; cursor:default}
+
+  /* ── 로딩 ── */
+  .spin{
+    width:26px; height:26px; margin:26px auto; display:block;
+    border:3px solid #E4EBDC; border-top-color:var(--moss); border-radius:50%;
+    animation:sp .8s linear infinite;
+  }
+  @keyframes sp{to{transform:rotate(360deg)}}
+
+  .foot{
+    text-align:center; font-size:11.5px; color:var(--muted); line-height:1.9;
+    margin-top:26px; padding-top:18px; border-top:1px solid var(--border);
+  }
+  .foot a{color:var(--moss)}
+</style>
+</head>
+<body>
+
+<div class="hd">
+  <div class="org">박진우원예치료센터</div>
+  <div class="en">JINWOO HORTICULTURAL THERAPY CENTER</div>
+</div>
+
+<div class="wrap">
+  <div class="eyebrow">CERTIFICATE VERIFICATION</div>
+  <h1>자격증 진위확인</h1>
+  <p class="lede">본 센터에서 발급한 자격증의<br>현재 유효 여부를 확인하실 수 있습니다.</p>
+
+  <div id="result"><div class="spin"></div></div>
+
+  <div class="manual" id="manual" style="display:none">
+    <label for="no">자격증 번호를 직접 입력해 확인하실 수 있습니다.</label>
+    <div class="row">
+      <input id="no" type="text" placeholder="예: BJW-HT3-2025-0031"
+             autocomplete="off" autocapitalize="characters" spellcheck="false">
+      <button id="go" type="button">확인</button>
+    </div>
+  </div>
+
+  <div class="foot">
+    자격기본법 제17조에 의거하여 등록된 민간자격증입니다.<br>
+    문의 · <a href="index.html">www.parkjinwoohtc.com</a>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp, getApps, getApp }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, query, where, getDocs, limit }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA40OooHSHAyCc-kwps50pDJ504f92hxfo",
+  authDomain: "pjw-cert.firebaseapp.com",
+  projectId: "pjw-cert",
+  storageBucket: "pjw-cert.firebasestorage.app",
+  messagingSenderId: "819294382402",
+  appId: "1:819294382402:web:1dd27376446616af09c0db"
+};
+const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+const db  = getFirestore(app);
+
+/* ---------- 유틸 ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g,
+  c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+const pad = n => String(n).padStart(2, '0');
+const todayISO = () => { const d = new Date();
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`; };
+
+/* 2026-09-30 → 2026년 9월 30일 */
+function korDate(v){
+  if(!v) return '';
+  const s = String(v).slice(0,10).replace(/[./]/g,'-');
+  const m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+  return m ? `${m[1]}년 ${Number(m[2])}월 ${Number(m[3])}일` : s;
+}
+
+/* 홍길동 → 홍*동 · 김철 → 김* (개인정보 보호) */
+function maskName(name){
+  const n = String(name || '').trim();
+  if(n.length <= 1) return n;
+  if(n.length === 2) return n[0] + '*';
+  return n[0] + '*'.repeat(n.length - 2) + n[n.length - 1];
+}
+
+/* 유효기간이 지났으면 '만료'로 본다 */
+function effectiveStatus(c){
+  const s = (c.certStatus || '정상').trim();
+  if(s === '정상' && c.validDate && String(c.validDate).slice(0,10) < todayISO()) return '만료';
+  return s;
+}
+
+/* ---------- 화면 그리기 ---------- */
+function box(cls, icon, title, sub, inner){
+  return `<div class="card">
+    <div class="badge ${cls}">
+      <div class="dot">${icon}</div>
+      <div><div class="t">${title}</div>${sub ? `<div class="s">${sub}</div>` : ''}</div>
+    </div>${inner || ''}</div>`;
+}
+
+function details(c){
+  return `<dl>
+    <dt>자격증명</dt><dd>${esc(c.certLabel || '—')}</dd>
+    <dt>소지인</dt><dd>${esc(maskName(c.name))}</dd>
+    <dt>자격번호</dt><dd class="no">${esc(c.certNo || '—')}</dd>
+  </dl>`;
+}
+
+function render(c){
+  const st     = effectiveStatus(c);
+  const reason = c.statusReason
+    ? `<div class="note">사유 · <b>${esc(c.statusReason)}</b></div>` : '';
+  const note   = c.statusNote
+    ? `<div class="note">${esc(c.statusNote)}</div>` : '';
+
+  if(st === '정지'){
+    const from = c.statusFrom ? `${esc(korDate(c.statusFrom))}부터 정지되었습니다. ` : '';
+    return box('s-bad', '⛔', '현재 자격정지 상태입니다',
+      `${from}정지 기간 중에는 해당 자격을 사용하실 수 없습니다.`,
+      details(c) + reason + note);
+  }
+
+  if(st === '정지예정'){
+    const from = c.statusFrom
+      ? `${esc(korDate(c.statusFrom))}부터 자격이 정지될 예정입니다.`
+      : '자격정지가 예정되어 있습니다.';
+    return box('s-warn', '⚠️', '자격정지 예정',
+      `${from} 현재는 유효합니다.`,
+      details(c) + reason + note);
+  }
+
+  if(st === '만료'){
+    return box('s-gray', '🕓', '유효기간이 만료되었습니다',
+      '보수교육 이수 후 갱신·재발급을 받으셔야 자격이 다시 유효해집니다.',
+      details(c) + note);
+  }
+
+  return box('s-ok', '✅', '유효한 자격증입니다',
+    '본 센터에서 정상적으로 발급·관리되고 있는 자격증입니다.',
+    details(c) + note);
+}
+
+/* ---------- 조회 ---------- */
+let busy = false;
+
+async function lookup(certNo){
+  if(busy) return;
+  const no = String(certNo || '').trim();
+  const out = $('#result');
+
+  if(!no){
+    out.innerHTML = box('s-gray', '🔍', '자격증 번호를 입력해 주세요',
+      '자격증에 인쇄된 QR 코드를 스캔하시면 자동으로 조회됩니다.');
+    $('#manual').style.display = 'block';
+    return;
+  }
+
+  busy = true;
+  $('#go') && ($('#go').disabled = true);
+  out.innerHTML = '<div class="spin"></div>';
+
+  try{
+    const snap = await getDocs(
+      query(collection(db, 'bjw_certs'), where('certNo', '==', no), limit(1)));
+
+    out.innerHTML = snap.empty
+      ? box('s-bad', '❌', '등록되지 않은 자격증 번호입니다',
+          `<b>${esc(no)}</b> 는 발급 기록이 확인되지 않습니다. 번호를 다시 확인하시거나 센터로 문의해 주세요.`)
+      : render(snap.docs[0].data());
+
+  }catch(e){
+    console.error('[verify]', e);
+    out.innerHTML = box('s-gray', '⚠️', '조회 중 문제가 발생했습니다',
+      `잠시 후 다시 시도해 주세요. 계속 같은 문제가 나타나면 센터로 문의 부탁드립니다. (${esc(e.code || e.message)})`);
+  }finally{
+    busy = false;
+    $('#go') && ($('#go').disabled = false);
+    $('#manual').style.display = 'block';
+  }
+}
+
+/* ---------- 시작 ---------- */
+const params  = new URLSearchParams(location.search);
+const initial = params.get('c') || params.get('cert') || '';
+
+if(initial) $('#no').value = initial;
+$('#go').addEventListener('click', () => lookup($('#no').value));
+$('#no').addEventListener('keydown', e => { if(e.key === 'Enter') lookup($('#no').value); });
+
+lookup(initial);
+</script>
+
+</body>
+</html>
