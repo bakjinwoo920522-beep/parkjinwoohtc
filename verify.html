@@ -164,6 +164,9 @@ const pad = n => String(n).padStart(2, '0');
 const todayISO = () => { const d = new Date();
   return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`; };
 
+/* 2026-09-30 → 2026.09.30 */
+const ymd = v => v ? String(v).slice(0,10).replace(/-/g,'.') : '—';
+
 /* 2026-09-30 → 2026년 9월 30일 */
 function korDate(v){
   if(!v) return '';
@@ -201,6 +204,8 @@ function details(c){
     <dt>자격증명</dt><dd>${esc(c.certLabel || '—')}</dd>
     <dt>소지인</dt><dd>${esc(maskName(c.name))}</dd>
     <dt>자격번호</dt><dd class="no">${esc(c.certNo || '—')}</dd>
+    <dt>발급일</dt><dd>${ymd(c.issuedDate)}</dd>
+    <dt>유효기간</dt><dd>${c.validDate ? ymd(c.validDate) + '까지' : '—'}</dd>
   </dl>`;
 }
 
